@@ -1,0 +1,89 @@
+
+;; TODO: is there a better way to do this?
+;; download file from: http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el
+;; http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
+;; (load "~/.emacs.d/post")
+
+;; Drop one-off scripts into this directory
+(add-to-list 'load-path "~/.emacs.d/autoload")
+
+;; This is required before loading evil
+;; and allows CTRL-r to work (redo)
+(require 'undo-tree)
+
+;; Set up evil to be in the path
+;; This is just a checked out version from git
+(add-to-list 'load-path "~/wa/git/evil")
+
+;; Make CTRL - u scroll up like I'm used to in vi
+;; This seems to be off by default
+(setq evil-want-C-u-scroll t)
+(setq evil-shift-width 4) ;; not sure what the default is here
+(require 'evil)
+;; Load evil by default
+(evil-mode 1)
+
+;; Other options
+(setq vc-follow-symlinks nil)
+
+;; TODO: gnu global setup
+
+;; Protobuf syntax highlighting
+;; Works!
+;;(load "~/.emacs.d/protobuf-mode")
+(autoload 'protobuf-mode "protobuf-mode" "Major mode for editing protobuf defitinion." t)
+(add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))
+
+;; mutt composition mode
+(autoload 'post-mode "post" "mode for e-mail" t)
+(add-to-list 'auto-mode-alist
+	     '("\\.*mutt-*\\|.article\\|\\.followup"
+	       . post-mode))
+
+
+(require 'cmake-mode)
+(setq auto-mode-alist
+      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
+		("\\.cmake\\'" . cmake-mode))
+	      auto-mode-alist))
+
+;; Create my personal style. (from the manual)
+;; I think this actually works how I like it!!
+(defconst my-c-style
+  '((c-tab-always-indent        . t)
+    (c-comment-only-line-offset . 0)
+    ;(c-comment-only-line-offset . 4)
+    (c-hanging-braces-alist     . ((substatement-open after)
+                                   (brace-list-open)))
+    (c-hanging-colons-alist     . ((member-init-intro before)
+                                   (inher-intro)
+                                   (case-label after)
+                                   (label after)
+                                   (access-label after)))
+    (c-cleanup-list             . (scope-operator
+                                   empty-defun-braces
+                                   defun-close-semi))
+    ;(c-offsets-alist            . ((arglist-close . c-lineup-arglist)
+    (c-offsets-alist            . ((arglist-close . c-lineup-close-paren)
+                                   (substatement-open . 0)
+                                   (case-label        . 4)
+                                   (block-open        . 0)
+				   (innamespace       . [0]) ; don't indent inside of namespaces
+                                   (knr-argdecl-intro . -)))
+    (c-echo-syntactic-information-p . t))
+  "My C Programming Style")
+(c-add-style "PERSONAL" my-c-style)
+
+;; Customizations for all modes in CC Mode.
+(defun my-c-mode-common-hook ()
+  ;; set my personal style for the current buffer
+  (c-set-style "PERSONAL")
+  ;; other customizations
+  ;;(setq tab-width 8
+  (setq tab-width 4
+        ;; this will make sure spaces are used instead of tabs
+        indent-tabs-mode nil)
+  ;; we like auto-newline, but not hungry-delete
+  (c-toggle-auto-newline 1))
+(add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+

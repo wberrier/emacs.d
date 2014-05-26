@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# set EDITOR to this script
+
+# It will start up an emacs server if one isn't started already
+# and utilize the running emacs process if it is
+
+# It's fast!
+
+exec emacsclient --alternate-editor="" -c "$@"
