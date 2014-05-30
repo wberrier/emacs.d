@@ -1,14 +1,11 @@
 
-;; TODO: is there a better way to do this?
-;; download file from: http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el
-;; http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
-;; (load "~/.emacs.d/post")
-
-;; Drop one-off scripts into this directory
-(add-to-list 'load-path "~/.emacs.d/autoload")
+;; Post Mode
+;; Download http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
+;; and put in the autoload directory
 
 ;; This is required before loading evil
 ;; and allows CTRL-r to work (redo)
+(load "~/wa/git/evil/lib/undo-tree")
 (require 'undo-tree)
 
 ;; Set up evil to be in the path
@@ -23,14 +20,18 @@
 ;; Load evil by default
 (evil-mode 1)
 
+;; Drop one-off scripts into this directory
+(add-to-list 'load-path "~/.emacs.d/autoload")
+
 ;; Other options
 (setq vc-follow-symlinks nil)
 
+(setq backup-directory-alist '(("." . "~/backup/emacs")))
+
 ;; TODO: gnu global setup
+;; TODO: Load the .el file out if the $HOME/install dir
 
 ;; Protobuf syntax highlighting
-;; Works!
-;;(load "~/.emacs.d/protobuf-mode")
 (autoload 'protobuf-mode "protobuf-mode" "Major mode for editing protobuf defitinion." t)
 (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))
 
@@ -40,6 +41,8 @@
 	     '("\\.*mutt-*\\|.article\\|\\.followup"
 	       . post-mode))
 
+;; TODO: need to add some git modes (commits, rebase, etc...)
+;; check out https://github.com/magit/git-modes
 
 (require 'cmake-mode)
 (setq auto-mode-alist
@@ -83,7 +86,35 @@
   (setq tab-width 4
         ;; this will make sure spaces are used instead of tabs
         indent-tabs-mode nil)
+        ;;indent-tabs-mode t)
   ;; we like auto-newline, but not hungry-delete
-  (c-toggle-auto-newline 1))
+  ;; these are all the cc-mode minor modes
+  ;;(c-toggle-electric-state -1)
+  ;;(c-toggle-auto-newline -1) ;; don't insert newlines when entering a semicolon (default)
+  ;;(c-toggle-hungry-state 1) ;; weird... would be nice to go back the tab amount, but not newlines
+  ;;(c-toggle-auto-hungry-state -1)
+  ;;(c-toggle-syntactic-indentation 1)
+
+  ;; Make return indent the new line
+  ;; But, this doesn't clean up abandoned indents
+  ;;(define-key c-mode-base-map "\C-m" 'c-context-line-break)
+)
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; Clean indent
+;; indent on return but don't leave trailing whitespace
+(add-to-list 'load-path "~/wa/git/clean-aindent")
+(require 'clean-aindent)
+
+;; Whitespace settings
+;; Highlight trailing whitespace
+(setq-default show-trailing-whitespace t)
+;; set up key combo to show whitespace chars
+;; This was initially f10, but that's mapped to the menu, use f9
+(define-key evil-normal-state-map (kbd "<f9>") 'whitespace-mode)
+
+;; Reformat text (ported from vim config)
+;; I like fill-paragraph better than vim's reformat (better suited to text)
+;; and I don't use "R" (replace) mode in vim apparently
+(define-key evil-normal-state-map (kbd "R") 'fill-paragraph)
 
