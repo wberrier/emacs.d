@@ -16,6 +16,7 @@
 ;; This seems to be off by default
 (setq evil-want-C-u-scroll t)
 (setq evil-shift-width 4) ;; not sure what the default is here
+;(setq evil-search-module 'evil-search) ;; vim like search behavior, but can't tell a difference, doesn't seem to be working
 (require 'evil)
 ;; Load evil by default
 (evil-mode 1)
