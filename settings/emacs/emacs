@@ -1,7 +1,7 @@
-
-;; Post Mode
-;; Download http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
-;; and put in the autoload directory
+;; -*-Lisp-*-
+;; Modeline must be the first thing in the file
+;; Set mode, since this file is controlled in git as "emacs" instead of ".emacs"
+;; Interesting that this didn't happen automatically...
 
 ;; This is required before loading evil
 ;; and allows CTRL-r to work (redo)
@@ -29,21 +29,69 @@
 
 (setq backup-directory-alist '(("." . "~/backup/emacs")))
 
-;; TODO: gnu global setup
-;; TODO: Load the .el file out if the $HOME/install dir
+;; Save place in files when visiting
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file "~/.emacs.d/saved-places")
+
+;; gnu global setup
+;; NOTE: keep the cscope vim keyboard bindings so I can still move between the two
+;; note: there's also xcscope.el, which some say they like the best.  There's also ggtags.el.
+(setq dist (substring (shell-command-to-string "~/bin/get_dist") 0 -1)) ; removes trailing newline
+(add-to-list 'load-path (format "~/install/%s/share/gtags" dist))
+(autoload 'gtags-mode "gtags" "" t)
+
+; Set up key bindings for gtags
+(define-key evil-normal-state-map (kbd "\C-]") 'gtags-find-tag-from-here)
+(define-key evil-normal-state-map (kbd "\C-t") 'gtags-pop-stack)
+
+; Set up some keybindings for the cscope interaction
+; although, it doesn't grab the current expression under the curson :(
+; could write the equivalent "-from-here" functions...
+; I guess this is where the shortcomings begin?
+; but, it automatically puts the current symbol in the interactive buffer
+; TODO: any way to automatically press enter?
+; NOTE: not exactly sure what the difference is for some of these
+(define-key evil-normal-state-map (kbd "\C-\\ s") 'gtags-find-symbol)
+(define-key evil-normal-state-map (kbd "\C-\\ g") 'gtags-find-tag) ; different than gtags-find-tag-from-here! huh?
+(define-key evil-normal-state-map (kbd "\C-\\ c") 'gtags-find-rtag)
+(define-key evil-normal-state-map (kbd "\C-\\ t") 'gtags-find-pattern) ; same as gtags-find-with-grep
+(define-key evil-normal-state-map (kbd "\C-\\ e") 'gtags-find-with-grep)
+(define-key evil-normal-state-map (kbd "\C-\\ f") 'gtags-find-file)
+;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
+;(define-key evil-normal-state-map (kbd "\C-\\ d") ')
+
+;; Allow "RET" to work in gtags-select-mode when running under evil
+(defun intercept-evil-ret ()
+  (interactive) ;; huh?
+  (if (eq major-mode 'gtags-select-mode) (gtags-select-tag) (evil-ret))
+  )
+(define-key evil-motion-state-map (kbd "RET") 'intercept-evil-ret)
 
 ;; Protobuf syntax highlighting
 (autoload 'protobuf-mode "protobuf-mode" "Major mode for editing protobuf defitinion." t)
 (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))
 
+;; Post Mode
+;; Download http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
+;; and put in the autoload directory
 ;; mutt composition mode
 (autoload 'post-mode "post" "mode for e-mail" t)
 (add-to-list 'auto-mode-alist
 	     '("\\.*mutt-*\\|.article\\|\\.followup"
 	       . post-mode))
+(defun my-post-mode-hook ()
+  (flyspell-mode)
+  )
+(add-hook 'post-mode-hook 'my-post-mode-hook)
 
-;; TODO: need to add some git modes (commits, rebase, etc...)
-;; check out https://github.com/magit/git-modes
+;; git-modes: https://github.com/magit/git-modes
+(add-to-list 'load-path "~/wa/git/git-modes")
+(require 'gitattributes-mode)
+(require 'git-commit-mode)
+(require 'gitconfig-mode)
+(require 'gitignore-mode)
+(require 'git-rebase-mode)
 
 (require 'cmake-mode)
 (setq auto-mode-alist
@@ -53,6 +101,7 @@
 
 ;; Create my personal style. (from the manual)
 ;; I think this actually works how I like it!!
+
 (defconst my-c-style
   '((c-tab-always-indent        . t)
     (c-comment-only-line-offset . 0)
@@ -99,6 +148,12 @@
   ;; Make return indent the new line
   ;; But, this doesn't clean up abandoned indents
   ;;(define-key c-mode-base-map "\C-m" 'c-context-line-break)
+
+  ; compile command for this mode
+  (setq compile-command "cmake_build")
+
+  ;; enable gnu global in cc mode
+  (gtags-mode 1)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
@@ -113,6 +168,25 @@
 ;; set up key combo to show whitespace chars
 ;; This was initially f10, but that's mapped to the menu, use f9
 (define-key evil-normal-state-map (kbd "<f9>") 'whitespace-mode)
+
+;; Compile options
+;(setq-default compilation-read-command nil) ;; don't prompt for command
+(setq-default compilation-scroll-output 'first-error) ;; scroll until the first error
+;(setq-default compilation-scroll-output t) ;; scroll to the end
+
+(defun bookmark-then-compile ()
+  (interactive)
+  (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
+  (compile compile-command) ; command set by the mode
+  )
+(define-key evil-normal-state-map (kbd "<f7>") 'bookmark-then-compile)
+;(define-key evil-normal-state-map (kbd "<f7>") 'compile)
+
+(defun jump-to-compile-bookmark ()
+  (interactive)
+  (bookmark-jump "compile-bookmark") ; set a bookmark to easily return to
+  )
+(define-key evil-normal-state-map (kbd "<f8>") 'jump-to-compile-bookmark)
 
 ;; Reformat text (ported from vim config)
 ;; I like fill-paragraph better than vim's reformat (better suited to text)
