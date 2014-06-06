@@ -156,6 +156,7 @@
   (gtags-mode 1)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w"))) ; treat underscore as a word char, finally!
 
 ;; Clean indent
 ;; indent on return but don't leave trailing whitespace
