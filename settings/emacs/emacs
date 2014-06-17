@@ -16,9 +16,9 @@
 ;; This seems to be off by default
 (setq evil-want-C-u-scroll t)
 (setq evil-shift-width 4) ;; not sure what the default is here
-;(setq evil-search-module 'evil-search) ;; vim like search behavior, but can't tell a difference, doesn't seem to be working
-(setq-default case-fold-search nil) ; case sensitive search.  What I'm used to, but may want differently
-(setq evil-search-module 'search) ;; nonincremental search.  Seems to be closest to what I'm used to.
+(setq evil-search-module 'evil-search)
+; treat underscore as a word char, finally! (for 'w' and searching)
+(add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (require 'evil)
 ;; Load evil by default
 (evil-mode 1)
@@ -105,7 +105,7 @@
 (require 'git-commit-mode)
 (require 'gitconfig-mode)
 (require 'gitignore-mode)
-;(require 'git-rebase-mode) ; TODO: need to learn best way to use this with evil mode
+; (require 'git-rebase-mode) ;; doesn't work well with evil
 
 (require 'cmake-mode)
 (setq auto-mode-alist
@@ -170,7 +170,6 @@
   (gtags-mode 1)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
-(add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w"))) ; treat underscore as a word char, finally!
 
 ;; Clean indent
 ;; indent on return but don't leave trailing whitespace
