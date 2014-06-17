@@ -17,9 +17,23 @@
 (setq evil-want-C-u-scroll t)
 (setq evil-shift-width 4) ;; not sure what the default is here
 ;(setq evil-search-module 'evil-search) ;; vim like search behavior, but can't tell a difference, doesn't seem to be working
+(setq-default case-fold-search nil) ; case sensitive search.  What I'm used to, but may want differently
+(setq evil-search-module 'search) ;; nonincremental search.  Seems to be closest to what I'm used to.
 (require 'evil)
 ;; Load evil by default
 (evil-mode 1)
+
+; great built in color theme
+(load-theme 'wombat t)
+
+;; Nice monokai color theme
+; seems to only work in 256 color mode
+;(add-to-list 'custom-theme-load-path "~/wa/git/monokai-emacs")
+;(load-theme 'monokai t)
+
+;(add-to-list 'custom-theme-load-path "~/wa/git/zenburn-emacs")
+; seems to only work in 256 color mode, but has a nice 8 color fallback option
+;(load-theme 'zenburn t)
 
 ;; Drop one-off scripts into this directory
 (add-to-list 'load-path "~/.emacs.d/autoload")
@@ -91,7 +105,7 @@
 (require 'git-commit-mode)
 (require 'gitconfig-mode)
 (require 'gitignore-mode)
-(require 'git-rebase-mode)
+;(require 'git-rebase-mode) ; TODO: need to learn best way to use this with evil mode
 
 (require 'cmake-mode)
 (setq auto-mode-alist
@@ -161,7 +175,7 @@
 ;; Clean indent
 ;; indent on return but don't leave trailing whitespace
 (add-to-list 'load-path "~/wa/git/clean-aindent")
-(require 'clean-aindent)
+(require 'clean-aindent-mode)
 
 ;; Whitespace settings
 ;; Highlight trailing whitespace
