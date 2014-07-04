@@ -48,6 +48,9 @@
 (setq-default save-place t)
 (setq save-place-file "~/.emacs.d/saved-places")
 
+;; Disable autosave
+(setq auto-save-default nil)
+
 ;; gnu global setup
 ;; NOTE: keep the cscope vim keyboard bindings so I can still move between the two
 ;; note: there's also xcscope.el, which some say they like the best.  There's also ggtags.el.
