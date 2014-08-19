@@ -114,11 +114,13 @@
 (require 'gitignore-mode)
 ; (require 'git-rebase-mode) ;; doesn't work well with evil
 
-(require 'cmake-mode)
-(setq auto-mode-alist
-      (append '(("CMakeLists\\.txt\\'" . cmake-mode)
-		("\\.cmake\\'" . cmake-mode))
-	      auto-mode-alist))
+; Only load this when it exists
+(when (require 'cmake-mode nil 'noerror)
+  (setq auto-mode-alist
+	(append '(("CMakeLists\\.txt\\'" . cmake-mode)
+		  ("\\.cmake\\'" . cmake-mode))
+		auto-mode-alist))
+)
 
 ;; Create my personal style. (from the manual)
 ;; I think this actually works how I like it!!
