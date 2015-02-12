@@ -89,6 +89,9 @@
 (autoload 'protobuf-mode "protobuf-mode" "Major mode for editing protobuf defitinion." t)
 (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))
 
+;; golang syntax highlighting
+(require 'go-mode-load)
+
 ;; Post Mode
 ;; Download http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
 ;; and put in the autoload directory
@@ -105,6 +108,20 @@
 ; Set flyspell mode for text documents
 ; too general?  Couldn't hurt
 (add-to-list 'auto-mode-alist '("\\.txt$" . flyspell-mode))
+
+; Occasional use for norwegian dictionaries
+; (they have nynorsk, but not bokmål)
+; Honestly, the bokmål dictionary isn't that great
+; Run ispell-change-dictionary to select the norwegian one
+(require 'ispell)
+(add-to-list 'ispell-local-dictionary-alist '("norwegian-bokmål"
+					      "[[:alpha:]]"
+					      "[^[:alpha:]]"
+					      "[']"
+					      t
+					      ("-d" "nb_NO")
+					      nil
+					      iso-8859-1))
 
 ;; git-modes: https://github.com/magit/git-modes
 (add-to-list 'load-path "~/wa/git/git-modes")
@@ -216,3 +233,8 @@
 ;; and I don't use "R" (replace) mode in vim apparently
 (define-key evil-normal-state-map (kbd "R") 'fill-paragraph)
 
+;; Switch between header and implementation
+(define-key evil-normal-state-map (kbd "<f6>") 'ff-find-other-file)
+
+; enable debugging?
+;(setq debug-on-error t)
