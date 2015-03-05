@@ -56,6 +56,7 @@
 ;; note: there's also xcscope.el, which some say they like the best.  There's also ggtags.el.
 (setq dist (substring (shell-command-to-string "~/bin/get_dist") 0 -1)) ; removes trailing newline
 (add-to-list 'load-path (format "~/install/%s/share/gtags" dist))
+(setq gtags-auto-update t) ; update files on save
 (autoload 'gtags-mode "gtags" "" t)
 
 ; Set up key bindings for gtags
@@ -90,7 +91,8 @@
 (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))
 
 ;; golang syntax highlighting
-(require 'go-mode-load)
+(autoload 'go-mode-load "go-mode-load" "Major mode for editing go source" t)
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode-load))
 
 ;; Post Mode
 ;; Download http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
@@ -137,8 +139,8 @@
 ; Only load this when it exists
 (when (require 'cmake-mode nil 'noerror)
   (setq auto-mode-alist
-	(append '(("CMakeLists\\.txt\\'" . cmake-mode)
-		  ("\\.cmake\\'" . cmake-mode))
+	(append '(("CMakeLists\\.txt" . cmake-mode)
+		  ("\\.cmake$" . cmake-mode))
 		auto-mode-alist))
 )
 
@@ -238,6 +240,24 @@
 
 ;; Switch between header and implementation
 (define-key evil-normal-state-map (kbd "<f6>") 'ff-find-other-file)
+
+; set of directories to look for header/implementation
+; was originally thinking to search all directories in gtags, but this should work
+(setq ff-search-directories
+  '(
+    "."
+    "../src"
+    "../../src"
+    "../include"
+    "../include/*"
+    "/usr/include"
+    "/usr/include/*"
+    "/usr/local/include"
+    "/usr/local/include/*"
+    )
+  )
+; Don't prompt to create when can't find
+(setq ff-always-try-to-create nil)
 
 ; enable debugging?
 ;(setq debug-on-error t)
