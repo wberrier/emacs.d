@@ -28,10 +28,10 @@
 
 ;; Nice monokai color theme
 ; seems to only work in 256 color mode
-;(add-to-list 'custom-theme-load-path "~/wa/git/monokai-emacs")
+(add-to-list 'custom-theme-load-path "~/wa/git/monokai-emacs")
 ;(load-theme 'monokai t)
 
-;(add-to-list 'custom-theme-load-path "~/wa/git/zenburn-emacs")
+(add-to-list 'custom-theme-load-path "~/wa/git/zenburn-emacs")
 ; seems to only work in 256 color mode, but has a nice 8 color fallback option
 ;(load-theme 'zenburn t)
 
