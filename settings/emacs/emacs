@@ -15,7 +15,7 @@
 ;; Make CTRL - u scroll up like I'm used to in vi
 ;; This seems to be off by default
 (setq evil-want-C-u-scroll t)
-(setq evil-shift-width 4) ;; not sure what the default is here
+(setq evil-shift-width 2) ;; not sure what the default is here
 (setq evil-search-module 'evil-search)
 ; treat underscore as a word char, finally! (for 'w' and searching)
 (add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w")))
@@ -164,7 +164,9 @@
     ;(c-offsets-alist            . ((arglist-close . c-lineup-arglist)
     (c-offsets-alist            . ((arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
-                                   (case-label        . 4)
+                                   (case-label        . 2)
+				   ; not sure what this does...
+                                   ;(arglist-intro     . '+)
                                    (block-open        . 0)
 				   (innamespace       . [0]) ; don't indent inside of namespaces
                                    (knr-argdecl-intro . -)))
@@ -178,7 +180,10 @@
   (c-set-style "PERSONAL")
   ;; other customizations
   ;;(setq tab-width 8
-  (setq tab-width 4
+  ;;(setq tab-width 2
+  (setq tab-width 2 ;; just for some things
+        ;; indent 2 for some
+        c-basic-offset 2
         ;; this will make sure spaces are used instead of tabs
         indent-tabs-mode nil)
         ;;indent-tabs-mode t)
