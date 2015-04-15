@@ -272,3 +272,5 @@
 
 ; enable debugging?
 ;(setq debug-on-error t)
+
+(setq gdb-many-windows t)
