@@ -40,7 +40,10 @@
 
 ; Very nice theme
 (add-to-list 'custom-theme-load-path "~/wa/git/emacs-color-theme-solarized")
+; on el6, TERM must be screen-256color  huh??
 (setq solarized-termcolors 256)
+(set-terminal-parameter nil 'background-mode 'dark)
+(set-frame-parameter nil 'background-mode 'dark)
 (load-theme 'solarized t)
 
 ;; Drop one-off scripts into this directory
