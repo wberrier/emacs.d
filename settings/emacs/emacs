@@ -27,7 +27,7 @@
 (evil-mode 1)
 
 ; great built in color theme
-(load-theme 'wombat t)
+;(load-theme 'wombat t)
 
 ;; Nice monokai color theme
 ; seems to only work in 256 color mode
@@ -37,6 +37,11 @@
 (add-to-list 'custom-theme-load-path "~/wa/git/zenburn-emacs")
 ; seems to only work in 256 color mode, but has a nice 8 color fallback option
 ;(load-theme 'zenburn t)
+
+; Very nice theme
+(add-to-list 'custom-theme-load-path "~/wa/git/emacs-color-theme-solarized")
+(setq solarized-termcolors 256)
+(load-theme 'solarized t)
 
 ;; Drop one-off scripts into this directory
 (add-to-list 'load-path "~/.emacs.d/autoload")
