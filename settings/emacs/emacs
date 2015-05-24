@@ -40,11 +40,20 @@
 
 ; Very nice theme
 (add-to-list 'custom-theme-load-path "~/wa/git/emacs-color-theme-solarized")
-; on el6, TERM must be screen-256color  huh??
-(setq solarized-termcolors 256)
+(setq solarized-termcolors 256) ; use 256 terminal color emulation
+; forces dark theme
 (set-terminal-parameter nil 'background-mode 'dark)
 (set-frame-parameter nil 'background-mode 'dark)
 (load-theme 'solarized t)
+
+; this forces the dark theme when using emacs client...
+; why is this even necessary?
+(add-hook 'after-make-frame-functions
+          (lambda (frame)
+              (set-frame-parameter frame 'background-mode 'dark)
+              (set-terminal-parameter frame 'background-mode 'dark)
+            (enable-theme 'solarized)
+))
 
 ;; Drop one-off scripts into this directory
 (add-to-list 'load-path "~/.emacs.d/autoload")
