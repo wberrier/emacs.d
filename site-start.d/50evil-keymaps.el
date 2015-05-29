@@ -36,13 +36,31 @@
 ;; This was initially f10, but that's mapped to the menu, use f9
 (define-key evil-normal-state-map (kbd "<f9>") 'whitespace-mode)
 
+; Some functions and and keymaps to compile code
+
+; TODO: concatenating with compile-command ends up growing that command
+; just hard code to cmake-build for now...
 (defun bookmark-then-compile ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile compile-command) ; command set by the mode
+  (compile "cmake_build")
   )
-(define-key evil-normal-state-map (kbd "<f7>") 'bookmark-then-compile)
-;(define-key evil-normal-state-map (kbd "<f7>") 'compile)
+
+(defun bookmark-then-compile-debug ()
+  (interactive)
+  (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
+  (compile "cmake_build --build_dir=build-debug")
+  )
+
+(defun bookmark-then-compile-cross ()
+  (interactive)
+  (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
+  (compile "cmake_build --build_dir=build-cross")
+  )
+
+(define-key evil-normal-state-map (kbd "<f7> <f7>") 'bookmark-then-compile)
+(define-key evil-normal-state-map (kbd "<f7> <f6>") 'bookmark-then-compile-cross)
+(define-key evil-normal-state-map (kbd "<f7> <f8>") 'bookmark-then-compile-debug)
 
 (defun jump-to-compile-bookmark ()
   (interactive)

@@ -80,6 +80,8 @@
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
+; use c++-mode for .ipp files (boost uses lots of them)
+(add-to-list 'auto-mode-alist '("\\.ipp\\'". c++-mode))
 
 ; settings for ff-find-other-file to switch between headers/implementations
 
@@ -90,8 +92,10 @@
     "."
     "../src"
     "../../src"
+    "../../../src/*"
     "../include"
     "../include/*"
+    "../../include/*/*"
     "/usr/include"
     "/usr/include/*"
     "/usr/local/include"
@@ -104,4 +108,10 @@
 ; enable debugging?
 ;(setq debug-on-error t)
 
+; ide-like debugging layout
 (setq gdb-many-windows t)
+
+; speed up loading
+(setq gdb-create-source-file-list nil)
+
+(setq pop-up-windows nil)
