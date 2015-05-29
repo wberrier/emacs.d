@@ -20,3 +20,7 @@
 ;(setq-default compilation-read-command nil) ;; don't prompt for command
 (setq-default compilation-scroll-output 'first-error) ;; scroll until the first error
 ;(setq-default compilation-scroll-output t) ;; scroll to the end
+
+; hide toolbar when in gui mode
+; not working?
+;(tool-bar-mode -1)

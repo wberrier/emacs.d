@@ -25,3 +25,12 @@
 (require 'evil)
 ;; Load evil by default
 (evil-mode 1)
+
+;; Indent after pressing return (like vim)
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; but don't leaving trailing whitespace on abandoned indents
+;; Clean indent
+(add-to-list 'load-path "~/wa/git/clean-aindent")
+(require 'clean-aindent-mode)
+(clean-aindent-mode 1) ;; enable for all modes

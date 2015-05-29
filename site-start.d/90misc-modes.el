@@ -24,7 +24,3 @@
 		auto-mode-alist))
 )
 
-;; Clean indent
-;; indent on return but don't leave trailing whitespace
-(add-to-list 'load-path "~/wa/git/clean-aindent")
-(require 'clean-aindent-mode)
