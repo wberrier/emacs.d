@@ -15,7 +15,7 @@
 
 (defconst my-c-style
   '((c-tab-always-indent        . t)
-    (c-comment-only-line-offset . 0)
+    (c-comment-only-line-offset . 0) ; don't indent comment only lines
     ;(c-comment-only-line-offset . 4)
     (c-hanging-braces-alist     . ((substatement-open after)
                                    (brace-list-open)))
@@ -28,14 +28,13 @@
                                    empty-defun-braces
                                    defun-close-semi))
     (c-offsets-alist            . (
+                                   (arglist-intro . ++)
                                    (arglist-cont-nonempty . ++)
                                    (arglist-close . ++)
 				   ;(arglist-close . c-lineup-arglist)
 				   ;(arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
                                    (case-label        . 0)
-				   ; not sure what this does...
-                                   ;(arglist-intro     . '+)
                                    (block-open        . 0)
 				   (innamespace       . [0]) ; don't indent inside of namespaces
                                    (knr-argdecl-intro . -)

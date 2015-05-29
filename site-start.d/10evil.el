@@ -11,7 +11,7 @@
 ;; Make CTRL - u scroll up like I'm used to in vi
 ;; This seems to be off by default
 (setq evil-want-C-u-scroll t)
-(setq evil-shift-width 2) ;; not sure what the default is here
+(setq evil-shift-width 4) ;; not sure what the default is here
 (setq evil-search-module 'evil-search)
 ; treat underscore as a word char, finally! (for 'w' and searching)
 ; for c mode
