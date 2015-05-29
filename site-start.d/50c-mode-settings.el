@@ -2,6 +2,17 @@
 ;; Create my personal style. (from the manual)
 ;; I think this actually works how I like it!!
 
+; symbol meanings
+; +   `c-basic-offset' times 1
+; -   `c-basic-offset' times -1
+; ++  `c-basic-offset' times 2
+; --  `c-basic-offset' times -2
+; *   `c-basic-offset' times 0.5
+; /   `c-basic-offset' times -0.5
+
+;; the only things I modified in vim were to push back
+;; "public/private" and case labels an indentation level
+
 (defconst my-c-style
   '((c-tab-always-indent        . t)
     (c-comment-only-line-offset . 0)
@@ -16,15 +27,20 @@
     (c-cleanup-list             . (scope-operator
                                    empty-defun-braces
                                    defun-close-semi))
-    ;(c-offsets-alist            . ((arglist-close . c-lineup-arglist)
-    (c-offsets-alist            . ((arglist-close . c-lineup-close-paren)
+    (c-offsets-alist            . (
+                                   (arglist-cont-nonempty . ++)
+                                   (arglist-close . ++)
+				   ;(arglist-close . c-lineup-arglist)
+				   ;(arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
-                                   (case-label        . 2)
+                                   (case-label        . 0)
 				   ; not sure what this does...
                                    ;(arglist-intro     . '+)
                                    (block-open        . 0)
 				   (innamespace       . [0]) ; don't indent inside of namespaces
-                                   (knr-argdecl-intro . -)))
+                                   (knr-argdecl-intro . -)
+				   )
+				)
     (c-echo-syntactic-information-p . t))
   "My C Programming Style")
 (c-add-style "PERSONAL" my-c-style)
@@ -35,10 +51,10 @@
   (c-set-style "PERSONAL")
   ;; other customizations
   ;;(setq tab-width 8
-  ;;(setq tab-width 2
-  (setq tab-width 2 ;; just for some things
+  ;;(setq tab-width 4
+  (setq tab-width 4 ;; just for some things
         ;; indent 2 for some
-        c-basic-offset 2
+        c-basic-offset 4
         ;; this will make sure spaces are used instead of tabs
         indent-tabs-mode nil)
         ;;indent-tabs-mode t)
