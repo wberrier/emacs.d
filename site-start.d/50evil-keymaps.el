@@ -19,6 +19,10 @@
 ;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
 ;(define-key evil-normal-state-map (kbd "\C-\\ d") ')
 
+; vim increment/decrement
+(define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
+(define-key evil-normal-state-map (kbd "\C-x") 'evil-numbers/dec-at-pt)
+
 ;; Allow "RET" to work in gtags-select-mode when running under evil
 (defun intercept-evil-ret ()
   (interactive) ;; huh?

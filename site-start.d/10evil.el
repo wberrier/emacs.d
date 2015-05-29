@@ -4,6 +4,10 @@
 (load "~/wa/git/evil/lib/undo-tree")
 (require 'undo-tree)
 
+;; vim increment/decrement
+(add-to-list 'load-path "~/wa/git/evil-numbers")
+(require 'evil-numbers)
+
 ;; Set up evil to be in the path
 ;; This is just a checked out version from git
 (add-to-list 'load-path "~/wa/git/evil")
