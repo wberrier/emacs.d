@@ -24,3 +24,5 @@
 		auto-mode-alist))
 )
 
+; don't fail if doesn't exist
+(when (require 'mercurial nil 'noerror))

@@ -24,3 +24,9 @@
 ; hide toolbar when in gui mode
 ; not working?
 ;(tool-bar-mode -1)
+
+; define this here for load paths later on
+(setq dist (substring (shell-command-to-string "~/bin/get_dist") 0 -1)) ; removes trailing newline
+
+; add site-list specific to this machine (os, arch)
+(add-to-list 'load-path (format "~/install/%s/share/emacs/site-lisp" dist))
