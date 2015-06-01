@@ -26,6 +26,13 @@
 ;; Load evil by default
 (evil-mode 1)
 
+; also load evil leader and org modes
+(add-to-list 'load-path "~/wa/git/evil-leader")
+(require 'evil-leader)
+
+(add-to-list 'load-path "~/wa/git/evil-org-mode")
+(require 'evil-org)
+
 ;; Indent after pressing return (like vim)
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
