@@ -30,3 +30,7 @@
 
 ; add site-list specific to this machine (os, arch)
 (add-to-list 'load-path (format "~/install/%s/share/emacs/site-lisp" dist))
+
+; show column in addition to line number in mode line
+; interesting that this isn't the default?
+(column-number-mode)

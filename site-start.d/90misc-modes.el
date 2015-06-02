@@ -26,3 +26,8 @@
 
 ; don't fail if doesn't exist
 (when (require 'mercurial nil 'noerror))
+
+; turn on auto-fill mode for text type documents
+; (Not, post-mode already enables this, but lets see if it gets
+;  in the way of other text type files)
+(add-hook 'text-mode-hook 'turn-on-auto-fill)
