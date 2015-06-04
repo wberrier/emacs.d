@@ -1,7 +1,7 @@
 
 ;; This is required before loading evil
 ;; and allows CTRL-r to work (redo)
-(load "~/wa/git/evil/lib/undo-tree")
+(load "~/wa/hg/evil/lib/undo-tree")
 (require 'undo-tree)
 
 ;; vim increment/decrement
@@ -10,7 +10,7 @@
 
 ;; Set up evil to be in the path
 ;; This is just a checked out version from git
-(add-to-list 'load-path "~/wa/git/evil")
+(add-to-list 'load-path "~/wa/hg/evil")
 
 ;; Make CTRL - u scroll up like I'm used to in vi
 ;; This seems to be off by default
