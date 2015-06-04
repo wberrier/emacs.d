@@ -36,6 +36,7 @@
                                    (substatement-open . 0)
                                    (case-label        . 0)
                                    (block-open        . 0)
+                                   (inline-open       . 0)
 				   (innamespace       . [0]) ; don't indent inside of namespaces
                                    (knr-argdecl-intro . -)
 				   )
