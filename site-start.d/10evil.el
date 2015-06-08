@@ -23,12 +23,15 @@
 ; and everything else
 (modify-syntax-entry ?_ "w")
 (require 'evil)
-;; Load evil by default
-(evil-mode 1)
 
 ; also load evil leader and org modes
 (add-to-list 'load-path "~/wa/git/evil-leader")
 (require 'evil-leader)
+
+;; evil-leader docs say to enable this before evil-mode
+(global-evil-leader-mode)
+;; Load evil by default
+(evil-mode 1)
 
 (add-to-list 'load-path "~/wa/git/evil-org-mode")
 (require 'evil-org)

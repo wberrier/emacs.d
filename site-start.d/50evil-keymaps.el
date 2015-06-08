@@ -33,8 +33,7 @@
 ; Other various keymaps
 
 ;; set up key combo to show whitespace chars
-;; This was initially f10, but that's mapped to the menu, use f9
-(define-key evil-normal-state-map (kbd "<f9>") 'whitespace-mode)
+(evil-leader/set-key "w" 'whitespace-mode)
 
 ; Some functions and and keymaps to compile code
 
@@ -58,20 +57,23 @@
   (compile "cmake_build --build_dir=build-cross")
   )
 
-(define-key evil-normal-state-map (kbd "<f7> <f7>") 'bookmark-then-compile)
-(define-key evil-normal-state-map (kbd "<f7> <f6>") 'bookmark-then-compile-cross)
-(define-key evil-normal-state-map (kbd "<f7> <f8>") 'bookmark-then-compile-debug)
-
 (defun jump-to-compile-bookmark ()
   (interactive)
   (bookmark-jump "compile-bookmark") ; set a bookmark to easily return to
   )
-(define-key evil-normal-state-map (kbd "<f8>") 'jump-to-compile-bookmark)
+
+; "build release/cross/debug"
+(evil-leader/set-key
+  "br" 'bookmark-then-compile
+  "bc" 'bookmark-then-compile-cross
+  "bd" 'bookmark-then-compile-debug
+  ; "return"
+  "r"  'jump-to-compile-bookmark
+  )
 
 ;; Reformat text (ported from vim config)
 ;; I like fill-paragraph better than vim's reformat (better suited to text)
-;; and I don't use "R" (replace) mode in vim apparently
-(define-key evil-normal-state-map (kbd "R") 'fill-paragraph)
+(evil-leader/set-key "p" 'fill-paragraph)
 
 ;; Switch between header and implementation
-(define-key evil-normal-state-map (kbd "<f6>") 'ff-find-other-file)
+(evil-leader/set-key "o" 'ff-find-other-file)
