@@ -78,6 +78,12 @@
 
   ;; enable gnu global in cc mode
   (gtags-mode 1)
+
+  ;; and company-irony
+  (company-mode)
+
+  ;; irony-mode
+  (irony-mode)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 
