@@ -77,3 +77,7 @@
 
 ;; Switch between header and implementation
 (evil-leader/set-key "o" 'ff-find-other-file)
+
+;; make sure this is set up when going into org-mode
+;; seems like a hack that shouldn't necessary, but it works
+(evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
