@@ -31,3 +31,6 @@
 ; (Not, post-mode already enables this, but lets see if it gets
 ;  in the way of other text type files)
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
+
+; enable flyspell text modes (org-mode)
+(add-hook 'text-mode-hook 'turn-on-flyspell)
