@@ -8,18 +8,6 @@
 (autoload 'go-mode-load "go-mode-load" "Major mode for editing go source" t)
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode-load))
 
-;; git-modes: https://github.com/magit/git-modes
-(add-to-list 'load-path "~/wa/git/git-modes")
-(require 'gitattributes-mode)
-(require 'gitconfig-mode)
-(require 'gitignore-mode)
-; (require 'git-rebase-mode) ;; doesn't work well with evil
-
-; what provides this?
-; Seems to be missing on fedora 22
-; don't fail if doesn't exist
-(when (require 'git-commit-mode nil 'noerror))
-
 ; Only load this when it exists
 (when (require 'cmake-mode nil 'noerror)
   (setq auto-mode-alist
