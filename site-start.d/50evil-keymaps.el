@@ -86,3 +86,9 @@
 ;; TODO: need to figure out how to capture output and insert into buffer
 ;;  or, just do the vim command?  Not sure how that works...
 ;(evil-leader/set-key "g" 'generate-password)
+
+; evil rebellion, standardizes a bunch of keymaps to make emacs more vi friendly
+
+(add-to-list 'load-path "~/wa/git/evil-rebellion")
+(require 'evil-rebellion)
+
