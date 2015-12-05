@@ -2,6 +2,7 @@
 (add-to-list 'load-path "~/wa/git/company-mode")
 
 (require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ; irony-mode seems better as it integrates with cmake
 ; use company-irony because company-mode is a nice
@@ -17,11 +18,10 @@
 
 (require 'company-irony)
 
-
-; loaded when other mode is loaded
-;(add-hook 'c++-mode-hook 'irony-mode)
-;(add-hook 'c-mode-hook 'irony-mode)
-;(add-hook 'objc-mode-hook 'irony-mode)
+; load here so that other c-modes don't load irony mode
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
 
 ;; replace the `completion-at-point' and `complete-symbol' bindings in
 ;; irony-mode's buffers by irony-mode's function
@@ -81,3 +81,11 @@
 ;; set timeout to zero so that completion pops up instantly
 ;; hrm... doesn't really seem to do anything...
 (setq company-idle-delay .1)
+
+;; be able to complete headers as well
+(add-to-list 'load-path "~/wa/git/company-irony-c-headers")
+(require 'company-irony-c-headers)
+;; Load with `irony-mode` as a grouped backend
+(eval-after-load 'company
+  '(add-to-list
+    'company-backends '(company-irony-c-headers company-irony)))
