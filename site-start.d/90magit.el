@@ -14,4 +14,5 @@
 (add-to-list 'load-path "~/wa/git/magit")
 (require 'magit)
 
+; avoid some startup warnings
 (setq magit-last-seen-setup-instructions "1.4.0")
