@@ -26,3 +26,7 @@
 
 ; enable flyspell text modes (org-mode)
 (add-hook 'text-mode-hook 'turn-on-flyspell)
+
+(add-to-list 'load-path "~/wa/git/yaml-mode")
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))

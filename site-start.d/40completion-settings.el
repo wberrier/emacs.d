@@ -69,11 +69,19 @@
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
 ;(define-key company-active-map (kbd "<tab>") 'my-company-tab)
-(define-key company-active-map (kbd "<tab>") 'company-select-next)
+;(define-key company-active-map (kbd "<tab>") 'company-select-next)
 ;(define-key evil-insert-state-map  (kbd "<tab>") 'company-select-next)
 ; huh?  What's backtab?  shift tab?
 ;(define-key company-active-map (kbd "<backtab>") 'company-select-previous)
 
+; Don't use enter, because it interfereces with newlines...
+; But use tab instead for the completion key.
+; Not sure why both of these are neccessary?  Seems to do something with
+; only working either in the gui or command line mode?  Note sure...
+(define-key company-active-map (kbd "<return>") nil)
+(define-key company-active-map (kbd "RET") nil)
+(define-key company-active-map (kbd "<tab>") 'company-complete-selection)
+(define-key company-active-map (kbd "TAB") 'company-complete-selection)
 
 ;(define-key evil-normal-state-map (kbd "\C-n") 'company-select-next)
 ;(define-key evil-normal-state-map (kbd "\C-p") 'company-select-previous)
