@@ -9,6 +9,7 @@
 (add-to-list 'auto-mode-alist '("\\.go$" . go-mode-load))
 
 ; Only load this when it exists
+(setq cmake-tab-width 4) ; 2 spaces is weird
 (when (require 'cmake-mode nil 'noerror)
   (setq auto-mode-alist
 	(append '(("CMakeLists\\.txt" . cmake-mode)
@@ -19,12 +20,9 @@
 ; don't fail if doesn't exist
 (when (require 'mercurial nil 'noerror))
 
-; turn on auto-fill mode for text type documents
-; (Not, post-mode already enables this, but lets see if it gets
-;  in the way of other text type files)
+; Enable some minor modes for text-mode
+; NOTE: org and post modes derive from text mode
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
-
-; enable flyspell text modes (org-mode)
 (add-hook 'text-mode-hook 'turn-on-flyspell)
 
 (add-to-list 'load-path "~/wa/git/yaml-mode")
