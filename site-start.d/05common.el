@@ -2,7 +2,15 @@
 ;; Other options
 (setq vc-follow-symlinks nil)
 
-(setq backup-directory-alist '(("." . "~/backup/emacs")))
+; Backup options
+(setq
+ backup-directory-alist '(("." . "~/backup/emacs"))
+ backup-by-copying t
+ delete-old-versions t
+ kept-new-versions 6
+ kept-old-versions 2
+ version-control t
+ )
 
 ;; Save place in files when visiting
 (require 'saveplace)
@@ -34,3 +42,14 @@
 ; show column in addition to line number in mode line
 ; interesting that this isn't the default?
 (column-number-mode)
+
+(setq inhibit-startup-screen t)
+
+; more like vim
+(setq require-final-newline t)
+
+; smooth scrolling (more like vim)
+; but doesn't work really well...
+;(setq scroll-margin 5
+;      scroll-conservatively 9999
+;      scroll-step 1)
