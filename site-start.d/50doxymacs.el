@@ -1,7 +1,8 @@
 
 (add-to-list 'load-path (format "~/install/%s/share/emacs/site-lisp" dist))
 
-(require 'doxymacs)
+; not currently compiling...
+;(require 'doxymacs)
 
 (add-to-list 'load-path "~/wa/git/markdown-mode")
 

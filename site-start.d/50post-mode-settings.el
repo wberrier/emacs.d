@@ -1,8 +1,9 @@
 
 ;; Post Mode
-;; Download http://sourceforge.net/p/post-mode/code/ci/master/tree/post.el?format=raw
-;; and put in the autoload directory
 ;; mutt composition mode
+
+(add-to-list 'load-path "~/wa/git/post-mode-code")
+
 (autoload 'post-mode "post" "mode for e-mail" t)
 (add-to-list 'auto-mode-alist
 	     '("\\.*mutt-*\\|.article\\|\\.followup"
