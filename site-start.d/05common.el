@@ -30,11 +30,14 @@
 ;(setq-default compilation-scroll-output t) ;; scroll to the end
 
 ; hide toolbar when in gui mode
-; not working?
 (menu-bar-mode -1)
-(toggle-scroll-bar -1)
-(tool-bar-mode -1)
 ;(text-scale-decrease) ; go from 11 to 10 (Hope that works)
+
+; these aren't working on el7 in text mode...
+; what's the correct way to get rid of the scrollbar?
+; emacs version?  only gui?
+;(tool-bar-mode -1)
+;(toggle-scroll-bar -1)
 
 ; define this here for load paths later on
 (setq dist (substring (shell-command-to-string "~/bin/get_dist") 0 -1)) ; removes trailing newline
