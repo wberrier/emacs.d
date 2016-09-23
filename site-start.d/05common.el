@@ -2,6 +2,9 @@
 ;; Other options
 (setq vc-follow-symlinks nil)
 
+; this makes loading/saving of files slow if it has to do git/hg status
+;(setq vc-handled-backends ())
+
 ; Backup options
 (setq
  backup-directory-alist '(("." . "~/backup/emacs"))

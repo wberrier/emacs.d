@@ -84,6 +84,8 @@
 
 ; use c++-mode for .ipp files (boost uses lots of them)
 (add-to-list 'auto-mode-alist '("\\.ipp\\'". c++-mode))
+; just treat .h files as c++ mode... fixes some indenting issues
+(add-to-list 'auto-mode-alist '("\\.h\\'". c++-mode))
 
 ; settings for ff-find-other-file to switch between headers/implementations
 

@@ -18,7 +18,8 @@
 )
 
 ; don't fail if doesn't exist
-(when (require 'mercurial nil 'noerror))
+; can slow down loading/saving files
+;(when (require 'mercurial nil 'noerror))
 
 ; Enable some minor modes for text-mode
 ; NOTE: org and post modes derive from text mode
