@@ -95,6 +95,7 @@
 ;; make sure this is set up when going into org-mode
 ;; seems like a hack that shouldn't necessary, but it works
 (evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
+(evil-define-key 'normal markdown-mode-map (kbd "TAB") #'markdown-cycle)
 
 ;; Generate a password
 ;; TODO: need to figure out how to capture output and insert into buffer
