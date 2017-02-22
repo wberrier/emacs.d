@@ -20,6 +20,7 @@
 ; treat underscore as a word char, finally! (for 'w' and searching)
 ; for c mode
 (add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+(add-hook 'qml-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 ; and everything else
 (modify-syntax-entry ?_ "w")
 (require 'evil)

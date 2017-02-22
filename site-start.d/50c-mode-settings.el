@@ -74,11 +74,13 @@
   ;;(define-key c-mode-base-map "\C-m" 'c-context-line-break)
 
   ; compile command for this mode
-  (setq compile-command "cmake_build")
+  (setq compile-command "emacs_build")
 
   ;; enable gnu global in cc mode
   (gtags-mode 1)
 
+  ;; Enable showing what current function is
+  (which-function-mode 1)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
 

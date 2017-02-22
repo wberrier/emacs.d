@@ -56,19 +56,19 @@
 (defun bookmark-then-compile ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "cmake_build")
-  )
-
-(defun bookmark-then-compile-debug ()
-  (interactive)
-  (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "cmake_build --build_dir=build-debug")
+  (compile "emacs_build")
   )
 
 (defun bookmark-then-compile-cross ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "cmake_build --build_dir=build-cross")
+  (compile "emacs_build --build_dir=build-cross")
+  )
+
+(defun bookmark-then-compile-debug ()
+  (interactive)
+  (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
+  (compile "emacs_build --build_dir=build-debug")
   )
 
 (defun jump-to-compile-bookmark ()
@@ -83,6 +83,17 @@
   "bd" 'bookmark-then-compile-debug
   ; "return"
   "r"  'jump-to-compile-bookmark
+  )
+
+(defun emacs-debug ()
+  (interactive)
+  (gdb "emacs_debug")
+  )
+
+; Start debugger
+(evil-leader/set-key
+  ; run debugger
+  "d"  'emacs-debug
   )
 
 ;; Reformat text (ported from vim config)
