@@ -5,6 +5,12 @@
 ; this makes loading/saving of files slow if it has to do git/hg status
 ;(setq vc-handled-backends ())
 
+; create the backup directory if it doesn't exist
+(if (file-exists-p "~/backup/emacs")
+  nil
+  (make-directory "~/backup/emacs" t)
+  )
+
 ; Backup options
 (setq
  backup-directory-alist '(("." . "~/backup/emacs"))
