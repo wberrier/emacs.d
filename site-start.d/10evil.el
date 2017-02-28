@@ -37,6 +37,8 @@
 (require 'clean-aindent-mode)
 (clean-aindent-mode 1) ;; enable for all modes
 
+;; some coloring options, try them out and see if they are wanted
+; looks like they don't work in console mode
 (setq evil-emacs-state-cursor `("red" box))
 (setq evil-motion-state-cursor `("orange" box))
 (setq evil-normal-state-cursor '("green" box))

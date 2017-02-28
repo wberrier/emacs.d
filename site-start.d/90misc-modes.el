@@ -22,7 +22,7 @@
 )
 
 ; don't fail if doesn't exist
-; can slow down loading/saving files
+; disable for now since this really slows things down when loading/saving files
 ;(when (require 'mercurial nil 'noerror))
 
 ; Enable some minor modes for text-mode

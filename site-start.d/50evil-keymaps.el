@@ -62,13 +62,13 @@
 (defun bookmark-then-compile-cross ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "emacs_build --build_dir=build-cross")
+  (compile "emacs_build cross")
   )
 
 (defun bookmark-then-compile-debug ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "emacs_build --build_dir=build-debug")
+  (compile "emacs_build debug")
   )
 
 (defun jump-to-compile-bookmark ()

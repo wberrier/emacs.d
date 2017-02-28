@@ -14,7 +14,7 @@
 ; Backup options
 (setq
  backup-directory-alist '(("." . "~/backup/emacs"))
- backup-by-copying t
+ backup-by-copying t ; don't clobber symlinks
  delete-old-versions t
  kept-new-versions 6
  kept-old-versions 2
@@ -32,6 +32,10 @@
 ;; Whitespace settings
 ;; Highlight trailing whitespace
 (setq-default show-trailing-whitespace t)
+
+;; Default to spaces instead of tabs
+;; TODO: figure out the "infer-indentation-style"?
+(setq-default indent-tabs-mode t)
 
 ;; Compile options
 ;(setq-default compilation-read-command nil) ;; don't prompt for command
@@ -56,13 +60,21 @@
 ; interesting that this isn't the default?
 (column-number-mode)
 
+; Stuff from Shawn's config
 (setq inhibit-startup-screen t)
 
 ; more like vim
 (setq require-final-newline t)
 
-; smooth scrolling (more like vim)
-; but doesn't work really well...
+;; Smooth Scrolling
+;; Note sure I'd like this, but can play with it...
+;; I think I like emacs "optimized" scrolling, but it's weird to get used to
+;; Interesting, by default, vim scroll margin is 0
+;; -> I think this is easier to follow
+;; -> This has some quirks, doesn't always work, disable for now (ctrl-d on bottom of page jumps around)
 ;(setq scroll-margin 5
 ;      scroll-conservatively 9999
 ;      scroll-step 1)
+
+; disable makefile warnings
+(setq makefile-warn-suspicious-lines nil)

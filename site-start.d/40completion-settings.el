@@ -26,7 +26,16 @@
       (define-key irony-mode-map [remap complete-symbol]
 	    'irony-completion-at-point-async))
 (add-hook 'irony-mode-hook 'my-irony-mode-hook)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+
+; wow, this really really slows down opening new files. (ie: ~10 seconds)
+; TODO: Shouldn't it be possible to do this asynchronously???
+; logged upstream, someone working on it: https://github.com/Sarcasm/irony-mode/issues/176
+; nice, but just too slow...
+;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+; disable company mode when running gdb
+(setq company-global-modes '(not gud-mode))
 
 ; hook company-irony into company mode
 (eval-after-load 'company

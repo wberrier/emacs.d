@@ -35,6 +35,8 @@
 				   ;(arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
                                    (case-label        . 0)
+				   (access-label      . 0) ; public/private: no indention (sometimes picks access-label, sometimes label??)
+				   (label             . 0) ; public/private: no indention
                                    (block-open        . 0)
                                    (inline-open       . 0)
 				   (innamespace       . [0]) ; don't indent inside of namespaces
@@ -56,8 +58,8 @@
         ;; indent 2 for some
         c-basic-offset 4
         ;; this will make sure spaces are used instead of tabs
-        indent-tabs-mode nil)
-        ;;indent-tabs-mode t)
+        ;; indent-tabs-mode nil)
+        indent-tabs-mode t)
   ;; we like auto-newline, but not hungry-delete
   ;; these are all the cc-mode minor modes
   ;;(c-toggle-electric-state -1)
@@ -98,7 +100,8 @@
     "."
     "../src"
     "../../src"
-    "../../../src/*"
+    "../../../*/*"
+    "../*/*/*/*"
     "../include"
     "../include/*"
     "../../include/*/*"
