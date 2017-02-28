@@ -76,7 +76,7 @@
   ;;(define-key c-mode-base-map "\C-m" 'c-context-line-break)
 
   ; compile command for this mode
-  (setq compile-command "emacs_build")
+  (setq compile-command "~/emacs.d/bin/emacs_build")
 
   ;; enable gnu global in cc mode
   (gtags-mode 1)

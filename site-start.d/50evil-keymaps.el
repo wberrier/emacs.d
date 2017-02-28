@@ -56,19 +56,19 @@
 (defun bookmark-then-compile ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "emacs_build")
+  (compile "~/.emacs.d/bin/emacs_build")
   )
 
 (defun bookmark-then-compile-cross ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "emacs_build cross")
+  (compile "~/.emacs.d/bin/emacs_build cross")
   )
 
 (defun bookmark-then-compile-debug ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "emacs_build debug")
+  (compile "~/.emacs.d/bin/emacs_build debug")
   )
 
 (defun jump-to-compile-bookmark ()
@@ -87,7 +87,7 @@
 
 (defun emacs-debug ()
   (interactive)
-  (gdb "emacs_debug")
+  (gdb "~/.emacs.d/bin/emacs_debug")
   )
 
 ; Start debugger
