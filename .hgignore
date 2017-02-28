@@ -3,3 +3,8 @@ syntax:glob
 bookmarks
 irony/bin/irony-server
 saved-places
+auto-save-list
+
+manual-packages
+elpa
+

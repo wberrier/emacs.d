@@ -1,16 +1,10 @@
 
 ;; This is required before loading evil
 ;; and allows CTRL-r to work (redo)
-(load "~/wa/hg/evil/lib/undo-tree")
 (require 'undo-tree)
 
 ;; vim increment/decrement
-(add-to-list 'load-path "~/wa/git/evil-numbers")
 (require 'evil-numbers)
-
-;; Set up evil to be in the path
-;; This is just a checked out version from git
-(add-to-list 'load-path "~/wa/hg/evil")
 
 ;; Make CTRL - u scroll up like I'm used to in vi
 ;; This seems to be off by default
@@ -26,7 +20,6 @@
 (require 'evil)
 
 ; also load evil leader and org modes
-(add-to-list 'load-path "~/wa/git/evil-leader")
 (require 'evil-leader)
 
 ;; evil-leader docs say to enable this before evil-mode
@@ -34,7 +27,6 @@
 ;; Load evil by default
 (evil-mode 1)
 
-(add-to-list 'load-path "~/wa/git/evil-org-mode")
 (require 'evil-org)
 
 ;; Indent after pressing return (like vim)
@@ -42,7 +34,6 @@
 
 ;; but don't leaving trailing whitespace on abandoned indents
 ;; Clean indent
-(add-to-list 'load-path "~/wa/git/clean-aindent")
 (require 'clean-aindent-mode)
 (clean-aindent-mode 1) ;; enable for all modes
 

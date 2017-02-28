@@ -1,6 +1,4 @@
 
-(add-to-list 'load-path "~/wa/git/company-mode")
-
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -8,13 +6,10 @@
 ; use company-irony because company-mode is a nice
 ; frontend for lots of different languages
 ; may also have to run "irony-install-server", which requires cmake and clang-devel
-(add-to-list 'load-path "~/wa/git/irony-mode")
-
 (require 'irony)
 (require 'irony-cdb)
 
 ;; company plugin
-(add-to-list 'load-path "~/wa/git/company-irony")
 
 (require 'company-irony)
 
@@ -91,7 +86,6 @@
 (setq company-idle-delay .1)
 
 ;; be able to complete headers as well
-(add-to-list 'load-path "~/wa/git/company-irony-c-headers")
 (require 'company-irony-c-headers)
 ;; Load with `irony-mode` as a grouped backend
 (eval-after-load 'company

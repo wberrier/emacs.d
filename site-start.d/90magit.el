@@ -1,6 +1,4 @@
 ; don't really use this...
-;;; git-modes: https://github.com/magit/git-modes
-;(add-to-list 'load-path "~/wa/git/git-modes")
 ;(require 'gitattributes-mode)
 ;(require 'gitconfig-mode)
 ;(require 'gitignore-mode)
@@ -11,7 +9,6 @@
 ;; don't fail if doesn't exist
 ;(when (require 'git-commit-mode nil 'noerror))
 ;
-;(add-to-list 'load-path "~/wa/git/magit")
 ;(require 'magit)
 ;
 ;; avoid some startup warnings

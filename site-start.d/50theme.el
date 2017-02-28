@@ -30,7 +30,6 @@
 
 ; ample theme
 ; ** like this one **
-(add-to-list 'custom-theme-load-path "~/wa/git/ample-theme")
 (load-theme 'ample t)
 
 ; sanityinc themes, can't seem to get them to work

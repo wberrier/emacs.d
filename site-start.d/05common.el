@@ -48,11 +48,9 @@
 ;(tool-bar-mode -1)
 ;(toggle-scroll-bar -1)
 
-; define this here for load paths later on
-(setq dist (substring (shell-command-to-string "~/bin/get_dist") 0 -1)) ; removes trailing newline
-
 ; add site-list specific to this machine (os, arch)
-(add-to-list 'load-path (format "~/install/%s/share/emacs/site-lisp" dist))
+(add-to-list 'load-path (format "%s/share/emacs/site-lisp" local-install-dir))
+
 
 ; show column in addition to line number in mode line
 ; interesting that this isn't the default?
