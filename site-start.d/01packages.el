@@ -15,15 +15,6 @@
     evil-org
     clean-aindent-mode ; kill trailing whitespace because of inserts
 
-    ; looks like only helm and magit used this
-    async
-
-    ; code complete packages
-    company
-    irony
-    company-irony
-    company-irony-c-headers
-
     ; various other modes
     yaml-mode
     markdown-mode
@@ -56,6 +47,18 @@
  ;; TODO: how to do this in one statement? (looks to be ugly)
  (add-to-list 'required-packages 'magit)
  (add-to-list 'required-packages 'helm)
+ ; looks like only helm and magit used this
+ (add-to-list 'required-packages 'async)
+ )
+
+; these require emacs 24.4 or later
+(if (version<= emacs-version "24.3")
+ nil
+ ;; TODO: how to do this in one statement? (looks to be ugly)
+ (add-to-list 'required-packages 'company)
+ (add-to-list 'required-packages 'irony)
+ (add-to-list 'required-packages 'company-irony)
+ (add-to-list 'required-packages 'company-irony-c-headers)
  )
 
 (require 'cl)
