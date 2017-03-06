@@ -32,7 +32,7 @@
 ; TODO: Shouldn't it be possible to do this asynchronously???
 ; logged upstream, someone working on it: https://github.com/Sarcasm/irony-mode/issues/176
 ; nice, but just too slow...
-;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
 
 ; disable company mode when running gdb
 (setq company-global-modes '(not gud-mode))
