@@ -55,7 +55,7 @@
  (add-to-list 'required-packages 'async)
  )
 
-; these require emacs 24.4 or later
+; these require emacs 24.3 or later
 (if (version<= emacs-version "24.3")
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
@@ -63,6 +63,8 @@
  (add-to-list 'required-packages 'irony)
  (add-to-list 'required-packages 'company-irony)
  (add-to-list 'required-packages 'company-irony-c-headers)
+ (add-to-list 'required-packages 'flycheck)
+ (add-to-list 'required-packages 'flycheck-irony)
  )
 
 (require 'cl)
