@@ -15,6 +15,10 @@
     evil-org
     clean-aindent-mode ; kill trailing whitespace because of inserts
 
+    ; smart tabs and detection
+    smart-tabs-mode
+    dtrt-indent
+
     ; various other modes
     yaml-mode
     markdown-mode
