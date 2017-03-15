@@ -6,8 +6,6 @@
 ; use company-irony because company-mode is a nice
 ; frontend for lots of different languages
 ; may also have to run "irony-install-server", which requires cmake and clang-devel
-(require 'irony)
-(require 'irony-cdb)
 
 ;; company plugin
 
