@@ -49,10 +49,9 @@
 (if (version<= emacs-version "24.4")
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
- (add-to-list 'required-packages 'magit)
  (add-to-list 'required-packages 'helm)
- ; looks like only helm and magit used this
- (add-to-list 'required-packages 'async)
+ ;; Disable for now...
+ ;;(add-to-list 'required-packages 'magit)
  )
 
 ; these require emacs 24.3 or later
