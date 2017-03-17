@@ -3,9 +3,6 @@
 ;; and allows CTRL-r to work (redo)
 (require 'undo-tree)
 
-;; vim increment/decrement
-(require 'evil-numbers)
-
 ;; Make CTRL - u scroll up like I'm used to in vi
 ;; This seems to be off by default
 (setq evil-want-C-u-scroll t)
@@ -18,6 +15,9 @@
 ; and everything else
 (modify-syntax-entry ?_ "w")
 (require 'evil)
+
+;; vim increment/decrement
+(require 'evil-numbers)
 
 ; also load evil leader and org modes
 (require 'evil-leader)
