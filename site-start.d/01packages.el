@@ -1,3 +1,9 @@
+;; Allow setting the directory of the package directory
+(if (equal (getenv "EMACS_PACKAGE_INSTALL_DIR") nil)
+    nil
+  (setq package-user-dir (getenv "EMACS_PACKAGE_INSTALL_DIR"))
+  )
+
 ;; Package initialization
 (require 'package)
 ;; TODO: stable version?
