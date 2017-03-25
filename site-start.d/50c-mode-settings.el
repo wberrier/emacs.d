@@ -107,10 +107,6 @@
     "../include"
     "../include/*"
     "../../include/*/*"
-    "/usr/include"
-    "/usr/include/*"
-    "/usr/local/include"
-    "/usr/local/include/*"
     )
   )
 ; Don't prompt to create when can't find
