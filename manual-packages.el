@@ -22,16 +22,6 @@
 ;; Make post-mode available
 (add-to-list 'load-path "~/.emacs.d/manual-packages/post-mode")
 
-;;meson-mode
-(if (file-exists-p "~/.emacs.d/manual-packages/meson-mode")
-    nil
-  (shell-command "git clone https://github.com/wentasah/meson-mode.git ~/.emacs.d/manual-packages/meson-mode")
-  )
-
-;; Make post-mode available
-(add-to-list 'load-path "~/.emacs.d/manual-packages/meson-mode")
-
-
 
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?

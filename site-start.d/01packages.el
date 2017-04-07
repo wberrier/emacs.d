@@ -70,6 +70,7 @@
  (add-to-list 'required-packages 'company-irony-c-headers)
  (add-to-list 'required-packages 'flycheck)
  (add-to-list 'required-packages 'flycheck-irony)
+ (add-to-list 'required-packages 'meson-mode)
  )
 
 (require 'cl)
