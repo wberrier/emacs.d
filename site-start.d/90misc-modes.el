@@ -36,3 +36,5 @@
 ; this doesn't work quite right.  But, can enable the mode as needed manually.
 ;(require 'meson-mode)
 ;(add-hook 'meson-mode-hook 'company-mode)
+
+(which-key-mode)

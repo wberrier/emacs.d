@@ -28,6 +28,7 @@
     ; various other modes
     yaml-mode
     markdown-mode
+    which-key
 
     ; various theme options
     ample-theme
