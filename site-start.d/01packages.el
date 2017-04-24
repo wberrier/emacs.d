@@ -32,6 +32,12 @@
 
     neotree
 
+    ;; rtags
+    rtags
+    helm-rtags
+    company-rtags
+    flycheck-rtags
+
     ; various theme options
     ample-theme
     ;zenburn-theme
@@ -68,11 +74,7 @@
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
  (add-to-list 'required-packages 'company)
- (add-to-list 'required-packages 'irony)
- (add-to-list 'required-packages 'company-irony)
- (add-to-list 'required-packages 'company-irony-c-headers)
  (add-to-list 'required-packages 'flycheck)
- (add-to-list 'required-packages 'flycheck-irony)
  (add-to-list 'required-packages 'meson-mode)
  )
 

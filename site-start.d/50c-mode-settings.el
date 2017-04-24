@@ -78,9 +78,6 @@
   ; compile command for this mode
   (setq compile-command "~/emacs.d/bin/emacs_build")
 
-  ;; enable gnu global in cc mode
-  (gtags-mode 1)
-
   ;; Enable showing what current function is
   (which-function-mode 1)
 )

@@ -1,77 +1,37 @@
 
+(require 'rtags)
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-; irony-mode seems better as it integrates with cmake
-; use company-irony because company-mode is a nice
-; frontend for lots of different languages
-; may also have to run "irony-install-server", which requires cmake and clang-devel
-
-;; company plugin
-
-(require 'company-irony)
-
-; load here so that other c-modes don't load irony mode
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-
-;; replace the `completion-at-point' and `complete-symbol' bindings in
-;; irony-mode's buffers by irony-mode's function
-(defun my-irony-mode-hook ()
-    (define-key irony-mode-map [remap completion-at-point]
-          'irony-completion-at-point-async)
-      (define-key irony-mode-map [remap complete-symbol]
-	    'irony-completion-at-point-async))
-(add-hook 'irony-mode-hook 'my-irony-mode-hook)
-
-
-; wow, this really really slows down opening new files. (ie: ~10 seconds)
-; TODO: Shouldn't it be possible to do this asynchronously???
-; logged upstream, someone working on it: https://github.com/Sarcasm/irony-mode/issues/176
-; nice, but just too slow...
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+(add-hook 'c-mode-hook 'rtags-start-process-unless-running)
+(add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
 
 ; disable company mode when running gdb
 (setq company-global-modes '(not gud-mode))
 
-; hook company-irony into company mode
-(eval-after-load 'company
-    '(add-to-list 'company-backends 'company-irony))
+;; TODO: not quite working, but there are 'rtags-symbol-info and 'rtags-print-symbol-info
+;;(defun my-rtags-eldoc ()
+;;  (when (and (not (nth 4 (syntax-ppss))) (thing-at-point 'symbol t))
+;;    (let ((doc (rtags-get-summary-text)))
+;;      (and doc (replace-regexp-in-string "{.*" ""
+;;      (replace-regexp-in-string "[ \t\n]+" " "
+;;      (replace-regexp-in-string "\n" "" doc)))))))
+;;
+;;(setq-local eldoc-documentation-function #'my-rtags-eldoc)
+;;
+;;(add-hook 'c-mode-hook 'eldoc-mode)
+;;(add-hook 'c++-mode-hook 'eldoc-mode)
 
-;; (optional) adds CC special commands to `company-begin-commands' in order to
-;; trigger completion at interesting places, such as after scope operator
-;;     std::|
-(add-hook 'irony-mode-hook 'company-irony-setup-begin-commands)
-
-;;;;;;;;;;;;;;;;;;;;
-
-;; TODO: add yasnippet for completions?
-
-;;;;;;;;;;;;;;;;;;;;
-
-;; Now, to set up completion, with the same keybindings as
-;; what vim would normally use: ctrl-p -> company-complete ?
-;; and how to iterate forward and backward?
-
-; evil already has evil-complete-previous/next
-; so maybe just override those, and use ctrl-p/n to go between
-; completions?  Will have to look how youcompleteme does...
-
-; indent if no snippets or completions?
-(defun my-company-tab ()
-  (interactive)
-  (when (null (yas-expand))
-    (company-select-next)
-  )
-)
+(setq rtags-autostart-diagnostics t)
+(rtags-diagnostics)
+(setq rtags-completions-enabled t)
+(push 'company-rtags company-backends)
+(global-company-mode)
 
 ;; hrm... how to get evil friendly maps?
 
 (define-key company-active-map (kbd "C-n") 'company-select-next)
 (define-key company-active-map (kbd "C-p") 'company-select-previous)
-;(define-key company-active-map (kbd "<tab>") 'my-company-tab)
-;(define-key company-active-map (kbd "<tab>") 'company-select-next)
 ;(define-key evil-insert-state-map  (kbd "<tab>") 'company-select-next)
 ; huh?  What's backtab?  shift tab?
 ;(define-key company-active-map (kbd "<backtab>") 'company-select-previous)
@@ -90,16 +50,16 @@
 
 ;; set timeout to zero so that completion pops up instantly
 ;; hrm... doesn't really seem to do anything...
-(setq company-idle-delay .1)
+;; This seems to help with irony, but not with rtags
+;(setq company-idle-delay .1)
 
-;; be able to complete headers as well
-(require 'company-irony-c-headers)
-;; Load with `irony-mode` as a grouped backend
-(eval-after-load 'company
-  '(add-to-list
-    'company-backends '(company-irony-c-headers company-irony)))
-
-;; Add support for syntax checker with irony
-(global-flycheck-mode)
-(eval-after-load 'flycheck
-  '(add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+;; rtags based flycheck
+(require 'flycheck-rtags)
+;; Not sure what this changes...
+(defun my-flycheck-rtags-setup ()
+  (flycheck-select-checker 'rtags)
+  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+  (setq-local flycheck-check-syntax-automatically nil))
+(add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+(add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+(add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
