@@ -30,6 +30,8 @@
     markdown-mode
     which-key
 
+    neotree
+
     ; various theme options
     ample-theme
     ;zenburn-theme

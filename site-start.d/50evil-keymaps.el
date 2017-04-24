@@ -115,3 +115,7 @@
 
 ;; evil rebellion, standardizes a bunch of keymaps to make emacs more vi friendly
 ;; (require 'evil-rebellion)
+
+;; neotree integration
+(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(evil-leader/set-key "t" 'neotree-toggle)
