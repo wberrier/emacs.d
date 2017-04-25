@@ -1,8 +1,3 @@
-
-;; This is required before loading evil
-;; and allows CTRL-r to work (redo)
-(require 'undo-tree)
-
 ;; Make CTRL - u scroll up like I'm used to in vi
 ;; This seems to be off by default
 (setq evil-want-C-u-scroll t)
