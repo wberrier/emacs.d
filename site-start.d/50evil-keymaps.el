@@ -20,6 +20,8 @@
 (define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
 ;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
 (define-key evil-normal-state-map (kbd "\C-\\ d") 'rtags-find-functions-called-by-this-function)
+(define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
+(define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
 
 ; vim increment/decrement
 (define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
