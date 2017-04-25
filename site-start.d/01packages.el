@@ -1,8 +1,5 @@
 ;; Allow setting the directory of the package directory
-(if (equal (getenv "EMACS_PACKAGE_INSTALL_DIR") nil)
-    nil
-  (setq package-user-dir (getenv "EMACS_PACKAGE_INSTALL_DIR"))
-  )
+(setq package-user-dir (format "~/.emacs.d/elpa-%s" local-dist))
 
 ;; Package initialization
 (require 'package)

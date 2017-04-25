@@ -1,6 +1,12 @@
 ;; Set a default variable for env variable
 ;; Do Here so that manual-packages can also use this if needs be
-(setq local-install-dir "~/install/current") ; default
+(setq local-dist "current") ; default
+(if (equal (getenv "LOCAL_DIST") nil)
+    nil
+  (setq local-dist (getenv "LOCAL_DIST"))
+  )
+
+(setq local-install-dir "~/.local")
 (if (equal (getenv "LOCAL_INSTALL_DIR") nil)
     nil
   (setq local-install-dir (getenv "LOCAL_INSTALL_DIR"))
