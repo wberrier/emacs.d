@@ -125,4 +125,4 @@
 
 ;; neotree integration
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
-(evil-leader/set-key "t" 'neotree-toggle)
+(evil-leader/set-key "t" 'neotree-project-dir)
