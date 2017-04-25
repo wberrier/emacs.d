@@ -17,7 +17,7 @@
 ;; what are some replacements for rtags?
 ;(define-key evil-normal-state-map (kbd "\C-\\ t") 'gtags-find-pattern) ; same as gtags-find-with-grep
 ;(define-key evil-normal-state-map (kbd "\C-\\ e") 'gtags-find-with-grep)
-(define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-grep)
+(define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-ag)
 ;(define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
 (define-key evil-normal-state-map (kbd "\C-\\ f") 'projectile-find-file)
 ;(define-key evil-normal-state-map (kbd "\C-\\ i") ')

@@ -30,6 +30,7 @@
 
     neotree
     projectile
+    ag
 
     ;; rtags
     rtags
