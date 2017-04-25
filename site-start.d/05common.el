@@ -76,5 +76,10 @@
 ;      scroll-conservatively 9999
 ;      scroll-step 1)
 
+;; nicer scrolling (wow, actually matches vim)
+(require 'smooth-scrolling)
+(smooth-scrolling-mode 1)
+(setq smooth-scroll-margin 1)
+
 ; disable makefile warnings
 (setq makefile-warn-suspicious-lines nil)

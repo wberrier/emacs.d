@@ -20,6 +20,7 @@
     evil-leader
     evil-org
     clean-aindent-mode ; kill trailing whitespace because of inserts
+    smooth-scrolling
 
     ; smart tabs and detection
     smart-tabs-mode
