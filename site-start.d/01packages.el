@@ -36,6 +36,8 @@
     company-rtags
     flycheck-rtags
 
+    yasnippet
+
     ; various theme options
     ample-theme
     ;zenburn-theme
