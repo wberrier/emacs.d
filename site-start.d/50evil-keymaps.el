@@ -17,7 +17,9 @@
 ;; what are some replacements for rtags?
 ;(define-key evil-normal-state-map (kbd "\C-\\ t") 'gtags-find-pattern) ; same as gtags-find-with-grep
 ;(define-key evil-normal-state-map (kbd "\C-\\ e") 'gtags-find-with-grep)
-(define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
+(define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-grep)
+;(define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
+(define-key evil-normal-state-map (kbd "\C-\\ f") 'projectile-find-file)
 ;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
 (define-key evil-normal-state-map (kbd "\C-\\ d") 'rtags-find-functions-called-by-this-function)
 (define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
@@ -106,7 +108,7 @@
 (evil-leader/set-key "p" 'fill-paragraph)
 
 ;; Switch between header and implementation
-(evil-leader/set-key "o" 'ff-find-other-file)
+(evil-leader/set-key "o" 'projectile-find-other-file)
 
 ;; make sure this is set up when going into org-mode
 ;; seems like a hack that shouldn't necessary, but it works

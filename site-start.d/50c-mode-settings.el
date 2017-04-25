@@ -88,27 +88,6 @@
 ; just treat .h files as c++ mode... fixes some indenting issues
 (add-to-list 'auto-mode-alist '("\\.h\\'". c++-mode))
 
-; settings for ff-find-other-file to switch between headers/implementations
-
-; set of directories to look for header/implementation
-; was originally thinking to search all directories in gtags, but this should work
-(setq ff-search-directories
-  '(
-    "."
-    "../src"
-    "../../src"
-    "../../../*/*"
-    "../../../../*/*/*"
-    "../../../*/*/*/*"
-    "../*/*/*/*"
-    "../include"
-    "../include/*"
-    "../../include/*/*"
-    )
-  )
-; Don't prompt to create when can't find
-(setq ff-always-try-to-create nil)
-
 ; enable debugging?
 ;(setq debug-on-error t)
 

@@ -29,14 +29,15 @@
     which-key
 
     neotree
+    projectile
 
     ;; rtags
     rtags
-    helm-rtags
     company-rtags
     flycheck-rtags
 
     yasnippet
+    projectile
 
     ; various theme options
     ample-theme
@@ -65,6 +66,7 @@
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
  (add-to-list 'required-packages 'helm)
+ (add-to-list 'required-packages 'helm-rtags)
  ;; Disable for now...
  ;;(add-to-list 'required-packages 'magit)
  )
