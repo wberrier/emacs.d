@@ -17,6 +17,9 @@
 ; also load evil leader and org modes
 (require 'evil-leader)
 
+; nicer key bindings for ediff
+(require 'evil-ediff)
+
 ;; evil-leader docs say to enable this before evil-mode
 (global-evil-leader-mode)
 ;; Load evil by default

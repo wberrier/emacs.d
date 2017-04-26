@@ -18,6 +18,7 @@
     evil-org
     clean-aindent-mode ; kill trailing whitespace because of inserts
     smooth-scrolling
+    evil-ediff
 
     ; smart tabs and detection
     smart-tabs-mode
