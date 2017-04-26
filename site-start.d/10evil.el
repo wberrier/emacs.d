@@ -11,6 +11,11 @@
 (modify-syntax-entry ?_ "w")
 (require 'evil)
 
+;; evil-leader docs say to enable this before evil-mode
+(global-evil-leader-mode)
+;; Load evil by default
+(evil-mode 1)
+
 ;; vim increment/decrement
 (require 'evil-numbers)
 
@@ -19,11 +24,6 @@
 
 ; nicer key bindings for ediff
 (require 'evil-ediff)
-
-;; evil-leader docs say to enable this before evil-mode
-(global-evil-leader-mode)
-;; Load evil by default
-(evil-mode 1)
 
 (require 'evil-org)
 
