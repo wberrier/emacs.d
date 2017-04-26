@@ -59,7 +59,19 @@
     ;go-eldoc
     ;go-errcheck
 
-    ;yasnippet
+    git-commit
+    gitattributes-mode
+    gitconfig-mode
+    gitignore-mode
+    git-timemachine
+    git-messenger
+
+    hgignore-mode
+    hgrc-mode
+
+    ;; TODO (need to figure this out)
+    use-package
+
     )
   "a list of packages to install (if not present) at launch.")
 
@@ -71,6 +83,7 @@
  (add-to-list 'required-packages 'helm-rtags)
  ;; Disable for now...
  ;;(add-to-list 'required-packages 'magit)
+ ;;(add-to-list 'required-packages 'evil-magit)
  )
 
 ; these require emacs 24.3 or later
