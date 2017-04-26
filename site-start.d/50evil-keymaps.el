@@ -24,6 +24,7 @@
 (define-key evil-normal-state-map (kbd "\C-\\ d") 'rtags-find-functions-called-by-this-function)
 (define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
 (define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
+(define-key evil-normal-state-map (kbd "\C-\\ v") 'rtags-find-virtuals-at-point)
 
 ; vim increment/decrement
 (define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
