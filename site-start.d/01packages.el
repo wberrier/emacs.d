@@ -85,9 +85,8 @@
  ;; TODO: how to do this in one statement? (looks to be ugly)
  (add-to-list 'required-packages 'helm)
  (add-to-list 'required-packages 'helm-rtags)
- ;; Disable for now...
- ;;(add-to-list 'required-packages 'magit)
- ;;(add-to-list 'required-packages 'evil-magit)
+ (add-to-list 'required-packages 'magit)
+ (add-to-list 'required-packages 'evil-magit)
  )
 
 ; these require emacs 24.3 or later
