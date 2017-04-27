@@ -35,9 +35,10 @@
   (kbd "\C-\\ s") 'anaconda-mode-find-assignments ;; TODO: what key for this?
   (kbd "\C-\\ t") 'anaconda-mode-show-doc
   )
-(evil-define-key 'normal anaconda-view-mode-map
-  (kbd "RET")    'evil-ret
-  )
+;; not working... ?
+;;(evil-define-key 'normal anaconda-view-map
+;;  (kbd "\C-t")   'evil-prev-buffer ;; was hoping anacond-mode-go-back would do this
+;;  )
 
 ; vim increment/decrement
 (define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
@@ -48,7 +49,6 @@
   (interactive) ;; huh?
   ;(if (eq major-mode 'rtags-mode) (rtags-select) (evil-ret))
   (if (eq major-mode 'rtags-mode) (rtags-select-and-remove-rtags-buffer) (evil-ret))
-  ;;(if (eq major-mode 'anaconda-view-mode) (evil-ret))
   )
 (define-key evil-motion-state-map (kbd "RET") 'intercept-evil-ret)
 
