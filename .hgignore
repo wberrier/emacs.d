@@ -5,6 +5,8 @@ irony
 saved-places
 auto-save-list
 
+anaconda-mode
+
 manual-packages
 elpa*
 

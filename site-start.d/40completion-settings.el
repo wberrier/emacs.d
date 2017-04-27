@@ -26,6 +26,7 @@
 (rtags-diagnostics)
 (setq rtags-completions-enabled t)
 (push 'company-rtags company-backends)
+(push 'company-anaconda company-backends) ;; python
 (global-company-mode)
 
 ;; hrm... how to get evil friendly maps?

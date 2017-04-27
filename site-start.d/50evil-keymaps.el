@@ -26,6 +26,19 @@
 (define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
 (define-key evil-normal-state-map (kbd "\C-\\ v") 'rtags-find-virtuals-at-point)
 
+;; python code navigation
+;; seems to work pretty well...
+(evil-define-key 'normal anaconda-mode-map
+  (kbd "\C-]")    'anaconda-mode-find-definitions
+  (kbd "\C-t")    'anaconda-mode-go-back
+  (kbd "\C-\\ c") 'anaconda-mode-find-references
+  (kbd "\C-\\ s") 'anaconda-mode-find-assignments ;; TODO: what key for this?
+  (kbd "\C-\\ t") 'anaconda-mode-show-doc
+  )
+(evil-define-key 'normal anaconda-view-mode-map
+  (kbd "RET")    'evil-ret
+  )
+
 ; vim increment/decrement
 (define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "\C-x") 'evil-numbers/dec-at-pt)
@@ -35,6 +48,7 @@
   (interactive) ;; huh?
   ;(if (eq major-mode 'rtags-mode) (rtags-select) (evil-ret))
   (if (eq major-mode 'rtags-mode) (rtags-select-and-remove-rtags-buffer) (evil-ret))
+  ;;(if (eq major-mode 'anaconda-view-mode) (evil-ret))
   )
 (define-key evil-motion-state-map (kbd "RET") 'intercept-evil-ret)
 

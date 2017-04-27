@@ -69,6 +69,10 @@
     hgignore-mode
     hgrc-mode
 
+    ;; Python stuff
+    anaconda-mode
+    company-anaconda
+
     ;; TODO (need to figure this out)
     use-package
 
