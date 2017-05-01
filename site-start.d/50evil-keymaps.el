@@ -52,11 +52,21 @@
   )
 (define-key evil-motion-state-map (kbd "RET") 'intercept-evil-ret)
 
-; Make ESC cancel a bunch of emacs type stuff.  Another suggested to
-; just get used to emacs' CTRL-g, but this is probably more natual for
-; someone coming from vim
-; http://wikemacs.org/wiki/Evil#Enter_an_emacs_mode_in_a_given_state
+;; Make ESC cancel a bunch of emacs type stuff.  Another suggested to
+;; just get used to emacs' CTRL-g, but this is probably more natual for
+;; someone coming from vim
+;; http://wikemacs.org/wiki/Evil#Enter_an_emacs_mode_in_a_given_state
+;; http://stackoverflow.com/questions/8483182/evil-mode-best-practice
 ;;; esc quits
+(defun minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+   In Delete Selection mode, if the mark is active, just deactivate it;
+   then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
 (define-key evil-normal-state-map [escape] 'keyboard-quit)
 (define-key evil-visual-state-map [escape] 'keyboard-quit)
 (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
