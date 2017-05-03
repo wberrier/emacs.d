@@ -95,6 +95,12 @@
   (compile "~/.emacs.d/bin/emacs_build debug")
   )
 
+(defun bookmark-then-run-test ()
+  (interactive)
+  (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
+  (compile "~/.emacs.d/bin/emacs_build test")
+  )
+
 (defun jump-to-compile-bookmark ()
   (interactive)
   (bookmark-jump "compile-bookmark") ; set a bookmark to easily return to
@@ -105,6 +111,7 @@
   "br" 'bookmark-then-compile
   "bc" 'bookmark-then-compile-cross
   "bd" 'bookmark-then-compile-debug
+  "bt" 'bookmark-then-run-test
   ; "return"
   "r"  'jump-to-compile-bookmark
   )
