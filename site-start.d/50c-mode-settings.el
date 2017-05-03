@@ -35,7 +35,7 @@
 				   ;(arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
                                    (case-label        . 0)
-				   (access-label      . 0) ; public/private: no indention (sometimes picks access-label, sometimes label??)
+				   (access-label      . -) ; public/private: no indention (sometimes picks access-label, sometimes label??)
 				   (label             . 0) ; public/private: no indention
                                    (block-open        . 0)
                                    (inline-open       . 0)
