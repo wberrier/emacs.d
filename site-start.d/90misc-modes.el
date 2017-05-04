@@ -25,11 +25,6 @@
 ; disable for now since this really slows things down when loading/saving files
 ;(when (require 'mercurial nil 'noerror))
 
-; Enable some minor modes for text-mode
-; NOTE: org and post modes derive from text mode
-(add-hook 'text-mode-hook 'turn-on-auto-fill)
-(add-hook 'text-mode-hook 'turn-on-flyspell)
-
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
