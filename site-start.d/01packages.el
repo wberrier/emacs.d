@@ -76,6 +76,9 @@
     ;; TODO (need to figure this out)
     use-package
 
+    ;; email
+    messages-are-flowing
+
     )
   "a list of packages to install (if not present) at launch.")
 
