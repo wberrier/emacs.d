@@ -55,3 +55,9 @@
 
 (add-hook 'message-mode-hook 'my-message-configuration)
 
+(defun my-disable-trailing-whitespace ()
+  (setq show-trailing-whitespace nil)
+  )
+
+;; don't show trailing whitespace in message mode
+(add-hook 'message-mode-hook 'my-disable-trailing-whitespace)
