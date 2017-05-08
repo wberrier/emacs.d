@@ -61,3 +61,5 @@
 
 ;; don't show trailing whitespace in message mode
 (add-hook 'message-mode-hook 'my-disable-trailing-whitespace)
+
+(add-hook 'message-mode-hook 'refill-mode) ; refil when writing paragraphs, finally!
