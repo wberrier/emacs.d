@@ -59,6 +59,9 @@
     ;go-eldoc
     ;go-errcheck
 
+    kotlin-mode
+    flycheck-kotlin
+
     git-commit
     gitattributes-mode
     gitconfig-mode
