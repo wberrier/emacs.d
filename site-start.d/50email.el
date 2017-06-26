@@ -2,6 +2,7 @@
 ;; mutt composition mode
 
 ;; What's the difference for these modes?
+;; * message-mode correctly quotes long lines when doing 'fill-paragraph
 
 (add-to-list 'auto-mode-alist '("tmp/mutt*\\|\\.article|\\.followup" . message-mode))
 (add-to-list 'auto-mode-alist '("/tmp/evo*" . message-mode))

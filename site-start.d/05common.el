@@ -83,3 +83,5 @@
 
 ; disable makefile warnings
 (setq makefile-warn-suspicious-lines nil)
+
+(setq linum-format "%4d ")
