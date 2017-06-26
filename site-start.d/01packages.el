@@ -62,6 +62,16 @@
     kotlin-mode
     flycheck-kotlin
 
+    ;; java (ensime may also be able to be used for this)
+    meghanada
+
+    ;; scala
+    ensime
+    sbt-mode
+    scala-mode
+
+    flycheck-objc-clang
+
     git-commit
     gitattributes-mode
     gitconfig-mode
