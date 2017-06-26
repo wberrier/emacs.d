@@ -72,6 +72,10 @@
 
     flycheck-objc-clang
 
+    ;; c# stuff
+    csharp-mode
+    omnisharp
+
     git-commit
     gitattributes-mode
     gitconfig-mode
