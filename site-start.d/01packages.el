@@ -85,6 +85,7 @@
 
     hgignore-mode
     hgrc-mode
+    monky ;; 'magit' for hg
 
     ;; Python stuff
     anaconda-mode
