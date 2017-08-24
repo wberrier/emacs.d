@@ -22,9 +22,6 @@
 ;;(add-hook 'c-mode-hook 'eldoc-mode)
 ;;(add-hook 'c++-mode-hook 'eldoc-mode)
 
-(setq rtags-autostart-diagnostics t)
-(rtags-diagnostics)
-(setq rtags-completions-enabled t)
 (push 'company-rtags company-backends)
 (push 'company-anaconda company-backends) ;; python
 (global-company-mode)
