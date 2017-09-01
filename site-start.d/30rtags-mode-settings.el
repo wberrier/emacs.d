@@ -18,10 +18,7 @@
 
 ;; Reindex on save hook
 ;; shouldn't be necessary (should be using inotify)
-;; but it seems to be required... ??  Not sure what's going on.
-;; Happens both on ubuntu and redhat
-;; Could it be it's only on large codebases?  Not sure...
-(setq rtags-reindex-on-save t)
+;;(setq rtags-reindex-on-save t)
 
 ;; Completion settings
 (setq rtags-autostart-diagnostics t)
