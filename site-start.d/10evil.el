@@ -8,7 +8,8 @@
 (add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'qml-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 ; and everything else
-(modify-syntax-entry ?_ "w")
+;; Can't enable this for message-mode, emacs hangs... any way to describe that?
+;;(modify-syntax-entry ?_ "w")
 (require 'evil)
 
 ;; evil-leader docs say to enable this before evil-mode
