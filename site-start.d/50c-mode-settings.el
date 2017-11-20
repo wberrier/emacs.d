@@ -98,4 +98,14 @@
 ; speed up loading
 (setq gdb-create-source-file-list nil)
 
+;; attempt to prevent output from taking over
+;; prevents following source code... ?
+;;(defun set-window-undedicated-p (window flag)
+;;  "Never set window dedicated."
+;;  flag)
+;;(advice-add 'set-window-dedicated-p :override #'set-window-undedicated-p)
+
+;; Don't force popup gdb's io window (requires emacs >= 25) (worked! the above didn't...)
+(setq gdb-display-io-nopopup t)
+
 (setq pop-up-windows nil)
