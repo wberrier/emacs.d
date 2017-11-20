@@ -9,6 +9,7 @@
 ; --  `c-basic-offset' times -2
 ; *   `c-basic-offset' times 0.5
 ; /   `c-basic-offset' times -0.5
+; 0   `c-basic-offset' times 0
 
 ;; the only things I modified in vim were to push back
 ;; "public/private" and case labels an indentation level
@@ -28,10 +29,10 @@
                                    empty-defun-braces
                                    defun-close-semi))
     (c-offsets-alist            . (
-                                   (arglist-intro . ++)
-                                   (arglist-cont-nonempty . ++)
-                                   (arglist-close . ++)
-				   ;(arglist-close . c-lineup-arglist)
+                                   (arglist-intro . +)
+                                   (arglist-cont . 0)
+                                   (arglist-cont-nonempty . +)
+                                   (arglist-close . +)
 				   ;(arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
                                    (case-label        . 0)
