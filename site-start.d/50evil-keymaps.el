@@ -47,10 +47,10 @@
 ;; Allow "RET" to work with rtags when running under evil
 (defun intercept-evil-ret ()
   (interactive) ;; huh?
-  ;(if (eq major-mode 'rtags-mode) (rtags-select) (evil-ret))
+  ;;(if (eq major-mode 'rtags-mode) (rtags-select) (evil-ret)) ; opens a new buffer, and uses that for jump point
   (if (eq major-mode 'rtags-mode) (rtags-select-and-remove-rtags-buffer) (evil-ret))
   )
-(define-key evil-motion-state-map (kbd "RET") 'intercept-evil-ret)
+(define-key evil-normal-state-map (kbd "RET") 'intercept-evil-ret)
 
 ;; Make ESC cancel a bunch of emacs type stuff.  Another suggested to
 ;; just get used to emacs' CTRL-g, but this is probably more natual for
