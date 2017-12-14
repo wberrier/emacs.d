@@ -40,6 +40,12 @@
 ;;  (kbd "\C-t")   'evil-prev-buffer ;; was hoping anacond-mode-go-back would do this
 ;;  )
 
+(evil-define-key 'normal rust-mode-map
+  (kbd "\C-]")    'racer-find-definition
+  (kbd "\C-t")    'pop-tag-mark ;; racer command??
+  (kbd "\C-\\ t") 'racer-describe
+  )
+
 ; vim increment/decrement
 (define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "\C-x") 'evil-numbers/dec-at-pt)

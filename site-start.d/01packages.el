@@ -97,6 +97,12 @@
     ;; email
     messages-are-flowing
 
+    ;; Rust
+    rust-mode
+    racer ;; code completing, definition, etc...
+    flycheck-rust
+    cargo
+
     )
   "a list of packages to install (if not present) at launch.")
 
