@@ -7,6 +7,7 @@
 ; for c mode
 (add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 (add-hook 'qml-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
+(add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
 ; and everything else
 ;; Can't enable this for message-mode, emacs hangs... any way to describe that?
 ;;(modify-syntax-entry ?_ "w")
