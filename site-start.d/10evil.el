@@ -4,11 +4,20 @@
 (setq evil-shift-width 4) ;; not sure what the default is here
 (setq evil-search-module 'evil-search)
 
-;; treat underscore as a word char, finally! (for 'w' and searching)
-;; This seems to work pretty well, and doesn't seem to message up message mode?
-;; try it out for a while...
-(with-eval-after-load 'evil
-     (defalias #'forward-evil-word #'forward-evil-symbol))
+; treat underscore as a word char, finally! (for 'w' and searching)
+;;(modify-syntax-entry ?_ "w") ; NOTE: didn't work any longer?
+
+;; NOTE: tried a method of using forward-evil-symbol instead of forward-evil-word, but that's
+;; not the same as vim, which I think is preferrable.
+;; vim probably has it wrong (ie: too simplistic), but that's what we're emulating
+
+;; Can't enable this for message-mode, emacs hangs...
+;; Do this to enable for all modes except message-mode
+(add-hook 'after-change-major-mode-hook #'(lambda ()
+  (if (equal major-mode 'message-mode)
+      (modify-syntax-entry ?_ "_")
+      (modify-syntax-entry ?_ "w")
+    )))
 
 (require 'evil)
 
