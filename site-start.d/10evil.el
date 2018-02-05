@@ -3,15 +3,13 @@
 (setq evil-want-C-u-scroll t)
 (setq evil-shift-width 4) ;; not sure what the default is here
 (setq evil-search-module 'evil-search)
-; treat underscore as a word char, finally! (for 'w' and searching)
-; for c mode
-(add-hook 'c-mode-common-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-(add-hook 'qml-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-(add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-(add-hook 'sh-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))
-; and everything else
-;; Can't enable this for message-mode, emacs hangs... any way to describe that?
-;;(modify-syntax-entry ?_ "w")
+
+;; treat underscore as a word char, finally! (for 'w' and searching)
+;; This seems to work pretty well, and doesn't seem to message up message mode?
+;; try it out for a while...
+(with-eval-after-load 'evil
+     (defalias #'forward-evil-word #'forward-evil-symbol))
+
 (require 'evil)
 
 ;; evil-leader docs say to enable this before evil-mode
