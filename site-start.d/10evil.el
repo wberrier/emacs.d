@@ -13,7 +13,7 @@
 
 ;; Can't enable this for message-mode, emacs hangs...
 ;; Do this to enable for all modes except message-mode
-(add-hook 'after-change-major-mode-hook #'(lambda ()
+(add-hook 'change-major-mode-after-body-hook #'(lambda ()
   (if (equal major-mode 'message-mode)
       (modify-syntax-entry ?_ "_")
       (modify-syntax-entry ?_ "w")
