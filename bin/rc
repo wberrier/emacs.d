@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# This path always changes, so have this script to make it more accessible
+
+function find_rc_execs()
+{
+    ls $HOME/wa/hg/emacs.d/elpa-$(get_dist)/rtags-*/rtags-*/bin/rc
+}
+
+rc_bin=$(find_rc_execs | head -n1)
+
+rc_bin_test=$(find_rc_execs)
+
+if [ "$rc_bin" != "$rc_bin_test" ] ; then
+    echo "Error: multiple rc versions found:"
+    echo "$rc_bin_test"
+    exit 1
+fi
+
+$rc_bin "$@"
+
