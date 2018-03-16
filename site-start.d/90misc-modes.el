@@ -33,3 +33,5 @@
 ;(add-hook 'meson-mode-hook 'company-mode)
 
 (which-key-mode)
+
+(require 'qmake-mode)

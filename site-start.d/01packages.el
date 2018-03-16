@@ -103,6 +103,11 @@
     flycheck-rust
     cargo
 
+    protobuf-mode
+
+    qml-mode
+    company-qml
+
     )
   "a list of packages to install (if not present) at launch.")
 

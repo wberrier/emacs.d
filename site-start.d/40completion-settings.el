@@ -24,6 +24,7 @@
 
 (push 'company-rtags company-backends)
 (push 'company-anaconda company-backends) ;; python
+(push 'company-qml company-backends) ;; qml
 (global-company-mode)
 
 ;; hrm... how to get evil friendly maps?

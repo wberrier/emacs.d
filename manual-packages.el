@@ -22,6 +22,13 @@
 ;; Make post-mode available
 (add-to-list 'load-path "~/.emacs.d/manual-packages/post-mode")
 
+;;qmake-mode
+(if (file-exists-p "~/.emacs.d/manual-packages/qmake-mode")
+    nil
+  (shell-command "git clone https://github.com/inlinechan/qmake-mode.git ~/.emacs.d/manual-packages/qmake-mode")
+  )
+(add-to-list 'load-path "~/.emacs.d/manual-packages/qmake-mode")
+
 
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?
