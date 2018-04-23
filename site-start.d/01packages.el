@@ -38,6 +38,10 @@
     company-rtags
     flycheck-rtags
 
+    ;; cquery
+    lsp-mode
+    cquery
+
     yasnippet
     projectile
 
