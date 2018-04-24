@@ -19,3 +19,16 @@
 ;; to load up everything in ~/.emacs.d/site-start.d
 (autoload 'my-site-start "~/.emacs.d/manual-packages/my-site-start/my-site-start" nil t)
 (my-site-start "~/.emacs.d/site-start.d/")
+
+;; Variables set by 'customize'
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(cquery-project-root-matchers
+   (quote
+    (cquery-project-roots-matcher projectile-project-root "compile_commands.json" ".cquery" "build/compile_commands.json" "build-debug/compile_commands.json")))
+ '(xref-prompt-for-identifier
+   (quote
+    (not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references))))

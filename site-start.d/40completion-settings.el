@@ -1,28 +1,18 @@
 
-(require 'rtags)
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-(add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-(add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
-
-; disable company mode when running gdb
+;; disable company mode when running gdb
 (setq company-global-modes '(not gud-mode))
 
-;; TODO: not quite working, but there are 'rtags-symbol-info and 'rtags-print-symbol-info
-;;(defun my-rtags-eldoc ()
-;;  (when (and (not (nth 4 (syntax-ppss))) (thing-at-point 'symbol t))
-;;    (let ((doc (rtags-get-summary-text)))
-;;      (and doc (replace-regexp-in-string "{.*" ""
-;;      (replace-regexp-in-string "[ \t\n]+" " "
-;;      (replace-regexp-in-string "\n" "" doc)))))))
-;;
-;;(setq-local eldoc-documentation-function #'my-rtags-eldoc)
-;;
-;;(add-hook 'c-mode-hook 'eldoc-mode)
-;;(add-hook 'c++-mode-hook 'eldoc-mode)
+;; disable company caching, as server is faster (recommended in lsp documentation)
+(setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
+;; async completion
+(setq company-lsp-async t)
 
-(push 'company-rtags company-backends)
+(require 'company-lsp)
+(push 'company-lsp company-backends)
+
 (push 'company-anaconda company-backends) ;; python
 (push 'company-qml company-backends) ;; qml
 (global-company-mode)
@@ -51,14 +41,3 @@
 ;; hrm... doesn't really seem to do anything...
 ;; This seems to help with irony, but not with rtags
 ;(setq company-idle-delay .1)
-
-;; rtags based flycheck
-(require 'flycheck-rtags)
-;; Not sure what this changes...
-(defun my-flycheck-rtags-setup ()
-  (flycheck-select-checker 'rtags)
-  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-  (setq-local flycheck-check-syntax-automatically nil))
-(add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
-(add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
-(add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)

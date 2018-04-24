@@ -33,14 +33,11 @@
     projectile
     ag
 
-    ;; rtags
-    rtags
-    company-rtags
-    flycheck-rtags
-
-    ;; cquery
+    ;; lsp
     lsp-mode
     cquery
+    lsp-ui
+    company-lsp
 
     yasnippet
     projectile
@@ -120,7 +117,6 @@
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
  (add-to-list 'required-packages 'helm)
- (add-to-list 'required-packages 'helm-rtags)
  (add-to-list 'required-packages 'magit)
  (add-to-list 'required-packages 'evil-magit)
  )

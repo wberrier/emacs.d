@@ -1,30 +1,38 @@
 
 
-; Set up key bindings for tags
-(define-key evil-normal-state-map (kbd "\C-]") 'rtags-find-symbol-at-point)
-(define-key evil-normal-state-map (kbd "\C-t") 'rtags-location-stack-back)
+;; these seem to be set up automatically with evil/emacs-lsp
+;(define-key evil-normal-state-map (kbd "\C-]") 'xref-find-definitions)
+;(define-key evil-normal-state-map (kbd "\C-t") 'pop-tag-mark)
 
-; Set up some keybindings for the cscope interaction
-; although, it doesn't grab the current expression under the curson :(
-; could write the equivalent "-from-here" functions...
-; I guess this is where the shortcomings begin?
-; but, it automatically puts the current symbol in the interactive buffer
-; TODO: any way to automatically press enter?
-; NOTE: not exactly sure what the difference is for some of these
-(define-key evil-normal-state-map (kbd "\C-\\ s") 'rtags-find-symbol)
-(define-key evil-normal-state-map (kbd "\C-\\ g") 'rtags-find-symbol) ; different than gtags-find-tag-from-here! huh?
-(define-key evil-normal-state-map (kbd "\C-\\ c") 'rtags-find-references-at-point)
-;; what are some replacements for rtags?
-;(define-key evil-normal-state-map (kbd "\C-\\ t") 'gtags-find-pattern) ; same as gtags-find-with-grep
-;(define-key evil-normal-state-map (kbd "\C-\\ e") 'gtags-find-with-grep)
+
+(defun custom-find-derived ()
+  (interactive)
+  (cquery-xref-find-custom "$cquery/derived")
+  )
+
+(defun custom-find-callers ()
+  (interactive)
+  (cquery-xref-find-custom "$cquery/callers")
+  )
+
+(define-key evil-normal-state-map (kbd "\C-\\ c") 'xref-find-references)
+;; TODO: how to define these inline?
+(define-key evil-normal-state-map (kbd "\C-\\ v") 'custom-find-derived)
+(define-key evil-normal-state-map (kbd "\C-\\ d") 'custom-find-callers)
+
+;; TODO: emacs-lsp replacements?
+;(define-key evil-normal-state-map (kbd "\C-\\ s") 'rtags-find-symbol)
+;(define-key evil-normal-state-map (kbd "\C-\\ g") 'rtags-find-symbol) ; different than gtags-find-tag-from-here! huh?
+;;(define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
+;;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
+;(define-key evil-normal-state-map (kbd "\C-\\ d") 'rtags-find-functions-called-by-this-function)
+;(define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
+;(define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
+
+;; Sometimes tagging systems provide this functionality
+;; projectile works just fine
 (define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-ag)
-;(define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
 (define-key evil-normal-state-map (kbd "\C-\\ f") 'projectile-find-file)
-;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
-(define-key evil-normal-state-map (kbd "\C-\\ d") 'rtags-find-functions-called-by-this-function)
-(define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
-(define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
-(define-key evil-normal-state-map (kbd "\C-\\ v") 'rtags-find-virtuals-at-point)
 
 ;; python code navigation
 ;; seems to work pretty well...
@@ -50,13 +58,6 @@
 (define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "\C-x") 'evil-numbers/dec-at-pt)
 
-;; Allow "RET" to work with rtags when running under evil
-(defun intercept-evil-ret ()
-  (interactive) ;; huh?
-  ;;(if (eq major-mode 'rtags-mode) (rtags-select) (evil-ret)) ; opens a new buffer, and uses that for jump point
-  (if (eq major-mode 'rtags-mode) (rtags-select-and-remove-rtags-buffer) (evil-ret))
-  )
-(define-key evil-normal-state-map (kbd "RET") 'intercept-evil-ret)
 
 ;; Make ESC cancel a bunch of emacs type stuff.  Another suggested to
 ;; just get used to emacs' CTRL-g, but this is probably more natual for
