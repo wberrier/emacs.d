@@ -31,7 +31,6 @@
 
 ; sanityinc themes, can't seem to get them to work
 ;(require 'color-theme-sanityinc-tomorrow)
-;(load-theme 'ample t)
 
 ;(load-theme 'cyberpunk t)
 
