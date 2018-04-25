@@ -1,10 +1,29 @@
-#!/bin/bash
+#!/bin/bash -x
 
+# Stop on failure
+set -e
 
 # c++ (cquery)
-pushd ~/wa/hg/git
+pushd ~/wa/git
 
-# TODO
+if [ ! -e cquery ] ; then
+    git rclone https://github.com/cquery-project/cquery.git
+else
+    pushd cquery
+    git pull
+    git sub-update
+    popd
+fi
+
+mkdir -p cquery/build
+
+pushd cquery/build
+
+local_cmake ..
+make
+make install
+
+popd
 
 popd
 
