@@ -34,20 +34,6 @@
 (define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-ag)
 (define-key evil-normal-state-map (kbd "\C-\\ f") 'projectile-find-file)
 
-;; python code navigation
-;; seems to work pretty well...
-(evil-define-key 'normal anaconda-mode-map
-  (kbd "\C-]")    'anaconda-mode-find-definitions
-  (kbd "\C-t")    'anaconda-mode-go-back
-  (kbd "\C-\\ c") 'anaconda-mode-find-references
-  (kbd "\C-\\ s") 'anaconda-mode-find-assignments ;; TODO: what key for this?
-  (kbd "\C-\\ t") 'anaconda-mode-show-doc
-  )
-;; not working... ?
-;;(evil-define-key 'normal anaconda-view-map
-;;  (kbd "\C-t")   'evil-prev-buffer ;; was hoping anacond-mode-go-back would do this
-;;  )
-
 (evil-define-key 'normal rust-mode-map
   (kbd "\C-]")    'racer-find-definition
   (kbd "\C-t")    'pop-tag-mark ;; racer command??

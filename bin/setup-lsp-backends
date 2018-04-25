@@ -1,0 +1,14 @@
+#!/bin/bash
+
+
+# c++ (cquery)
+pushd ~/wa/hg/git
+
+# TODO
+
+popd
+
+# python
+# TODO: certificates
+pip install --user 'python-language-server[all]'
+

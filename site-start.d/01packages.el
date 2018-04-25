@@ -35,9 +35,11 @@
 
     ;; lsp
     lsp-mode
-    cquery
     lsp-ui
     company-lsp
+
+    cquery
+    lsp-python
 
     yasnippet
     projectile
@@ -87,10 +89,6 @@
     hgignore-mode
     hgrc-mode
     monky ;; 'magit' for hg
-
-    ;; Python stuff
-    anaconda-mode
-    company-anaconda
 
     ;; TODO (need to figure this out)
     use-package

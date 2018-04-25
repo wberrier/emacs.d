@@ -7,5 +7,6 @@
 ;	  )
 ;)
 
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+(require 'lsp-mode)
+(require 'lsp-python)
+(add-hook 'python-mode-hook #'lsp-python-enable)
