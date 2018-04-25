@@ -73,8 +73,6 @@
     sbt-mode
     scala-mode
 
-    flycheck-objc-clang
-
     ;; c# stuff
     csharp-mode
     omnisharp
@@ -83,12 +81,9 @@
     gitattributes-mode
     gitconfig-mode
     gitignore-mode
-    git-timemachine
-    git-messenger
 
     hgignore-mode
     hgrc-mode
-    monky ;; 'magit' for hg
 
     ;; TODO (need to figure this out)
     use-package
@@ -115,8 +110,6 @@
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
  (add-to-list 'required-packages 'helm)
- (add-to-list 'required-packages 'magit)
- (add-to-list 'required-packages 'evil-magit)
  )
 
 ; these require emacs 24.3 or later

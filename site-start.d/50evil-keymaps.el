@@ -150,3 +150,84 @@
 ;; neotree integration
 (evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
 (evil-leader/set-key "t" 'neotree-project-dir)
+
+;; vc integration
+;; adapted from: https://github.com/emacs-evil/evil-collection/blob/master/evil-collection-vc-annotate.el
+(evil-set-initial-state 'vc-annotate-mode 'normal) ;; start in normal state (TODO: use motion instead?)
+(evil-define-key 'normal vc-annotate-mode-map
+
+  "q" 'quit-window
+
+  "a" 'vc-annotate-revision-previous-to-line ;; does blame on previous revision from line (useful!)
+  "J" 'vc-annotate-revision-at-line ;; does blame on revision from line
+  "F" 'vc-annotate-find-revision-at-line ;; what does this do?
+  (kbd "RET") 'vc-annotate-revision-at-line
+  ;;(kbd "RET") 'vc-annotate-goto-line
+
+  "d" 'vc-annotate-show-diff-revision-at-line ;; just file
+  "D" 'vc-annotate-show-changeset-diff-revision-at-line ;; whole commit
+
+  "L" 'vc-annotate-show-log-revision-at-line
+
+  "]" 'vc-annotate-next-revision
+  "[" 'vc-annotate-prev-revision
+
+  "W" 'vc-annotate-working-revision ;; goes back to current revision
+  "A" 'vc-annotate-toggle-annotation-visibility ;; toggles revision info (still in annotate mode)
+
+  )
+
+;; Set up these keys for each log view
+;; TODO: need to learn list enough to not repeat these
+(evil-set-initial-state 'vc-git-log-view-mode 'normal)
+(evil-define-key 'normal vc-git-log-view-mode-map
+  "q" 'quit-window
+
+  "j" 'log-view-msg-next
+  "k" 'log-view-msg-prev
+
+  "a" 'log-view-annotate-version
+
+  "e" 'log-view-modify-change-comment
+
+  "P" 'log-view-file-prev
+  "N" 'log-view-file-next
+
+  "f" 'log-view-find-revision
+
+  "d" 'log-view-diff
+  "D" 'log-view-diff-changeset
+
+  "m" 'log-view-toggle-mark-entry
+
+  (kbd "RET") 'log-view-toggle-entry-display
+  )
+
+(evil-set-initial-state 'vc-hg-log-view-mode 'normal)
+(evil-define-key 'normal hg-log-view-mode-map
+  "q" 'quit-window
+
+  "j" 'log-view-msg-next
+  "k" 'log-view-msg-prev
+
+  "a" 'log-view-annotate-version
+
+  "e" 'log-view-modify-change-comment
+
+  "P" 'log-view-file-prev
+  "N" 'log-view-file-next
+
+  "f" 'log-view-find-revision
+
+  "d" 'log-view-diff
+  "D" 'log-view-diff-changeset
+
+  "m" 'log-view-toggle-mark-entry
+
+  (kbd "RET") 'log-view-toggle-entry-display
+  )
+
+;; be able to quit from vc-diff mode with 'q'
+(evil-define-key 'normal diff-mode-map
+  "q" 'quit-window
+  )

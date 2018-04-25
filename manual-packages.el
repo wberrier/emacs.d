@@ -8,6 +8,7 @@
   )
 
 ;; Check for directories and checkout if they don't exist
+;; TODO: is there a more standard version to this?
 (if (file-exists-p "~/.emacs.d/manual-packages/my-site-start")
     nil
   (shell-command "git clone https://github.com/tripleee/my-site-start ~/.emacs.d/manual-packages/my-site-start")
