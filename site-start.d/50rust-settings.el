@@ -1,4 +1,6 @@
 
+;; TODO: use lsp-rust
+
 ;; flycheck and tags
 
 (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

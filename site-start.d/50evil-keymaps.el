@@ -29,6 +29,13 @@
 ;(define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
 ;(define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
 
+;; lsp-ui-imenu
+(evil-leader/set-key "i" 'lsp-ui-imenu)
+(evil-define-key 'normal lsp-ui-imenu-mode-map
+  (kbd "RET")  'lsp-ui-imenu--visit ;; is this a private command?
+  ;;(kbd "RET")  'lsp-ui-imenu--view;; is this a private command?
+  )
+
 ;; Sometimes tagging systems provide this functionality
 ;; projectile works just fine
 (define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-ag)

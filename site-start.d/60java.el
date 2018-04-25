@@ -1,4 +1,5 @@
 
+;; TODO: use lsp-java
 
 (require 'meghanada)
 (add-hook 'java-mode-hook
