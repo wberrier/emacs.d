@@ -119,8 +119,9 @@
   (setq cquery-executable (format "%s/bin/cquery" (getenv "LOCAL_INSTALL_DIR")))
   )
 
-;; TODO: use $HOME environment variable
-(setq cquery-extra-args '("--log-file=/home/wberrier/.cq.log"))
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
+;; Partially evaluate via backquote and comma.  (YUCK!)
+(setq cquery-extra-args `(,(format "--log-file=%s/.cq.log" (getenv "HOME"))))
 
 (setq cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
 
