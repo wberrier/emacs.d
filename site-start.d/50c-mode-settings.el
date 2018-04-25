@@ -83,6 +83,7 @@
   (which-function-mode 1)
 )
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
 
 ; use c++-mode for .ipp files (boost uses lots of them)
 (add-to-list 'auto-mode-alist '("\\.ipp\\'". c++-mode))
@@ -109,3 +110,37 @@
 (setq gdb-display-io-nopopup t)
 
 (setq pop-up-windows nil)
+
+;; cquery settings
+
+;; Set executable path if expected environment variable is found
+(if (equal (getenv "LOCAL_INSTALL_DIR") nil)
+    nil
+  (setq cquery-executable (format "%s/bin/cquery" (getenv "LOCAL_INSTALL_DIR")))
+  )
+
+;; TODO: use $HOME environment variable
+(setq cquery-extra-args '("--log-file=/home/wberrier/.cq.log"))
+
+(setq cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
+
+;; specify loading subprojects?
+;; TODO: can this be used to find build*/compile_commands.json?
+(with-eval-after-load 'projectile
+  (setq projectile-project-root-files-top-down-recurring
+	(append '("compile_commands.json"
+		  ".cquery")
+		projectile-project-root-files-top-down-recurring)))
+
+
+;; Enable lsp for all c/c++ modes
+(defun cquery//enable ()
+  (condition-case nil
+      (lsp-cquery-enable)
+    (user-error nil)))
+
+  (use-package cquery
+    :commands lsp-cquery-enable
+    :init (add-hook 'c-mode-common-hook #'cquery//enable))
+;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
+

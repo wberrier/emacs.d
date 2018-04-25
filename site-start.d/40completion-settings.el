@@ -10,10 +10,12 @@
 ;; async completion
 (setq company-lsp-async t)
 
+;; Should help with c++ std:: type completions
+(setq company-lsp-enable-recompletion t)
+
 (require 'company-lsp)
 (push 'company-lsp company-backends)
 
-(push 'company-anaconda company-backends) ;; python
 (push 'company-qml company-backends) ;; qml
 (global-company-mode)
 
@@ -40,4 +42,4 @@
 ;; set timeout to zero so that completion pops up instantly
 ;; hrm... doesn't really seem to do anything...
 ;; This seems to help with irony, but not with rtags
-;(setq company-idle-delay .1)
+(setq company-idle-delay .1)

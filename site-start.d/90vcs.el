@@ -16,3 +16,6 @@
 (require 'hgignore-mode)
 (require 'hgrc-mode)
 
+;; TODO: git's built-in backend agnostic system?
+;; it's just that magit is so good...
+
