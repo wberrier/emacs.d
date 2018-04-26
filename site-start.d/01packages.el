@@ -20,6 +20,9 @@
     smooth-scrolling
     evil-ediff
 
+    ;; generic key bindings
+    general
+
     ; smart tabs and detection
     smart-tabs-mode
     dtrt-indent

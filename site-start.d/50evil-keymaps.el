@@ -177,55 +177,34 @@
 
   )
 
-;; Set up these keys for each log view
-;; TODO: need to learn list enough to not repeat these
-(evil-set-initial-state 'vc-git-log-view-mode 'normal)
-(evil-define-key 'normal vc-git-log-view-mode-map
-  "q" 'quit-window
+(general-define-key
+ :states 'normal
+ :keymaps '(vc-hg-log-view-mode-map vc-git-log-view-mode-map)
 
-  "j" 'log-view-msg-next
-  "k" 'log-view-msg-prev
+ "q" 'quit-window
 
-  "a" 'log-view-annotate-version
+ "j" 'log-view-msg-next
+ "k" 'log-view-msg-prev
 
-  "e" 'log-view-modify-change-comment
+ "a" 'log-view-annotate-version
 
-  "P" 'log-view-file-prev
-  "N" 'log-view-file-next
+ "e" 'log-view-modify-change-comment
 
-  "f" 'log-view-find-revision
+ "P" 'log-view-file-prev
+ "N" 'log-view-file-next
 
-  "d" 'log-view-diff
-  "D" 'log-view-diff-changeset
+ "f" 'log-view-find-revision
 
-  "m" 'log-view-toggle-mark-entry
+ "d" 'log-view-diff
+ "D" 'log-view-diff-changeset
 
-  (kbd "RET") 'log-view-toggle-entry-display
-  )
+ "m" 'log-view-toggle-mark-entry
+
+ (kbd "RET") 'log-view-toggle-entry-display
+ )
 
 (evil-set-initial-state 'vc-hg-log-view-mode 'normal)
-(evil-define-key 'normal vc-hg-log-view-mode-map
-  "q" 'quit-window
-
-  "j" 'log-view-msg-next
-  "k" 'log-view-msg-prev
-
-  "a" 'log-view-annotate-version
-
-  "e" 'log-view-modify-change-comment
-
-  "P" 'log-view-file-prev
-  "N" 'log-view-file-next
-
-  "f" 'log-view-find-revision
-
-  "d" 'log-view-diff
-  "D" 'log-view-diff-changeset
-
-  "m" 'log-view-toggle-mark-entry
-
-  (kbd "RET") 'log-view-toggle-entry-display
-  )
+(evil-set-initial-state 'vc-git-log-view-mode 'normal)
 
 ;; be able to quit from vc-diff mode with 'q'
 (evil-define-key 'normal diff-mode-map
