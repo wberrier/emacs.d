@@ -204,7 +204,7 @@
   )
 
 (evil-set-initial-state 'vc-hg-log-view-mode 'normal)
-(evil-define-key 'normal hg-log-view-mode-map
+(evil-define-key 'normal vc-hg-log-view-mode-map
   "q" 'quit-window
 
   "j" 'log-view-msg-next
