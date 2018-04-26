@@ -33,14 +33,6 @@
     projectile
     ag
 
-    ;; lsp
-    lsp-mode
-    lsp-ui
-    company-lsp
-
-    cquery
-    lsp-python
-
     yasnippet
     projectile
 
@@ -120,6 +112,17 @@
  (add-to-list 'required-packages 'flycheck)
  (add-to-list 'required-packages 'meson-mode)
  )
+
+; these require emacs 25.1 or later
+(if (version<= emacs-version "25.1")
+ nil
+ (add-to-list 'required-packages 'lsp-mode)
+ (add-to-list 'required-packages 'lsp-ui)
+ (add-to-list 'required-packages 'company-lsp)
+ (add-to-list 'required-packages 'cquery)
+ (add-to-list 'required-packages 'lsp-python)
+ )
+
 
 (require 'cl)
 

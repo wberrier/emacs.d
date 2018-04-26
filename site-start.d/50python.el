@@ -7,6 +7,8 @@
 ;	  )
 ;)
 
-(require 'lsp-mode)
-(require 'lsp-python)
-(add-hook 'python-mode-hook #'lsp-python-enable)
+(when (require 'lsp-mode nil 'noerror)
+  (require 'lsp-mode)
+  (require 'lsp-python)
+  (add-hook 'python-mode-hook #'lsp-python-enable)
+  )

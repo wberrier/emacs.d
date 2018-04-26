@@ -5,16 +5,21 @@
 ;; disable company mode when running gdb
 (setq company-global-modes '(not gud-mode))
 
-;; disable company caching, as server is faster (recommended in lsp documentation)
-(setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
-;; async completion
-(setq company-lsp-async t)
+;; conditional lsp
+(when (require 'company-lsp nil 'noerror)
 
-;; Should help with c++ std:: type completions
-(setq company-lsp-enable-recompletion t)
+  ;; disable company caching, as server is faster (recommended in lsp documentation)
+  (setq company-transformers nil company-lsp-async t company-lsp-cache-candidates nil)
+  ;; async completion
+  (setq company-lsp-async t)
 
-(require 'company-lsp)
-(push 'company-lsp company-backends)
+  ;; Should help with c++ std:: type completions
+  (setq company-lsp-enable-recompletion t)
+
+  (require 'company-lsp)
+  (push 'company-lsp company-backends)
+
+  )
 
 (push 'company-qml company-backends) ;; qml
 (global-company-mode)
