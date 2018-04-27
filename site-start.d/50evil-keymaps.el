@@ -1,9 +1,5 @@
 
-
-;; these seem to be set up automatically with evil/emacs-lsp
-;(define-key evil-normal-state-map (kbd "\C-]") 'xref-find-definitions)
-;(define-key evil-normal-state-map (kbd "\C-t") 'pop-tag-mark)
-
+;; TODO: define evil leader keys with general?
 
 (defun custom-find-derived ()
   (interactive)
@@ -15,42 +11,59 @@
   (cquery-xref-find-custom "$cquery/callers")
   )
 
-(define-key evil-normal-state-map (kbd "\C-\\ c") 'xref-find-references)
-;; TODO: how to define these inline?
-(define-key evil-normal-state-map (kbd "\C-\\ v") 'custom-find-derived)
-(define-key evil-normal-state-map (kbd "\C-\\ d") 'custom-find-callers)
+;; TODO: only define these for certain modes?
+(general-define-key
+  :states 'normal
 
-;; TODO: emacs-lsp replacements?
-;(define-key evil-normal-state-map (kbd "\C-\\ s") 'rtags-find-symbol)
-;(define-key evil-normal-state-map (kbd "\C-\\ g") 'rtags-find-symbol) ; different than gtags-find-tag-from-here! huh?
-;;(define-key evil-normal-state-map (kbd "\C-\\ f") 'rtags-find-file)
-;;(define-key evil-normal-state-map (kbd "\C-\\ i") ')
-;(define-key evil-normal-state-map (kbd "\C-\\ d") 'rtags-find-functions-called-by-this-function)
-;(define-key evil-normal-state-map (kbd "\C-\\ l") 'rtags-list-results)
-;(define-key evil-normal-state-map (kbd "\C-\\ t") 'rtags-symbol-type)
+  ;; these seem to be set up automatically with evil/emacs-lsp
+  ;"\C-]" 'xref-find-definitions
+  ;"\C-t" 'pop-tag-mark
+
+  "\C-\\ c" 'xref-find-references
+  ;; TODO: how to define these inline?  Lambda?
+  "\C-\\ v" 'custom-find-derived
+  "\C-\\ d" 'custom-find-callers
+
+  ;;; TODO: emacs-lsp replacements?
+  ;;"\C-\\ s" 'rtags-find-symbol
+  ;;"\C-\\ g" 'rtags-find-symbol ; different than gtags-find-tag-from-here! huh?
+  ;;;"\C-\\ f" 'rtags-find-file
+  ;;;"\C-\\ i" '
+  ;;"\C-\\ d" 'rtags-find-functions-called-by-this-function
+  ;;"\C-\\ l" 'rtags-list-results
+  ;;"\C-\\ t" 'rtags-symbol-type
+
+  ;; Sometimes tagging systems provide this functionality
+  ;; projectile works just fine
+  "\C-\\ e" 'projectile-ag
+  "\C-\\ f" 'projectile-find-file
+
+)
 
 ;; lsp-ui-imenu
 (evil-leader/set-key "i" 'lsp-ui-imenu)
-(evil-define-key 'normal lsp-ui-imenu-mode-map
-  (kbd "RET")  'lsp-ui-imenu--visit ;; is this a private command?
-  ;;(kbd "RET")  'lsp-ui-imenu--view;; is this a private command?
+(general-define-key
+  :states 'normal
+  :keymaps 'lsp-ui-imenu-mode-map
+  "RET"  'lsp-ui-imenu--visit ;; is this a private command?
+  ;;"RET"  'lsp-ui-imenu--view;; is this a private command?
   )
 
-;; Sometimes tagging systems provide this functionality
-;; projectile works just fine
-(define-key evil-normal-state-map (kbd "\C-\\ e") 'projectile-ag)
-(define-key evil-normal-state-map (kbd "\C-\\ f") 'projectile-find-file)
-
-(evil-define-key 'normal rust-mode-map
-  (kbd "\C-]")    'racer-find-definition
-  (kbd "\C-t")    'pop-tag-mark ;; racer command??
-  (kbd "\C-\\ t") 'racer-describe
+(general-define-key
+  :states 'normal
+  :keymaps 'rust-mode-map
+  "\C-]"    'racer-find-definition
+  "\C-t"    'pop-tag-mark ;; racer command??
+  "\C-\\ t" 'racer-describe
   )
 
-; vim increment/decrement
-(define-key evil-normal-state-map (kbd "\C-a") 'evil-numbers/inc-at-pt)
-(define-key evil-normal-state-map (kbd "\C-x") 'evil-numbers/dec-at-pt)
+;; vim increment/decrement
+(general-define-key
+  :states 'normal
 
+  "\C-a" 'evil-numbers/inc-at-pt
+  "\C-x" 'evil-numbers/dec-at-pt
+)
 
 ;; Make ESC cancel a bunch of emacs type stuff.  Another suggested to
 ;; just get used to emacs' CTRL-g, but this is probably more natual for
@@ -136,8 +149,9 @@
 
 ;; make sure this is set up when going into org-mode
 ;; seems like a hack that shouldn't necessary, but it works
-(evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)
-(evil-define-key 'normal markdown-mode-map (kbd "TAB") #'markdown-cycle)
+;; TODO: these not working with general?
+(general-define-key :states 'normal :keymaps 'org-mode-map "TAB" 'org-cycle)
+(general-define-key :states 'normal :keymaps 'markdown-mode-map "TAB" 'markdown-cycle)
 
 ;; Generate a password
 ;; TODO: need to figure out how to capture output and insert into buffer
@@ -148,21 +162,27 @@
 ;; (require 'evil-rebellion)
 
 ;; neotree integration
-(evil-define-key 'normal neotree-mode-map (kbd "RET") 'neotree-enter)
+(general-define-key
+  :states 'normal
+  :keymaps 'neotree-mode-map
+  "RET" 'neotree-enter
+  )
 (evil-leader/set-key "t" 'neotree-project-dir)
 
 ;; vc integration
 ;; adapted from: https://github.com/emacs-evil/evil-collection/blob/master/evil-collection-vc-annotate.el
 (evil-set-initial-state 'vc-annotate-mode 'normal) ;; start in normal state (TODO: use motion instead?)
-(evil-define-key 'normal vc-annotate-mode-map
+(general-define-key
+  :states 'normal
+  :keymaps 'vc-annotate-mode-map
 
   "q" 'quit-window
 
   "a" 'vc-annotate-revision-previous-to-line ;; does blame on previous revision from line (useful!)
   "J" 'vc-annotate-revision-at-line ;; does blame on revision from line
   "F" 'vc-annotate-find-revision-at-line ;; what does this do?
-  (kbd "RET") 'vc-annotate-revision-at-line
-  ;;(kbd "RET") 'vc-annotate-goto-line
+  "RET" 'vc-annotate-revision-at-line
+  ;;"RET" 'vc-annotate-goto-line
 
   "d" 'vc-annotate-show-diff-revision-at-line ;; just file
   "D" 'vc-annotate-show-changeset-diff-revision-at-line ;; whole commit
@@ -200,13 +220,16 @@
 
  "m" 'log-view-toggle-mark-entry
 
- (kbd "RET") 'log-view-toggle-entry-display
+ "RET" 'log-view-toggle-entry-display
  )
 
 (evil-set-initial-state 'vc-hg-log-view-mode 'normal)
 (evil-set-initial-state 'vc-git-log-view-mode 'normal)
 
 ;; be able to quit from vc-diff mode with 'q'
-(evil-define-key 'normal diff-mode-map
+(general-define-key
+  :states 'normal
+  :keymaps 'diff-mode-map
+
   "q" 'quit-window
   )
