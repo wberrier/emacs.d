@@ -37,7 +37,6 @@
     ag
 
     yasnippet
-    projectile
 
     ; various theme options
     ample-theme
@@ -82,6 +81,8 @@
 
     ;; TODO (need to figure this out)
     use-package
+    diminish
+    bind-key
 
     ;; email
     messages-are-flowing
@@ -99,13 +100,6 @@
 
     )
   "a list of packages to install (if not present) at launch.")
-
-; these require emacs 24.4 or later
-(if (version<= emacs-version "24.4")
- nil
- ;; TODO: how to do this in one statement? (looks to be ugly)
- (add-to-list 'required-packages 'helm)
- )
 
 ; these require emacs 24.3 or later
 (if (version<= emacs-version "24.3")
@@ -145,4 +139,12 @@
   (dolist (p required-packages)
     (when (not (package-installed-p p))
       (package-install p))))
+
+;; bootstrap use-package
+;; TODO: how to handle cases where packages doesn't exist for a particular emacs version?
+(setq use-package-always-ensure t) ;; will force install packages when calling 'use-package'
+(eval-when-compile
+  (require 'use-package))
+(require 'diminish)
+(require 'bind-key) ;; necessary?
 

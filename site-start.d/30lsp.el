@@ -10,7 +10,7 @@
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
   (setq imenu-auto-rescan t)
-  (require 'helm-imenu)
+  ;;(require 'helm-imenu) ;; switched to ivy, missing anything by not having this?
   (require 'lsp-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
   )
