@@ -117,7 +117,6 @@
  (add-to-list 'required-packages 'lsp-ui)
  (add-to-list 'required-packages 'company-lsp)
  (add-to-list 'required-packages 'cquery)
- (add-to-list 'required-packages 'lsp-python)
  )
 
 
