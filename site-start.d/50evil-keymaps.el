@@ -11,6 +11,10 @@
   (cquery-xref-find-custom "$cquery/callers")
   )
 
+;; TODO: where to put these?
+(use-package projectile)
+(use-package ag)
+
 ;; TODO: only define these for certain modes?
 (general-define-key
   :states 'normal
@@ -161,6 +165,7 @@
 ;; evil rebellion, standardizes a bunch of keymaps to make emacs more vi friendly
 ;; (require 'evil-rebellion)
 
+(use-package neotree)
 ;; neotree integration
 (general-define-key
   :states 'normal

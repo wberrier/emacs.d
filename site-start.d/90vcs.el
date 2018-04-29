@@ -3,11 +3,11 @@
 ;; (use backend agnostic vc for normal stuff)
 
 ;; git
-(require 'git-commit)
-(require 'gitconfig-mode)
-(require 'gitignore-mode)
-(require 'gitattributes-mode)
+(use-package git-commit)
+(use-package gitconfig-mode)
+(use-package gitignore-mode)
+(use-package gitattributes-mode)
 
 ;; Mercurial
-(require 'hgignore-mode)
-(require 'hgrc-mode)
+(use-package hgignore-mode)
+(use-package hgrc-mode)

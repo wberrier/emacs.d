@@ -11,9 +11,10 @@
 ;;(require 'post)
 
 ;; visual marker for flowing messages
-(with-eval-after-load "message"
-  (add-hook 'message-mode-hook 'messages-are-flowing-use-and-mark-hard-newlines))
-
+(use-package messages-are-flowing
+  :init
+  (add-hook 'message-mode-hook 'messages-are-flowing-use-and-mark-hard-newlines)
+)
 
 ;; Redefine this to be able to put a space for soft newlines.
 ;; https://emacs.stackexchange.com/questions/19296/retooling-fill-paragraph-to-append-trailing-spaces

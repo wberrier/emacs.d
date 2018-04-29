@@ -81,8 +81,10 @@
 
   ;; Enable showing what current function is
   (which-function-mode 1)
-)
+  )
+
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+(add-hook 'c-mode-common-hook 'flycheck-mode)
 
 ; use c++-mode for .ipp files (boost uses lots of them)
 (add-to-list 'auto-mode-alist '("\\.ipp\\'". c++-mode))

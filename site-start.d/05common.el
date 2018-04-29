@@ -22,9 +22,13 @@
  )
 
 ;; Save place in files when visiting
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file "~/.emacs.d/saved-places")
+(use-package saveplace
+  :init
+  (setq-default save-place t)
+  (setq save-place-file "~/.emacs.d/saved-places")
+  :config
+  (save-place-mode 1)
+  )
 
 ;; Disable autosave
 (setq auto-save-default nil)
@@ -77,12 +81,15 @@
 ;      scroll-step 1)
 
 ;; nicer scrolling (wow, actually matches vim)
-(require 'smooth-scrolling)
-(smooth-scrolling-mode 1)
-;;(setq smooth-scroll-margin 1) ; jumps when crossing wrapped lines
-;;(setq smooth-scroll-margin 0) ; doesn't work at all
-(setq smooth-scroll-margin 2)
-(setq smooth-scroll-strict-margins t)
+(use-package smooth-scrolling
+
+  :config
+  (smooth-scrolling-mode 1)
+  ;;(setq smooth-scroll-margin 1) ; jumps when crossing wrapped lines
+  ;;(setq smooth-scroll-margin 0) ; doesn't work at all
+  (setq smooth-scroll-margin 2)
+  (setq smooth-scroll-strict-margins t)
+  )
 
 ; disable makefile warnings
 (setq makefile-warn-suspicious-lines nil)

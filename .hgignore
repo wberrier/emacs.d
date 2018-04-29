@@ -9,3 +9,6 @@ anaconda-mode
 manual-packages
 elpa*
 
+smex-items
+
+projectile-bookmarks\.eld

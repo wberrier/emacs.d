@@ -1,4 +1,4 @@
-(require 'epa-file)
+;;(require 'epa-file) ; seems to be loaded already?
 (epa-file-enable)
 
 ; ok, on some versions of emacs we need to use the old gpg in order to

@@ -4,10 +4,10 @@
 
 ;; Nice monokai color theme
 ; seems to only work in 256 color mode
-;(load-theme 'monokai t)
+;;(use-package monokai-theme)
 
 ; seems to only work in 256 color mode, but has a nice 8 color fallback option
-;(load-theme 'zenburn t)
+;;(use-package zenburn-theme)
 
 ; Very nice theme
 ;(setq solarized-termcolors 256) ; use 256 terminal color emulation
@@ -27,11 +27,15 @@
 
 ; ample theme
 ; ** like this one **
-(load-theme 'ample t)
+(use-package ample-theme)
 
 ; sanityinc themes, can't seem to get them to work
-;(require 'color-theme-sanityinc-tomorrow)
+;;(use-package color-theme-sanityinc-tomorrow)
 
-;(load-theme 'cyberpunk t)
+; various theme options
+;;(use-package base16-theme)
+;;(use-package color-theme-solarized)
+;;(use-package solarized-theme)
+;;(use-package cyberpunk-theme)
+;;(use-package moe-theme)
 
-;(load-theme 'moe t)

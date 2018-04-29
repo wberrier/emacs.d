@@ -3,16 +3,29 @@
 
 ;; flycheck and tags
 
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+;; Dependencies
+(use-package racer)
+(use-package flycheck-rust)
+(use-package cargo)
 
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
+;; rust-mode
+(use-package rust-mode
 
-(add-hook 'rust-mode-hook #'cargo-minor-mode)
+  :init
+  (setq company-tooltip-align-annotations t)
 
-;; Code completion
-(add-hook 'racer-mode-hook #'company-mode)
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
-(require 'rust-mode)
-(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-(setq company-tooltip-align-annotations t)
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'racer-mode-hook #'eldoc-mode)
+
+  (add-hook 'rust-mode-hook #'cargo-minor-mode)
+
+  ;; Code completion
+  (add-hook 'racer-mode-hook #'company-mode)
+
+  :general
+  ;; TODO: necessary?
+  (:keymaps 'rust-mode-map "TAB" 'company-indent-or-complete-common)
+
+  )
