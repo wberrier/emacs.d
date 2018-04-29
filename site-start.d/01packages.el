@@ -105,20 +105,9 @@
 (if (version<= emacs-version "24.3")
  nil
  ;; TODO: how to do this in one statement? (looks to be ugly)
- (add-to-list 'required-packages 'company)
  (add-to-list 'required-packages 'flycheck)
  (add-to-list 'required-packages 'meson-mode)
  )
-
-; these require emacs 25.1 or later
-(if (version<= emacs-version "25.1")
- nil
- (add-to-list 'required-packages 'lsp-mode)
- (add-to-list 'required-packages 'lsp-ui)
- (add-to-list 'required-packages 'company-lsp)
- (add-to-list 'required-packages 'cquery)
- )
-
 
 (require 'cl)
 
@@ -147,3 +136,4 @@
 (require 'diminish)
 (require 'bind-key) ;; necessary?
 
+(require 'general)

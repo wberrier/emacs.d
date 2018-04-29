@@ -140,8 +140,8 @@
       (lsp-cquery-enable)
     (user-error nil)))
 
-  (use-package cquery
-    :commands lsp-cquery-enable
-    :init (add-hook 'c-mode-common-hook #'cquery//enable))
+(use-package cquery
+  :commands lsp-cquery-enable
+  :init (add-hook 'c-mode-common-hook #'cquery//enable))
 ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
 
