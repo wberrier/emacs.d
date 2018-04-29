@@ -28,9 +28,11 @@
 (require 'yaml-mode)
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
-; this doesn't work quite right.  But, can enable the mode as needed manually.
-;(require 'meson-mode)
-;(add-hook 'meson-mode-hook 'company-mode)
+;; TODO: seems this may still have some issues?
+(use-package meson-mode
+  :config
+  (add-hook 'meson-mode-hook 'company-mode)
+  )
 
 (which-key-mode)
 

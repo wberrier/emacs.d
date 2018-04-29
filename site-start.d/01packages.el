@@ -101,14 +101,6 @@
     )
   "a list of packages to install (if not present) at launch.")
 
-; these require emacs 24.3 or later
-(if (version<= emacs-version "24.3")
- nil
- ;; TODO: how to do this in one statement? (looks to be ugly)
- (add-to-list 'required-packages 'flycheck)
- (add-to-list 'required-packages 'meson-mode)
- )
-
 (require 'cl)
 
 ; method to check if all packages are installed
@@ -136,4 +128,5 @@
 (require 'diminish)
 (require 'bind-key) ;; necessary?
 
+;; manually require this since it provides functionality with use-package
 (require 'general)
