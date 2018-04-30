@@ -40,9 +40,15 @@
   "\C-\\ e" 'projectile-ag
   "\C-\\ f" 'projectile-find-file
 
-)
+  )
+
+;; leader key setup
+(general-create-definer my-leader-def
+  :prefix "\\"
+  )
 
 ;; lsp-ui-imenu
+(my-leader-def :keymaps 'normal "i" 'lsp-ui-imenu)
 (general-define-key
   :states 'normal
   :keymaps 'lsp-ui-imenu-mode-map
@@ -120,6 +126,19 @@
   (gdb "~/.emacs.d/bin/emacs_debug")
   )
 
+(my-leader-def
+  :keymaps 'normal
+  ;; "build release/cross/debug"
+  "br" 'bookmark-then-compile
+  "bc" 'bookmark-then-compile-cross
+  "bd" 'bookmark-then-compile-debug
+  "bt" 'bookmark-then-run-test
+  ;; "return"
+  "r"  'jump-to-compile-bookmark
+  ;; run debugger
+  "d"  'emacs-debug
+  )
+
 ;; make sure this is set up when going into org-mode
 ;; seems like a hack that shouldn't necessary, but it works
 ;; TODO: these not working with general?
@@ -133,29 +152,12 @@
   :keymaps 'neotree-mode-map
   "RET" 'neotree-enter
   )
-
-;; leader key setup
-;; TODO: must these definitions be in one spot?
-;; it's kind of nice to define various leader keys along
-;; with their corresponding spots
-(general-create-definer my-leader-def
-  :prefix "\\"
-  )
+(my-leader-def :keymaps 'normal "t" 'neotree-project-dir)
 
 (my-leader-def
   :keymaps 'normal
-  "i" 'lsp-ui-imenu
   ;; set up key combo to show whitespace chars
   "w" 'whitespace-mode
-  ;; "build release/cross/debug"
-  "br" 'bookmark-then-compile
-  "bc" 'bookmark-then-compile-cross
-  "bd" 'bookmark-then-compile-debug
-  "bt" 'bookmark-then-run-test
-  ;; "return"
-  "r"  'jump-to-compile-bookmark
-  ;; run debugger
-  "d"  'emacs-debug
   ;; Reformat text (ported from vim config)
   ;; I like fill-paragraph better than vim's reformat (better suited to text)
   "p" 'fill-paragraph
