@@ -42,13 +42,6 @@
   ;;(:keymaps 'global-map "RET" 'newline-and-indent)
   )
 
-;; TODO: use general instead
-(use-package evil-leader
-  :config
-  ;; evil-leader docs say to enable this before evil-mode?
-  (global-evil-leader-mode)
-  )
-
 ;; vim increment/decrement
 (use-package evil-numbers)
 

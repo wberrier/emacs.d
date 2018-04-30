@@ -1,6 +1,4 @@
 
-;; TODO: define evil leader keys with general?
-
 (defun custom-find-derived ()
   (interactive)
   (cquery-xref-find-custom "$cquery/derived")
@@ -45,7 +43,6 @@
 )
 
 ;; lsp-ui-imenu
-(evil-leader/set-key "i" 'lsp-ui-imenu)
 (general-define-key
   :states 'normal
   :keymaps 'lsp-ui-imenu-mode-map
@@ -85,11 +82,6 @@
 (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
 ; more?
 
-; Other various keymaps
-
-;; set up key combo to show whitespace chars
-(evil-leader/set-key "w" 'whitespace-mode)
-
 ; Some functions and and keymaps to compile code
 
 ; TODO: concatenating with compile-command ends up growing that command
@@ -123,47 +115,16 @@
   (bookmark-jump "compile-bookmark") ; set a bookmark to easily return to
   )
 
-; "build release/cross/debug"
-(evil-leader/set-key
-  "br" 'bookmark-then-compile
-  "bc" 'bookmark-then-compile-cross
-  "bd" 'bookmark-then-compile-debug
-  "bt" 'bookmark-then-run-test
-  ; "return"
-  "r"  'jump-to-compile-bookmark
-  )
-
 (defun emacs-debug ()
   (interactive)
   (gdb "~/.emacs.d/bin/emacs_debug")
   )
-
-; Start debugger
-(evil-leader/set-key
-  ; run debugger
-  "d"  'emacs-debug
-  )
-
-;; Reformat text (ported from vim config)
-;; I like fill-paragraph better than vim's reformat (better suited to text)
-(evil-leader/set-key "p" 'fill-paragraph)
-
-;; Switch between header and implementation
-(evil-leader/set-key "o" 'projectile-find-other-file)
 
 ;; make sure this is set up when going into org-mode
 ;; seems like a hack that shouldn't necessary, but it works
 ;; TODO: these not working with general?
 (general-define-key :states 'normal :keymaps 'org-mode-map "TAB" 'org-cycle)
 (general-define-key :states 'normal :keymaps 'markdown-mode-map "TAB" 'markdown-cycle)
-
-;; Generate a password
-;; TODO: need to figure out how to capture output and insert into buffer
-;;  or, just do the vim command?  Not sure how that works...
-;(evil-leader/set-key "g" 'generate-password)
-
-;; evil rebellion, standardizes a bunch of keymaps to make emacs more vi friendly
-;; (require 'evil-rebellion)
 
 (use-package neotree)
 ;; neotree integration
@@ -172,7 +133,40 @@
   :keymaps 'neotree-mode-map
   "RET" 'neotree-enter
   )
-(evil-leader/set-key "t" 'neotree-project-dir)
+
+;; leader key setup
+;; TODO: must these definitions be in one spot?
+;; it's kind of nice to define various leader keys along
+;; with their corresponding spots
+(general-create-definer my-leader-def
+  :prefix "\\"
+  )
+
+(my-leader-def
+  :keymaps 'normal
+  "i" 'lsp-ui-imenu
+  ;; set up key combo to show whitespace chars
+  "w" 'whitespace-mode
+  ;; "build release/cross/debug"
+  "br" 'bookmark-then-compile
+  "bc" 'bookmark-then-compile-cross
+  "bd" 'bookmark-then-compile-debug
+  "bt" 'bookmark-then-run-test
+  ;; "return"
+  "r"  'jump-to-compile-bookmark
+  ;; run debugger
+  "d"  'emacs-debug
+  ;; Reformat text (ported from vim config)
+  ;; I like fill-paragraph better than vim's reformat (better suited to text)
+  "p" 'fill-paragraph
+  ;; Switch between header and implementation
+  "o" 'projectile-find-other-file
+  ;; Generate a password
+  ;; TODO: need to figure out how to capture output and insert into buffer
+  ;;  or, just do the vim command?  Not sure how that works...
+  ;;"g" 'generate-password
+  "t" 'neotree-project-dir
+  )
 
 ;; vc integration
 ;; adapted from: https://github.com/emacs-evil/evil-collection/blob/master/evil-collection-vc-annotate.el
