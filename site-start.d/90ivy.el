@@ -4,7 +4,8 @@
 (use-package smex) ;; makes most frequent commands appear at top with 'counsel-M-x'
 (use-package swiper)
 (use-package counsel)
-(use-package counsel-projectile)
+;; I prefer the raw projectile commands for this stuff...
+;;(use-package counsel-projectile)
 
 (use-package ivy
   :diminish (ivy-mode . "") ;; don't show in modeline
@@ -20,7 +21,7 @@
 
   :config
   (ivy-mode 1)
-  (counsel-projectile-mode)
+  ;;(counsel-projectile-mode)
   (setq ivy-initial-inputs-alist nil) ;; clear input
 
   )
