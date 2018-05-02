@@ -23,5 +23,7 @@
   (ivy-mode 1)
   ;;(counsel-projectile-mode)
   (setq ivy-initial-inputs-alist nil) ;; clear input
+  ;; increase size (any way to make this use the whole screen?  Like helm?)
+  (setq ivy-height 20)
 
   )
