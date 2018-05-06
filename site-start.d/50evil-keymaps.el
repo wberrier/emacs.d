@@ -9,6 +9,18 @@
   (cquery-xref-find-custom "$cquery/callers")
   )
 
+;; how are these used?
+
+(defun custom-find-base ()
+  (interactive)
+  (cquery-xref-find-custom "$cquery/base")
+  )
+
+(defun custom-find-vars ()
+  (interactive)
+  (cquery-xref-find-custom "$cquery/vars")
+  )
+
 ;; TODO: where to put these?
 (use-package projectile)
 (use-package ag)
@@ -17,23 +29,22 @@
 (general-define-key
   :states 'normal
 
-  ;; these seem to be set up automatically with evil/emacs-lsp
-  ;"\C-]" 'xref-find-definitions
-  ;"\C-t" 'pop-tag-mark
+  ;; modeled after maps here: http://cscope.sourceforge.net/cscope_maps.vim
 
-  "\C-\\ c" 'xref-find-references
+  ;; these seem to be set up automatically with evil/emacs-lsp
+  ;;"\C-]" 'xref-find-definitions
+  ;;"\C-t" 'pop-tag-mark
+
+  "\C-\\ s" 'xref-find-references
   ;; TODO: how to define these inline?  Lambda?
   "\C-\\ v" 'custom-find-derived
-  "\C-\\ d" 'custom-find-callers
+  "\C-\\ c" 'custom-find-callers
 
   ;;; TODO: emacs-lsp replacements?
-  ;;"\C-\\ s" 'rtags-find-symbol
   ;;"\C-\\ g" 'rtags-find-symbol ; different than gtags-find-tag-from-here! huh?
-  ;;;"\C-\\ f" 'rtags-find-file
-  ;;;"\C-\\ i" '
+  ;;;"\C-\\ i" 'find-includes ;; not sure it's needed since xref-find-references works for this
   ;;"\C-\\ d" 'rtags-find-functions-called-by-this-function
   ;;"\C-\\ l" 'rtags-list-results
-  ;;"\C-\\ t" 'rtags-symbol-type
 
   ;; Sometimes tagging systems provide this functionality
   ;; projectile works just fine

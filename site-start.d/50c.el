@@ -126,6 +126,9 @@
 
 (setq cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
 
+;; check this directory for compile_commands.json
+(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-debug"))
+
 ;; specify loading subprojects?
 ;; TODO: can this be used to find build*/compile_commands.json?
 (with-eval-after-load 'projectile
