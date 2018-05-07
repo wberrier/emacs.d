@@ -7,4 +7,3 @@
   ;;(global-flycheck-mode)
   )
 
-(use-package flycheck-objc-clang)
