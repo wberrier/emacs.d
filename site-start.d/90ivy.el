@@ -25,4 +25,6 @@
   ;; increase size (any way to make this use the whole screen?  Like helm?)
   (setq ivy-height 20)
 
+  ;; grab current cursor item for input on projectile grep
+  (setq counsel-projectile-ag-initial-input '(ivy-thing-at-point))
   )
