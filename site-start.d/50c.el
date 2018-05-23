@@ -94,6 +94,10 @@
 ; enable debugging?
 ;(setq debug-on-error t)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; gdb settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ; ide-like debugging layout
 (setq gdb-many-windows t)
 
@@ -112,7 +116,9 @@
 
 (setq pop-up-windows nil)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; cquery settings
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; Set executable path if expected environment variable is found
 (if (equal (getenv "LOCAL_INSTALL_DIR") nil)
@@ -127,7 +133,9 @@
 (setq cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
 
 ;; check this directory for compile_commands.json
+;; TODO: how to set this at runtime?
 (setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-debug"))
+;;(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-cross"))
 
 ;; specify loading subprojects?
 ;; TODO: can this be used to find build*/compile_commands.json?
@@ -136,7 +144,6 @@
 	(append '("compile_commands.json"
 		  ".cquery")
 		projectile-project-root-files-top-down-recurring)))
-
 
 ;; Enable lsp for all c/c++ modes
 (defun cquery//enable ()

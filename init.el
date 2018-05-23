@@ -28,7 +28,7 @@
  ;; If there is more than one, they won't work right.
  '(cquery-project-root-matchers
    (quote
-    (cquery-project-roots-matcher projectile-project-root "compile_commands.json" ".cquery" "build/compile_commands.json" "build-debug/compile_commands.json")))
+    ("build-debug/compile_commands.json" "build-cross/compile_commands.json" cquery-project-roots-matcher projectile-project-root "compile_commands.json" ".cquery" "build/compile_commands.json")))
  '(xref-prompt-for-identifier
    (quote
     (not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references))))
