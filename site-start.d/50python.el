@@ -1,12 +1,6 @@
 
-; TODO: auto detect indent mode?
-;; 4 space tabs for python
-;(add-hook 'python-mode-hook
-;	  (lambda ()
-;	    (setq python-indent 4)
-;	  )
-;)
-					;)
+;; NOTE: python-mode seems to detect indentation settings automatically
+
 (use-package lsp-python
   :after (lsp-mode)
   :init (add-hook 'python-mode-hook #'lsp-python-enable)

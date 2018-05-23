@@ -33,17 +33,17 @@
                                    (arglist-cont . 0)
                                    (arglist-cont-nonempty . +)
                                    (arglist-close . +)
-				   ;(arglist-close . c-lineup-close-paren)
+                                   ;;(arglist-close . c-lineup-close-paren)
                                    (substatement-open . 0)
                                    (case-label        . 0)
-				   (access-label      . -) ; public/private: no indention (sometimes picks access-label, sometimes label??)
-				   (label             . 0) ; public/private: no indention
+                                   (access-label      . -) ; public/private: no indention (sometimes picks access-label, sometimes label??)
+                                   (label             . 0) ; public/private: no indention
                                    (block-open        . 0)
                                    (inline-open       . 0)
-				   (innamespace       . [0]) ; don't indent inside of namespaces
+                                   (innamespace       . [0]) ; don't indent inside of namespaces
                                    (knr-argdecl-intro . -)
-				   )
-				)
+                                   )
+                                )
     (c-echo-syntactic-information-p . t))
   "My C Programming Style")
 (c-add-style "PERSONAL" my-c-style)
@@ -141,9 +141,9 @@
 ;; TODO: can this be used to find build*/compile_commands.json?
 (with-eval-after-load 'projectile
   (setq projectile-project-root-files-top-down-recurring
-	(append '("compile_commands.json"
-		  ".cquery")
-		projectile-project-root-files-top-down-recurring)))
+        (append '("compile_commands.json"
+                  ".cquery")
+                projectile-project-root-files-top-down-recurring)))
 
 ;; Enable lsp for all c/c++ modes
 (defun cquery//enable ()

@@ -8,10 +8,10 @@
 ; international keyboard.
 (require 'ispell)
 (add-to-list 'ispell-local-dictionary-alist '("norwegian-bokmål"
-					      "[[:alpha:]]"
-					      "[^[:alpha:]]"
-					      "[']"
-					      t
-					      ("-d" "nb_NO")
-					      nil
-					      iso-8859-1))
+                                              "[[:alpha:]]"
+                                              "[^[:alpha:]]"
+                                              "[']"
+                                              t
+                                              ("-d" "nb_NO")
+                                              nil
+                                              iso-8859-1))
