@@ -37,9 +37,15 @@
 ;; Highlight trailing whitespace
 (setq-default show-trailing-whitespace t)
 
-;; Default to spaces instead of tabs
-;; TODO: figure out the "infer-indentation-style"?
-(setq-default indent-tabs-mode t)
+;; NOTE: I think this is the default, and some modes seem to make
+;; customizations for their language
+;; enable as needed for each mode, or detect with dtrt-indent-mode
+;;(setq-default indent-tabs-mode t)
+
+;; 4 tabs instead of the 8 default
+;; NOTE: this makes it global for all files
+(setq-default tab-width 4)
+(setq-default tab-stop-list '(4 8 12))
 
 ;; Compile options
 ;(setq-default compilation-read-command nil) ;; don't prompt for command

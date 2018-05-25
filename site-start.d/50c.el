@@ -52,15 +52,7 @@
 (defun my-c-mode-common-hook ()
   ;; set my personal style for the current buffer
   (c-set-style "PERSONAL")
-  ;; other customizations
-  ;;(setq tab-width 8
-  ;;(setq tab-width 4
-  (setq tab-width 4 ;; just for some things
-        ;; indent 2 for some
-        c-basic-offset 4
-        ;; this will make sure spaces are used instead of tabs
-        ;; indent-tabs-mode nil)
-        indent-tabs-mode t)
+
   ;; we like auto-newline, but not hungry-delete
   ;; these are all the cc-mode minor modes
   ;;(c-toggle-electric-state -1)
@@ -81,6 +73,7 @@
 
   ;; Enable showing what current function is
   (which-function-mode 1)
+
   )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)

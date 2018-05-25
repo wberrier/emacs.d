@@ -1,10 +1,12 @@
 
-;; TODO: not sure these are working?
-
 (use-package dtrt-indent
-  :config
-  ;; enable detecting tab settings
-  (dtrt-indent-mode 1)
+  :custom
+  (dtrt-indent-global-mode t)
+  (dtrt-indent-verbosity 2)
+  (dtrt-indent-run-after-smie t)
+
+  ;; don't show in modeline
+  :diminish dtrt-indent-mode
   )
 
 (use-package smart-tabs-mode

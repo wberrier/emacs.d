@@ -19,7 +19,6 @@
   ;; Make CTRL - u scroll up like I'm used to in vi
   ;; This seems to be off by default
   (setq evil-want-C-u-scroll t)
-  (setq evil-shift-width 4) ;; not sure what the default is here
   (setq evil-search-module 'evil-search)
 
   ;; some coloring options, try them out and see if they are wanted
