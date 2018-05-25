@@ -82,13 +82,14 @@
 
 ;; nicer scrolling (wow, actually matches vim)
 (use-package smooth-scrolling
-
-  :config
-  (smooth-scrolling-mode 1)
+  :init
   ;;(setq smooth-scroll-margin 1) ; jumps when crossing wrapped lines
   ;;(setq smooth-scroll-margin 0) ; doesn't work at all
   (setq smooth-scroll-margin 2)
   (setq smooth-scroll-strict-margins t)
+
+  :config
+  (smooth-scrolling-mode 1)
   )
 
 ; disable makefile warnings

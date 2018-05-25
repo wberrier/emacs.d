@@ -3,12 +3,11 @@
 (use-package lsp-mode)
 
 (use-package lsp-ui
-  ;;:hook lsp-mode ; TODO: this not working... ?
 
   :after (lsp-mode)
 
-  :init
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  ;; NOTE: must use this hook syntax
+  :hook ((lsp-mode) . lsp-ui-mode)
 
   :init
   (setq lsp-ui-sideline-enable nil)
