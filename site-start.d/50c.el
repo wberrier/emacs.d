@@ -29,11 +29,13 @@
                                    empty-defun-braces
                                    defun-close-semi))
     (c-offsets-alist            . (
-                                   (arglist-intro . +)
+                                   (arglist-intro . +) ;; indent one level
+                                   ;;(arglist-intro . c-lineup-arglist-intro-after-paren) ;; arglist continuations (works nice with smarttabs)
                                    (arglist-cont . 0)
                                    (arglist-cont-nonempty . +)
-                                   (arglist-close . +)
                                    ;;(arglist-close . c-lineup-close-paren)
+                                   ;;(arglist-close . c-lineup-arglist-close-under-paren)
+                                   (arglist-close . +) ;; indent one level
                                    (substatement-open . 0)
                                    (case-label        . 0)
                                    (access-label      . -) ; public/private: no indention (sometimes picks access-label, sometimes label??)

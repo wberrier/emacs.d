@@ -11,6 +11,6 @@
 
 (use-package smart-tabs-mode
   :config
-  ;; enable smart tabs
-  (smart-tabs-mode 1)
+  ;; enable smart tabs for various languages
+  (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
   )
