@@ -146,6 +146,11 @@
 
 (use-package cquery
   :commands lsp-cquery-enable
-  :init (add-hook 'c-mode-common-hook #'cquery//enable))
+  :init (add-hook 'c-mode-common-hook #'cquery//enable)
+  :custom
+  (cquery-project-root-matchers
+   '("build-debug/compile_commands.json" "build-cross/compile_commands.json" cquery-project-roots-matcher projectile-project-root "compile_commands.json" ".cquery" "build/compile_commands.json")
+   )
+  )
 ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
 
