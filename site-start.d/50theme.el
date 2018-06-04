@@ -28,6 +28,7 @@
 ; ample theme
 ; ** like this one **
 (use-package ample-theme)
+;;(use-package zerodark-theme)
 
 ; sanityinc themes, can't seem to get them to work
 ;;(use-package color-theme-sanityinc-tomorrow)
