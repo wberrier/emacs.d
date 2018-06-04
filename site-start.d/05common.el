@@ -1,6 +1,9 @@
 
 ;; Other options
-(setq vc-follow-symlinks nil)
+;; Turned on allows doing vc operations on symlinks, which is nice
+;; TODO: is there a case where having this off is really slow?
+;; (I can't remember why I originally disabled this)
+(setq vc-follow-symlinks t)
 
 ; this makes loading/saving of files slow if it has to do git/hg status
 ;(setq vc-handled-backends ())
