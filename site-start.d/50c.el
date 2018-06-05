@@ -129,11 +129,16 @@
 
 ;; check this directory for compile_commands.json
 ;; TODO: how to set this at runtime?
-(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-debug"))
+;;(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-debug"))
 ;;(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-cross"))
 
-;; specify loading subprojects?
-;; TODO: can this be used to find build*/compile_commands.json?
+;; works
+(setq cquery-extra-init-params '(:compilationDatabaseCommand "/home/wberrier/.emacs.d/bin/generate-compile-commands.py"))
+
+;; TODO: get something like this working...
+;;(setq compile-command (format "%s/.emacs.d/bin/generate/compile-commands.py" (getenv "HOME")))
+;;(setq cquery-extra-init-params '(:compilationDatabaseCommand 'compile-command))
+
 (with-eval-after-load 'projectile
   (setq projectile-project-root-files-top-down-recurring
         (append '("compile_commands.json"
@@ -150,9 +155,7 @@
   :commands lsp-cquery-enable
   :init (add-hook 'c-mode-common-hook #'cquery//enable)
   :custom
-  (cquery-project-root-matchers
-   '("build-debug/compile_commands.json" "build-cross/compile_commands.json" cquery-project-roots-matcher projectile-project-root "compile_commands.json" ".cquery" "build/compile_commands.json")
-   )
+  (cquery-project-root-matchers '(".emacs_cquery.conf"))
   )
 ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
 
