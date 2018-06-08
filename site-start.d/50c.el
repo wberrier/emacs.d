@@ -155,7 +155,7 @@
   :commands lsp-cquery-enable
   :init (add-hook 'c-mode-common-hook #'cquery//enable)
   :custom
-  (cquery-project-root-matchers '(".emacs_cquery.conf"))
+  (cquery-project-root-matchers '(".emacs_project.json"))
   )
 ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
 
