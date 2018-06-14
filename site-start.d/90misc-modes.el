@@ -18,10 +18,6 @@
   (setq cmake-tab-width 4) ; 2 spaces is weird
   )
 
-; don't fail if doesn't exist
-; disable for now since this really slows things down when loading/saving files
-;(when (require 'mercurial nil 'noerror))
-
 (use-package yaml-mode
   :mode "\\.yml$"
   )

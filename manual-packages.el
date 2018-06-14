@@ -30,6 +30,14 @@
   )
 (add-to-list 'load-path "~/.emacs.d/manual-packages/qmake-mode")
 
+;; mercural (mainly for commit mode)
+(if (file-exists-p "~/.emacs.d/manual-packages/mercurial")
+    nil
+  (make-directory "~/.emacs.d/manual-packages/mercurial")
+  (shell-command "wget https://www.mercurial-scm.org/repo/hg/raw-file/default/contrib/mercurial.el -O ~/.emacs.d/manual-packages/mercurial/mercurial.el")
+  )
+(add-to-list 'load-path "~/.emacs.d/manual-packages/mercurial")
+
 
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?
