@@ -12,6 +12,9 @@
   :init
   (setq lsp-ui-sideline-enable nil)
   (setq imenu-auto-rescan t)
+  ;; disable ui-doc since it behaves badly with wrapped lines and smooth scrolling
+  ;; TODO: should file bug
+  (setq lsp-ui-doc-enable nil)
 
   :config
   (require 'lsp-ui-peek)

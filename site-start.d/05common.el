@@ -90,6 +90,7 @@
 ;      scroll-step 1)
 
 ;; nicer scrolling (wow, actually matches vim)
+;; NOTE: this causes odd jumps with the lsp-ui-doc popup (which causes weird jumps with line wraps)
 (use-package smooth-scrolling
   :init
   ;;(setq smooth-scroll-margin 1) ; jumps when crossing wrapped lines
