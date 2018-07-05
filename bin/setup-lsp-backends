@@ -31,3 +31,5 @@ popd
 # TODO: certificates
 pip install --user 'python-language-server[all]'
 
+# Go
+go get -u github.com/sourcegraph/go-langserver

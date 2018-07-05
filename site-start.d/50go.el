@@ -1,11 +1,9 @@
 
-;; TODO: use lsp
+;; golang lsp
 
-;; golang syntax highlighting
-
-(use-package company-go)
-(use-package go-eldoc)
-(use-package go-errcheck)
+(use-package lsp-go
+  :init (add-hook 'go-mode-hook #'lsp-go-enable)
+)
 
 (use-package go-mode
   :mode "\\.go$"
