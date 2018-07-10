@@ -1,46 +1,65 @@
 #!/bin/bash -x
 
-# Stop on failure
-set -e
-
 # c++ (cquery)
-pushd ~/wa/git
+function lsp_cpp () {
+    pushd ~/wa/git
 
-if [ ! -e cquery ] ; then
-    git rclone https://github.com/cquery-project/cquery.git
-else
-    pushd cquery
-    git pull
-    git sub-update
+    if [ ! -e cquery ] ; then
+        git rclone https://github.com/cquery-project/cquery.git
+    else
+        pushd cquery
+        git pull
+        git sub-update
+        popd
+    fi
+
+    mkdir -p cquery/build
+
+    pushd cquery/build
+
+    local_cmake ..
+    make
+    make install
+
     popd
-fi
 
-mkdir -p cquery/build
-
-pushd cquery/build
-
-local_cmake ..
-make
-make install
-
-popd
-
-popd
+    popd
+}
 
 # python
-# TODO: certificates
-pip install --user 'python-language-server[all]'
+function lsp_python () {
+    # TODO: certificates
+    pip install --user 'python-language-server[all]'
+}
 
 # Go
-go get -u github.com/sourcegraph/go-langserver
+function lsp_go () {
+    go get -u github.com/sourcegraph/go-langserver
+}
 
 # Java
-rm -rf ~/.emacs.d/eclipse.jdt.ls/server/
-mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
-wget http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
-tar xf /tmp/jdt-latest.tar -C ~/.emacs.d/eclipse.jdt.ls/server/
+function lsp_java () {
+    rm -rf ~/.emacs.d/eclipse.jdt.ls/server/
+    mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
+    wget -c http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
+    tar xf /tmp/jdt-latest.tar -C ~/.emacs.d/eclipse.jdt.ls/server/
+}
 
 # Rust
-#rustup component add rls-preview rust-analysis rust-src
-sudo yum install rls-preview rust-analysis rust-src
+function lsp_rust () {
+    if $(type yum) ; then
+        sudo yum install rls-preview rust-analysis rust-src
+    else
+        curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+        source $HOME/.cargo/env
+        rustup component add rls-preview rust-analysis rust-src
+    fi
+}
 
+
+# Run each section
+lsp_cpp
+lsp_python
+lsp_go
+lsp_java
+lsp_rust
