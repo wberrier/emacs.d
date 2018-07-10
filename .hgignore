@@ -13,3 +13,7 @@ smex-items
 
 projectile-bookmarks\.eld
 *.pyc
+
+# java lsp
+workspace
+eclipse\.jdt\.ls

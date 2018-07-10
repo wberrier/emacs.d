@@ -1,16 +1,7 @@
 
-;; TODO: use lsp-java
-
-(use-package meghanada
-  :init
-  (add-hook 'java-mode-hook
-            (lambda ()
-              ;; meghanada-mode on
-              (meghanada-mode t)
-              ;;(setq c-basic-offset 2)
-              ;; use code format
-              ;;(add-hook 'before-save-hook 'meghanada-code-beautify-before-save)
-              )
-            )
-
+(use-package lsp-java
+  :config
+  (add-hook 'java-mode-hook 'lsp-java-enable)
+  (add-hook 'java-mode-hook 'flycheck-mode)
+  ;;(setq lsp-java--workspace-folders (list (error "XXX Specify your projects here")))
   )
