@@ -47,8 +47,8 @@ function lsp_java () {
 
 # Rust
 function lsp_rust () {
-    if $(type yum) ; then
-        sudo yum install rls-preview rust-analysis rust-src
+    if type yum ; then
+        sudo yum install -y rls-preview rust-analysis rust-src
     else
         curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
         source $HOME/.cargo/env
