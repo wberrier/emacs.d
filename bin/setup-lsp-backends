@@ -61,6 +61,11 @@ function lsp_js () {
     sudo npm i -g javascript-typescript-langserver
 }
 
+# HTML
+function lsp_html () {
+    sudo npm i -g vscode-html-languageserver-bin
+}
+
 # Run each section
 lsp_cpp
 lsp_python
@@ -68,3 +73,4 @@ lsp_go
 lsp_java
 lsp_rust
 lsp_js
+lsp_html
