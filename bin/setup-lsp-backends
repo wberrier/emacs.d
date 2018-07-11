@@ -56,6 +56,10 @@ function lsp_rust () {
     fi
 }
 
+# Javascript
+function lsp_js () {
+    sudo npm i -g javascript-typescript-langserver
+}
 
 # Run each section
 lsp_cpp
@@ -63,3 +67,4 @@ lsp_python
 lsp_go
 lsp_java
 lsp_rust
+lsp_js
