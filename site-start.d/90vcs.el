@@ -2,16 +2,6 @@
 ;; Basic syntax highlighting modes
 ;; (use backend agnostic vc for normal stuff)
 
-;; HACK: I use vc instead of magit (since it supports multiple
-;; backends) but because of magit issue #3536, I must also install
-;; magit for git-commit to work
-;; This can be removed once the fix from 3536 makes it into melpa
-(use-package magit
-  :config
-  ;; Don't run magit-diff before going into commit mode
-  (remove-hook 'server-switch-hook 'magit-commit-diff)
-  )
-
 ;; git
 (use-package git-commit
   :config
