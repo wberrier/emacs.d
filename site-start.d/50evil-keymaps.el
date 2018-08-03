@@ -179,6 +179,7 @@
   ;;  or, just do the vim command?  Not sure how that works...
   ;;"g" 'generate-password
   "t" 'neotree-project-dir
+  "f" 'switch-to-buffer
   )
 
 ;; vc integration
