@@ -239,10 +239,14 @@
 (evil-set-initial-state 'vc-hg-log-view-mode 'normal)
 (evil-set-initial-state 'vc-git-log-view-mode 'normal)
 
-;; be able to quit from vc-diff mode with 'q'
+;; Add some evil friendly bindings to diff-mode (which vc-diff uses)
 (general-define-key
   :states 'normal
   :keymaps 'diff-mode-map
 
   "q" 'quit-window
+
+  "j" 'diff-hunk-next
+  "k" 'diff-hunk-prev
+  "RET" 'diff-goto-source
   )
