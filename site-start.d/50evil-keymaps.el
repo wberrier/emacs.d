@@ -246,7 +246,11 @@
 
   "q" 'quit-window
 
+  "w" 'diff-ignore-whitespace-hunk
+  "@" 'diff-refine-hunk
+
   "j" 'diff-hunk-next
   "k" 'diff-hunk-prev
+
   "RET" 'diff-goto-source
   )
