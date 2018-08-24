@@ -74,14 +74,6 @@
   ;;"RET"  'lsp-ui-imenu--view;; is this a private command?
   )
 
-(general-define-key
-  :states 'normal
-  :keymaps 'rust-mode-map
-  "\C-]"    'racer-find-definition
-  "\C-t"    'pop-tag-mark ;; racer command??
-  "\C-\\ t" 'racer-describe
-  )
-
 ;; vim increment/decrement
 (general-define-key
   :states 'normal
