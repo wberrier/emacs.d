@@ -25,6 +25,12 @@
 (use-package projectile)
 (use-package ag)
 
+(defun my-projectile-ag-regexp ()
+  (interactive)
+  (setq current-prefix-arg t) ;; not sure this is accurate, but it works
+  (call-interactively 'projectile-ag)
+  )
+
 ;; TODO: only define these for certain modes?
 (general-define-key
   :states 'normal
@@ -49,6 +55,7 @@
   ;; Sometimes tagging systems provide this functionality
   ;; projectile works just fine
   "\C-\\ e" 'projectile-ag
+  "\C-\\ r" 'my-projectile-ag-regexp
   "\C-\\ f" 'projectile-find-file
 
   )
