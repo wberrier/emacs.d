@@ -247,6 +247,7 @@
 (evil-set-initial-state 'vc-git-log-view-mode 'normal)
 
 ;; Add some evil friendly bindings to diff-mode (which vc-diff uses)
+;; TODO: I really wish diff-mode showed side by side
 (general-define-key
   :states 'normal
   :keymaps 'diff-mode-map
@@ -256,8 +257,9 @@
   "w" 'diff-ignore-whitespace-hunk
   "@" 'diff-refine-hunk
 
-  "j" 'diff-hunk-next
-  "k" 'diff-hunk-prev
+  ;; don't use j/k because it's nice to navigate text
+  "C-n" 'diff-hunk-next
+  "C-p" 'diff-hunk-prev
 
   "RET" 'diff-goto-source
   )
