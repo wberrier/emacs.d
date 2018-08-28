@@ -9,9 +9,13 @@ elpa*
 
 smex-items
 
+recentf
+
 projectile-bookmarks\.eld
+projectile\.cache
 *.pyc
 
 # java lsp
 workspace
 eclipse\.jdt\.ls
+
