@@ -31,6 +31,9 @@
   (setq evil-replace-state-cursor  '("red"    bar))
   (setq evil-operator-state-cursor '("red"    hollow))
 
+  ;; Use evil-collection instead
+  (setq evil-want-integration nil)
+
   :config
   ;; Load evil by default
   (evil-mode 1)
@@ -43,9 +46,6 @@
 
 ;; vim increment/decrement
 (use-package evil-numbers)
-
-; nicer key bindings for ediff
-(use-package evil-ediff)
 
 (use-package evil-org)
 

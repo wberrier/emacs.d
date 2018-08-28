@@ -1,4 +1,7 @@
 
+;; neotree integration
+(use-package neotree)
+
 ;;(setq projectile-switch-project-action 'neotree-projectile-action)
 
 ;; Always open neotree to projectile root

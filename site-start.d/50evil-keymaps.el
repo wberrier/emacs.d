@@ -65,15 +65,6 @@
   :prefix "\\"
   )
 
-;; lsp-ui-imenu
-(my-leader-def :keymaps 'normal "i" 'lsp-ui-imenu)
-(general-define-key
-  :states 'normal
-  :keymaps 'lsp-ui-imenu-mode-map
-  "RET"  'lsp-ui-imenu--visit ;; is this a private command?
-  ;;"RET"  'lsp-ui-imenu--view;; is this a private command?
-  )
-
 ;; vim increment/decrement
 (general-define-key
   :states 'normal
@@ -155,15 +146,6 @@
 (general-define-key :states 'normal :keymaps 'org-mode-map "TAB" 'org-cycle)
 (general-define-key :states 'normal :keymaps 'markdown-mode-map "TAB" 'markdown-cycle)
 
-(use-package neotree)
-;; neotree integration
-(general-define-key
-  :states 'normal
-  :keymaps 'neotree-mode-map
-  "RET" 'neotree-enter
-  )
-(my-leader-def :keymaps 'normal "t" 'neotree-project-dir)
-
 (my-leader-def
   :keymaps 'normal
   ;; set up key combo to show whitespace chars
@@ -179,79 +161,50 @@
   ;;"g" 'generate-password
   "t" 'neotree-project-dir
   "f" 'switch-to-buffer
+
+  ;; lsp-ui-imenu
+  "i" 'lsp-ui-imenu
   )
 
-;; vc integration
-;; adapted from: https://github.com/emacs-evil/evil-collection/blob/master/evil-collection-vc-annotate.el
-(evil-set-initial-state 'vc-annotate-mode 'normal) ;; start in normal state (TODO: use motion instead?)
-(general-define-key
-  :states 'normal
-  :keymaps 'vc-annotate-mode-map
-
-  "q" 'quit-window
-
-  "a" 'vc-annotate-revision-previous-to-line ;; does blame on previous revision from line (useful!)
-  "J" 'vc-annotate-revision-at-line ;; does blame on revision from line
-  "F" 'vc-annotate-find-revision-at-line ;; what does this do?
-  "RET" 'vc-annotate-revision-at-line
-  ;;"RET" 'vc-annotate-goto-line
-
-  "d" 'vc-annotate-show-diff-revision-at-line ;; just file
-  "D" 'vc-annotate-show-changeset-diff-revision-at-line ;; whole commit
-
-  "L" 'vc-annotate-show-log-revision-at-line
-
-  "]" 'vc-annotate-next-revision
-  "[" 'vc-annotate-prev-revision
-
-  "W" 'vc-annotate-working-revision ;; goes back to current revision
-  "A" 'vc-annotate-toggle-annotation-visibility ;; toggles revision info (still in annotate mode)
-
-  )
-
-(general-define-key
- :states 'normal
- :keymaps '(vc-hg-log-view-mode-map vc-git-log-view-mode-map)
-
- "q" 'quit-window
-
- "j" 'log-view-msg-next
- "k" 'log-view-msg-prev
-
- "a" 'log-view-annotate-version
-
- "e" 'log-view-modify-change-comment
-
- "P" 'log-view-file-prev
- "N" 'log-view-file-next
-
- "f" 'log-view-find-revision
-
- "d" 'log-view-diff
- "D" 'log-view-diff-changeset
-
- "m" 'log-view-toggle-mark-entry
-
- "RET" 'log-view-toggle-entry-display
- )
-
+;; TODO: remove this after upstream pull request is accepted
 (evil-set-initial-state 'vc-hg-log-view-mode 'normal)
 (evil-set-initial-state 'vc-git-log-view-mode 'normal)
 
-;; Add some evil friendly bindings to diff-mode (which vc-diff uses)
 ;; TODO: I really wish diff-mode showed side by side
+;; TODO: remove this after upstream pull request is accepted
 (general-define-key
   :states 'normal
   :keymaps 'diff-mode-map
 
   "q" 'quit-window
+  )
 
-  "w" 'diff-ignore-whitespace-hunk
-  "@" 'diff-refine-hunk
-
-  ;; don't use j/k because it's nice to navigate text
-  "C-n" 'diff-hunk-next
-  "C-p" 'diff-hunk-prev
-
-  "RET" 'diff-goto-source
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  ;; Nice that I can pick and choose
+  ;; I was setting a lot of bindings for several of these
+  (evil-collection-init '(
+                          ag
+                          comint
+                          company
+                          compile
+                          custom
+                          diff-mode
+                          dired
+                          ediff
+                          eldoc
+                          flycheck
+                          grep
+                          ivy
+                          kotlin
+                          log-view
+                          lsp-ui-imenu
+                          neotree
+                          package-menu
+                          vc-annotate
+                          xref
+                          ))
+  ;; Others to consider: python, all?
   )
