@@ -133,7 +133,7 @@
   "br" 'bookmark-then-compile
   "bc" 'bookmark-then-compile-cross
   "bd" 'bookmark-then-compile-debug
-  "bt" 'bookmark-then-run-test
+  "t" 'bookmark-then-run-test ;; no prefix to correspond with 'debug'
   ;; "return"
   "r"  'jump-to-compile-bookmark
   ;; run debugger
@@ -159,7 +159,7 @@
   ;; TODO: need to figure out how to capture output and insert into buffer
   ;;  or, just do the vim command?  Not sure how that works...
   ;;"g" 'generate-password
-  "t" 'neotree-project-dir
+  "n" 'neotree-project-dir
   "f" 'switch-to-buffer
 
   ;; lsp-ui-imenu
