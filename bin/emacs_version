@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# print out version of emacs to use when setting up environment
+# Can't believe how long it takes to parse stuff with sed
+# Easier more portable way?
+version=$(emacs --version 2>/dev/null | head -n1 | gawk 'match($0, /GNU Emacs ([0-9\.]*)/, a) {print a[1]}')
+
+if [ -z $version ] ; then
+	echo "0.0.0"
+else
+	echo $version
+fi
