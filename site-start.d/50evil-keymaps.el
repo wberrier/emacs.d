@@ -23,12 +23,12 @@
 
 ;; TODO: where to put these?
 (use-package projectile)
-(use-package ag)
+(use-package ripgrep)
 
-(defun my-projectile-ag-regexp ()
+(defun my-projectile-ripgrep-regexp ()
   (interactive)
   (setq current-prefix-arg t) ;; not sure this is accurate, but it works
-  (call-interactively 'projectile-ag)
+  (call-interactively 'projectile-ripgrep)
   )
 
 ;; TODO: only define these for certain modes?
@@ -54,8 +54,8 @@
 
   ;; Sometimes tagging systems provide this functionality
   ;; projectile works just fine
-  "\C-\\ e" 'projectile-ag
-  "\C-\\ r" 'my-projectile-ag-regexp
+  "\C-\\ e" 'projectile-ripgrep
+  "\C-\\ r" 'my-projectile-ripgrep-regexp
   "\C-\\ f" 'projectile-find-file
 
   )
@@ -166,6 +166,16 @@
   "i" 'lsp-ui-imenu
   )
 
+;; TODO: submit this upstream to evil-collection
+(general-define-key
+  :states 'normal
+  :keymaps 'ripgrep-search-mode-map
+
+  "q" 'quit-window
+
+  ;; TODO: others?  (Reference evil-collection-ag)
+  )
+
 (use-package evil-collection
   :after evil
   :ensure t
@@ -173,7 +183,6 @@
   ;; Nice that I can pick and choose
   ;; I was setting a lot of bindings for several of these
   (evil-collection-init '(
-                          ag
                           comint
                           company
                           compile
