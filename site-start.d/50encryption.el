@@ -22,3 +22,8 @@
 ;; With newer versions of emacs and gpg, you can set the pin entry
 ;; mode to 'loopback' when customizing the settings
 ;; until then, it seems to work best with no settings using gpg2
+
+;; TODO: how to fix this on ubuntu
+;; TODO: probably works with a gui prompt, but doesn't work well when prompting from the command line (ubuntu)
+;; https://unix.stackexchange.com/questions/55638/can-emacs-use-gpg-agent-in-a-terminal-at-all/278875#278875
+
