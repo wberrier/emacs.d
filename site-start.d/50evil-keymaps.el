@@ -166,19 +166,6 @@
   "i" 'lsp-ui-imenu
   )
 
-;; TODO: remove this after upstream pull request is accepted
-(evil-set-initial-state 'vc-hg-log-view-mode 'normal)
-(evil-set-initial-state 'vc-git-log-view-mode 'normal)
-
-;; TODO: I really wish diff-mode showed side by side
-;; TODO: remove this after upstream pull request is accepted
-(general-define-key
-  :states 'normal
-  :keymaps 'diff-mode-map
-
-  "q" 'quit-window
-  )
-
 (use-package evil-collection
   :after evil
   :ensure t
