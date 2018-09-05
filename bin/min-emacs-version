@@ -1,10 +1,14 @@
-#!/bin/sh
+#!/bin/bash
 
-# TODO: write version_less_than in terms of emacs lisp, instead of depending on outside version_less_than
+# Minimum version
+min_required_version="24.4"
 
-if ~/bin/version_less_than.py $(~/wa/hg/emacs.d/bin/emacs_version) 24.5.0 ; then
-	exit 1
-else
+# Get the version from emacs
+# This works also if emacs isn't installed
+ret=$(emacs -nw -Q --batch --eval "(if (not (version< emacs-version \"$min_required_version\")) (message \"true\") (message \"false\") )" 2>&1)
+
+if [ "$ret" = "true" ] ; then
 	exit 0
+else
+	exit 1
 fi
-
