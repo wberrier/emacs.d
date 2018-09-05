@@ -2,7 +2,7 @@
 
 # TODO: write version_less_than in terms of emacs lisp, instead of depending on outside version_less_than
 
-if ~/bin/version_less_than.py $(~/wa/hg/emacs.d/bin/emacs_version) 24.3.0 ; then
+if ~/bin/version_less_than.py $(~/wa/hg/emacs.d/bin/emacs_version) 24.5.0 ; then
 	exit 1
 else
 	exit 0
