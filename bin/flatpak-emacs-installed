@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if type flatpak 2> /dev/null && flatpak list | grep -q org.gnu.emacs ; then
+if type flatpak > /dev/null 2>&1 && flatpak list | grep -q org.gnu.emacs ; then
 	exit 0
 else
 	exit 1
