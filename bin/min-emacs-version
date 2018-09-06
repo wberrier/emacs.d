@@ -3,9 +3,15 @@
 # Minimum version
 min_required_version="24.4"
 
+if ~/wa/hg/emacs.d/bin/flatpak-emacs-installed ; then
+	emacs_command="flatpak run org.gnu.emacs"
+else
+	emacs_command="emacs"
+fi
+
 # Get the version from emacs
 # This works also if emacs isn't installed
-ret=$(emacs -nw -Q --batch --eval "(if (not (version< emacs-version \"$min_required_version\")) (message \"true\") (message \"false\") )" 2>&1)
+ret=$($emacs_command -nw -Q --batch --eval "(if (not (version< emacs-version \"$min_required_version\")) (message \"true\") (message \"false\") )" 2>&1)
 
 if [ "$ret" = "true" ] ; then
 	exit 0
