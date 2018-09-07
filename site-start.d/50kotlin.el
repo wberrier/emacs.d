@@ -1,5 +1,6 @@
 
-;; TODO
-
+;; Kotlin
 (use-package kotlin-mode)
-(use-package flycheck-kotlin)
+
+;; TODO: replace this with lsp
+;; (use-package flycheck-kotlin)
