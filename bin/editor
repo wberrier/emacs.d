@@ -13,6 +13,7 @@ if [ -n "$EMACS_FLATPAK" ] ; then
 	# TODO: emacsclient not working under flatpak in console mode (-nw)
 	#options="--alternate-editor= --create-frame -nw"
 	##options="$options -nw"
+	## Note: --socket-name didn't help...
 	#command="flatpak run --command=emacsclient org.gnu.emacs"
 
 	# Works, no client mode :(
