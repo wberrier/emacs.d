@@ -9,8 +9,18 @@
 
 # Be able to run the version from flatpak
 if [ -n "$EMACS_FLATPAK" ] ; then
-	# TODO: emacsclient not working well under flatpak
-	flatpak run org.gnu.emacs -nw "$@"
+
+	# TODO: emacsclient not working under flatpak in console mode (-nw)
+	#options="--alternate-editor= --create-frame -nw"
+	##options="$options -nw"
+	#command="flatpak run --command=emacsclient org.gnu.emacs"
+
+	# Works, no client mode :(
+	command="flatpak run org.gnu.emacs"
+	options="-nw"
 else
-	exec emacsclient -nw --alternate-editor="" -c "$@"
+	command="emacsclient"
+	options="--alternate-editor='' --create-frame -nw"
 fi
+
+exec $command $options "$@"
