@@ -21,7 +21,7 @@ if [ -n "$EMACS_FLATPAK" ] ; then
 	options="-nw"
 else
 	command="emacsclient"
-	options="--alternate-editor='' --create-frame -nw"
+	options="--alternate-editor= --create-frame -nw"
 fi
 
 exec $command $options "$@"
