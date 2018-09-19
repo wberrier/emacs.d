@@ -1,4 +1,10 @@
 
+(use-package xref
+  :custom
+  ;; don't prompt for identifiers
+  (xref-prompt-for-identifier (quote (not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references)))
+  )
+
 (use-package company
   :init
 
