@@ -32,7 +32,8 @@
   (setq evil-operator-state-cursor '("red"    hollow))
 
   ;; Use evil-collection instead
-  (setq evil-want-integration nil)
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
 
   :config
   ;; Load evil by default

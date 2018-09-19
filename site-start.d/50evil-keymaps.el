@@ -190,7 +190,6 @@
                           diff-mode
                           dired
                           ediff
-                          eldoc
                           flycheck
                           grep
                           ivy
