@@ -150,9 +150,6 @@
   :keymaps 'normal
   ;; set up key combo to show whitespace chars
   "w" 'whitespace-mode
-  ;; Reformat text (ported from vim config)
-  ;; I like fill-paragraph better than vim's reformat (better suited to text)
-  "p" 'fill-paragraph
   ;; Switch between header and implementation
   "o" 'projectile-find-other-file
   ;; Generate a password
@@ -164,6 +161,19 @@
 
   ;; lsp-ui-imenu
   "i" 'lsp-ui-imenu
+  )
+
+;; leader keys that are useful in visual mode
+(my-leader-def
+  :keymaps '(normal visual)
+
+  ;; Reformat text (ported from vim config)
+  ;; I like fill-paragraph better than vim's reformat (better suited to text)
+  "p" 'fill-paragraph
+
+  ;; comment stuff out
+  ;; NOTE: comment-line can act as a toggle (opposed to comment-region)
+  "c" 'comment-line
   )
 
 ;; TODO: submit this upstream to evil-collection
