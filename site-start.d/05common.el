@@ -76,6 +76,9 @@
 ; interesting that this isn't the default?
 (column-number-mode)
 
+;; enable simple mouse clicks
+(xterm-mouse-mode)
+
 ; Stuff from Shawn's config
 (setq inhibit-startup-screen t)
 
