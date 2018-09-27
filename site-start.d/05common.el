@@ -77,7 +77,9 @@
 (column-number-mode)
 
 ;; enable simple mouse clicks
-(xterm-mouse-mode)
+;; not sure I like this because it interferes with mouse copy/paste (forces using shift key)
+;; can enable manually when desired I guess (or always for gdb mode?)
+;; (xterm-mouse-mode)
 
 ; Stuff from Shawn's config
 (setq inhibit-startup-screen t)
