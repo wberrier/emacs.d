@@ -4,5 +4,7 @@
 (use-package lsp-python
   :after (lsp-mode)
   :init (add-hook 'python-mode-hook #'lsp-python-enable)
+  :config
+  (require 'dap-python)
   )
 

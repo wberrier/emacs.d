@@ -1,9 +1,16 @@
 
+;; dap-java is included in dap-mode
+;; doing this tries to download a dap-java package
+;; (use-package dap-java
+;;   :after 'lsp-java
+;;   )
+
 (use-package lsp-java
   :config
   (add-hook 'java-mode-hook 'lsp-java-enable)
   (add-hook 'java-mode-hook 'flycheck-mode)
   ;;(setq lsp-java--workspace-folders (list (error "XXX Specify your projects here")))
+  (require 'dap-java)
   :custom
   (lsp-java-organize-imports nil)
   (lsp-java-save-action-organize-imports nil)

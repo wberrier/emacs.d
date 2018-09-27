@@ -30,6 +30,8 @@ function lsp_cpp () {
 function lsp_python () {
     # TODO: certificates
     pip install --user 'python-language-server[all]'
+    # also install debug server
+    pip install --user 'ptvsd>=4.1.1a11'
 }
 
 # Go
@@ -39,6 +41,7 @@ function lsp_go () {
 
 # Java
 function lsp_java () {
+    # TODO: need a better setup for this (install from emacs?)
     rm -rf ~/.emacs.d/eclipse.jdt.ls/server/
     mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
     wget -c http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
