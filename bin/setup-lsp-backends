@@ -17,7 +17,10 @@ function lsp_cpp () {
 
     pushd cquery/build
 
-    local_cmake ..
+    if [ ! -e CMakeCache.txt ] ; then
+        local_cmake ..
+    fi
+
     make
     make install
 
