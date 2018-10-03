@@ -41,11 +41,16 @@ function lsp_go () {
 
 # Java
 function lsp_java () {
-    # TODO: need a better setup for this (install from emacs?)
-    rm -rf ~/.emacs.d/eclipse.jdt.ls/server/
-    mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
-    wget -c http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
-    tar xf /tmp/jdt-latest.tar -C ~/.emacs.d/eclipse.jdt.ls/server/
+    if [ ! -e ~/.emacs.d/eclipse.jdt.ls/server ] ; then
+        rm -f /tmp/jdt-latest.tar
+        # NOTE: can't use -c because this file changes
+        wget http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
+        mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
+        tar xf /tmp/jdt-latest.tar -C ~/.emacs.d/eclipse.jdt.ls/server/
+        rm -f /tmp/jdt-latest.tar
+    else
+        echo "Java LS already installed, update inside emacs with M-x lsp-java-update-server"
+    fi
 }
 
 # Rust
