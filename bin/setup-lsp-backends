@@ -1,7 +1,19 @@
 #!/bin/bash -x
 
+# TODO: bunch of commands in here that don't live in this repo...
+
+function is_redhat () {
+    type yum
+}
+
 # c++ (cquery)
 function lsp_cpp () {
+
+    if is_redhat ; then
+        # el7 has both cmake and cmake3, cquery requires cmake3
+        sudo yum install -y cmake cmake3
+    fi
+
     pushd ~/wa/git
 
     if [ ! -e cquery ] ; then
@@ -18,7 +30,8 @@ function lsp_cpp () {
     pushd cquery/build
 
     if [ ! -e CMakeCache.txt ] ; then
-        local_cmake ..
+        # TODO: need to make sure it's using a newer toolchain...
+        local_cmake3 ..
     fi
 
     make
@@ -58,7 +71,7 @@ function lsp_java () {
 
 # Rust
 function lsp_rust () {
-    if type yum ; then
+    if is_redhat ; then
         sudo yum install -y rls-preview rust-analysis rust-src
     else
         curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
@@ -67,13 +80,22 @@ function lsp_rust () {
     fi
 }
 
+function install_npm () {
+
+    if is_redhat ; then
+        sudo yum install -y npm
+    fi
+}
+
 # Javascript
 function lsp_js () {
+    install_npm
     sudo npm i -g javascript-typescript-langserver
 }
 
 # HTML
 function lsp_html () {
+    install_npm
     sudo npm i -g vscode-html-languageserver-bin
 }
 
