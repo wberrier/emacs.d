@@ -188,7 +188,6 @@
 
 (use-package evil-collection
   :after evil
-  :ensure t
   :config
   ;; Nice that I can pick and choose
   ;; I was setting a lot of bindings for several of these

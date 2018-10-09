@@ -1,6 +1,5 @@
 
 (use-package dap-mode
-  :ensure t
   :after lsp-mode
   :config
   (dap-mode t)
