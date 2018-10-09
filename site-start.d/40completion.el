@@ -1,5 +1,6 @@
 
 (use-package xref
+  :ensure nil ;; don't install if it's missing, since it requires emacs 25.1
   :custom
   ;; don't prompt for identifiers
   (xref-prompt-for-identifier (quote (not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references)))
