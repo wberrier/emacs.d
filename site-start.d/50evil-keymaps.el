@@ -46,6 +46,9 @@
   "\C-\\ v" 'custom-find-derived
   "\C-\\ c" 'custom-find-callers
 
+  ;; Show full documentation
+  "\C-\\ d" 'lsp-describe-thing-at-point
+
   ;;; TODO: emacs-lsp replacements?
   ;;"\C-\\ g" 'rtags-find-symbol ; different than gtags-find-tag-from-here! huh?
   ;;;"\C-\\ i" 'find-includes ;; not sure it's needed since xref-find-references works for this
