@@ -1,6 +1,13 @@
 ;; Enable lsp-ui
 
-(use-package lsp-mode)
+(use-package lsp-mode
+  :custom
+  ;; Only show the signature for the doc hover
+  ;; otherwise it shows the full text and it's very jarring
+  ;;(lsp-hover-text-function (quote lsp--text-document-signature-help))
+  ;; The above doesn't seem to work, and this is the default, keep this here until the above works
+  (lsp-hover-text-function (quote lsp--text-document-hover-string))
+  )
 
 (use-package lsp-ui
 
