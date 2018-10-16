@@ -7,6 +7,9 @@
   ;;(lsp-hover-text-function (quote lsp--text-document-signature-help))
   ;; The above doesn't seem to work, and this is the default, keep this here until the above works
   (lsp-hover-text-function (quote lsp--text-document-hover-string))
+  ;; disable eldoc until the above is straightened out
+  ;; until then, use lsp-describe-thing-at-point
+  (lsp-enable-eldoc nil)
   )
 
 (use-package lsp-ui
