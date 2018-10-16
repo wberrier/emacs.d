@@ -14,6 +14,9 @@
   ;; Don't determine indentation.  Leave that up to the editor (dtrt-indent-mode)
   ;; Sometimes I would get weird indentation.  Maybe this is the reason... ?
   (lsp-enable-indentation nil)
+
+  ;; Show lsp messages in *Messages*
+  ;;(lsp-print-io t)
   )
 
 (use-package lsp-ui
