@@ -10,6 +10,10 @@
   ;; disable eldoc until the above is straightened out
   ;; until then, use lsp-describe-thing-at-point
   (lsp-enable-eldoc nil)
+
+  ;; Don't determine indentation.  Leave that up to the editor (dtrt-indent-mode)
+  ;; Sometimes I would get weird indentation.  Maybe this is the reason... ?
+  (lsp-enable-indentation nil)
   )
 
 (use-package lsp-ui
