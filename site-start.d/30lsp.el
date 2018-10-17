@@ -7,9 +7,13 @@
   ;;(lsp-hover-text-function (quote lsp--text-document-signature-help))
   ;; The above doesn't seem to work, and this is the default, keep this here until the above works
   (lsp-hover-text-function (quote lsp--text-document-hover-string))
-  ;; disable eldoc until the above is straightened out
-  ;; until then, use lsp-describe-thing-at-point
-  (lsp-enable-eldoc nil)
+
+  ;; Only show first docstring (hopefully signature)
+  (lsp-eldoc-render-all nil)
+
+  ;; may need to disable eldoc until the above is straightened out
+  ;; if necessary, use lsp-describe-thing-at-point
+  (lsp-enable-eldoc t)
 
   ;; Don't determine indentation.  Leave that up to the editor (dtrt-indent-mode)
   ;; Sometimes I would get weird indentation.  Maybe this is the reason... ?
