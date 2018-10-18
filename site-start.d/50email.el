@@ -57,7 +57,7 @@
 
   :init
 
-  (adjust-fill-paragraph-add-trailing-spaces)
+  (add-hook 'message-mode-hook 'adjust-fill-paragraph-add-trailing-spaces)
 
   ;; don't show trailing whitespace in message mode
   ;; NOTE: honestly it's not clear why this has to be a mode hook
