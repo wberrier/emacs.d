@@ -1,5 +1,5 @@
 
-(use-package flyspell-mode
+(use-package flyspell
   :ensure nil ;; built-in, don't download
 
   :custom

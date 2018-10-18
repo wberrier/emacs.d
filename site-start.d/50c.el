@@ -49,7 +49,9 @@
     (c-echo-syntactic-information-p . t))
   "My C Programming Style")
 
-(use-package c-mode
+;; NOTE: this is really for c-mode, but there's no package called c-mode
+;; and it's in a cc-mode.el file, just use that name
+(use-package cc-mode
   :ensure nil ;; built-in
 
   :init
@@ -104,7 +106,7 @@
 ;; gdb settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package gud-mode
+(use-package gud
   :ensure nil
   :init
 
