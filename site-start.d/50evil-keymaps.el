@@ -76,22 +76,6 @@
   "\C-x" 'evil-numbers/dec-at-pt
 )
 
-;; Make ESC cancel a bunch of emacs type stuff.  Another suggested to
-;; just get used to emacs' CTRL-g, but this is probably more natual for
-;; someone coming from vim
-;; http://wikemacs.org/wiki/Evil#Enter_an_emacs_mode_in_a_given_state
-;; http://stackoverflow.com/questions/8483182/evil-mode-best-practice
-(require 'delsel) ; for minibuffer-keyboard-quit
-;;; esc quits
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-; more?
-
 ; Some functions and and keymaps to compile code
 
 ; TODO: concatenating with compile-command ends up growing that command
