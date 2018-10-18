@@ -1,15 +1,6 @@
 
 ;; mutt composition mode
 
-;; What's the difference for these modes?
-;; * message-mode correctly quotes long lines when doing 'fill-paragraph
-
-(add-to-list 'auto-mode-alist '("tmp/mutt*\\|\\.article|\\.followup" . message-mode))
-(add-to-list 'auto-mode-alist '("/tmp/evo*" . message-mode))
-;;(add-to-list 'auto-mode-alist '("tmp/mutt*\\|\\.article|\\.followup" . post-mode))
-;;(add-to-list 'auto-mode-alist '("/tmp/evo*" . post-mode))
-;;(require 'post)
-
 ;; visual marker for flowing messages
 (use-package messages-are-flowing
   :init
@@ -20,7 +11,7 @@
 ;; https://emacs.stackexchange.com/questions/19296/retooling-fill-paragraph-to-append-trailing-spaces
 ;; Still seems to work for refill mode, which is nice
 ;; would be nice to have a package that does this, but this will have to do for now
-(defun my-message-configuration ()
+(defun adjust-fill-paragraph-add-trailing-spaces ()
   "Redefines fill-newline to beahve 3676ishly, and turns off auto fill"
   (turn-off-auto-fill)
   (defun fill-newline ()
@@ -55,14 +46,31 @@
          (insert-before-markers-and-inherit fill-prefix)))
   )
 
-(add-hook 'message-mode-hook 'my-message-configuration)
+;; What's the difference between message-mode and post-mode?
+;; * message-mode correctly quotes long lines when doing 'fill-paragraph
 
-(defun my-disable-trailing-whitespace ()
-  (setq show-trailing-whitespace nil)
+(use-package message-mode
+  :ensure nil ;; built-in, don't download
+
+  :mode "tmp/mutt*\\|\\.article|\\.followup"
+  :mode "/tmp/evo*"
+
+  :init
+
+  (adjust-fill-paragraph-add-trailing-spaces)
+
+  ;; don't show trailing whitespace in message mode
+  ;; NOTE: honestly it's not clear why this has to be a mode hook
+  ;; doesn't 'stick' otherwise
+  (add-hook 'message-mode-hook (lambda () (setq show-trailing-whitespace nil)))
+
+  ;; refil when writing paragraphs, finally!
+  (add-hook 'message-mode-hook 'refill-mode)
+
   )
 
-;; don't show trailing whitespace in message mode
-(add-hook 'message-mode-hook 'my-disable-trailing-whitespace)
+;(use-package post-mode
+;  :mode "tmp/mutt*\\|\\.article|\\.followup"
+;  :mode "/tmp/evo*"
+;  )
 
-;; Just enable this as needed
-;; (add-hook 'message-mode-hook 'refill-mode) ; refil when writing paragraphs, finally!

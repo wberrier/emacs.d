@@ -16,6 +16,7 @@
 (use-package hgignore-mode)
 (use-package hgrc-mode)
 
-;; TODO: any way to use use-package to do this?
 ;; TODO: disable for now since this really slows things down when loading/saving files?
-(require 'mercurial)
+(use-package mercurial
+  :ensure nil ;; manual package, don't attempt to download
+  )

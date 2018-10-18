@@ -33,4 +33,6 @@
   (which-key-mode)
   )
 
-(require 'qmake-mode)
+(use-package qmake-mode
+  :ensure nil ;; manual-package, don't attempt to download
+  )
