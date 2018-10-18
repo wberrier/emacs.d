@@ -2,18 +2,11 @@
 
 (use-package lsp-mode
   :custom
-  ;; Only show the signature for the doc hover
-  ;; otherwise it shows the full text and it's very jarring
-  ;;(lsp-hover-text-function (quote lsp--text-document-signature-help))
-  ;; The above doesn't seem to work, and this is the default, keep this here until the above works
-  (lsp-hover-text-function (quote lsp--text-document-hover-string))
-
-  ;; Only show first docstring (hopefully signature)
-  (lsp-eldoc-render-all nil)
-
-  ;; may need to disable eldoc until the above is straightened out
-  ;; if necessary, use lsp-describe-thing-at-point
+  ;; Enable symbol information
   (lsp-enable-eldoc t)
+
+  ;; Only show symbol "language" string
+  (lsp-eldoc-render-all nil)
 
   ;; Don't determine indentation.  Leave that up to the editor (dtrt-indent-mode)
   ;; Sometimes I would get weird indentation.  Maybe this is the reason... ?
@@ -24,22 +17,25 @@
   )
 
 (use-package lsp-ui
-
-  :after (lsp-mode)
-
-  ;; NOTE: must use this hook syntax
-  :hook ((lsp-mode) . lsp-ui-mode)
-
   :init
-  (setq lsp-ui-sideline-enable nil)
-  (setq imenu-auto-rescan t)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+  :custom
+  (lsp-ui-sideline-enable nil)
+  (imenu-auto-rescan t)
   ;; disable ui-doc since it behaves badly with wrapped lines and smooth scrolling
   ;; TODO: should file bug
-  (setq lsp-ui-doc-enable nil)
+  (lsp-ui-doc-enable nil)
+  ;; Experimenting...
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-position 'at-point)
 
   :config
   (require 'lsp-ui-peek)
   (require 'lsp-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+  (add-hook 'lsp-after-open-hook 'lsp-ui-peek-enable)
 
+  ;; TODO: could set up lsp-ui-peek bindings to replace xref
   )
