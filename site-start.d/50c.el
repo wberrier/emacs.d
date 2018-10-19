@@ -133,14 +133,19 @@
 ;; cquery settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun cquery//enable ()
+  (condition-case nil
+      (lsp-cquery-enable)
+    (user-error nil)
+	)
+  )
+
 (use-package cquery
   :commands lsp-cquery-enable
   :init
   ;; Enable lsp for all c/c++ modes
-  (add-hook 'c-mode-common-hook (lambda ()
-								  (condition-case nil
-									  (lsp-cquery-enable)
-									(user-error nil))))
+  (add-hook 'c-mode-hook #'cquery//enable)
+  (add-hook 'c++-mode-hook #'cquery//enable)
 
   ;; Set executable path if expected environment variable is found
   (if (equal (getenv "LOCAL_INSTALL_DIR") nil)
