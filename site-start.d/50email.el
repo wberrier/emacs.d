@@ -54,9 +54,8 @@
   ;; NOTE: this is done so that it doesn't affect other modes
   (if (equal major-mode messages-are-flowing-enhance-fill-newline-modes)
 	  (progn ;; allow multiple statements
-		 (fill-newline-custom)
 		 ;; Alter fill-newline
-		 (turn-off-auto-fill)
+		 (fill-newline-custom)
 		)
 	(apply orig-fun args)
 	)
@@ -65,6 +64,7 @@
 (defun messages-are-flowing-enhance-fill-newline ()
   "Function to enhance fill-newline, only for certain modes"
 	(advice-add 'fill-newline :around #'fill-newline-wrapper)
+	(turn-off-auto-fill)
   )
 
 ;; What's the difference between message-mode and post-mode?
