@@ -52,7 +52,7 @@
 
   ;; TODO: customize this with variable?
   ;; NOTE: this is done so that it doesn't affect other modes
-  (if (equal major-mode messages-are-flowing-enhance-fill-newline-modes)
+  (if (member major-mode messages-are-flowing-enhance-fill-newline-modes)
 	  (progn ;; allow multiple statements
 		 ;; Alter fill-newline
 		 (fill-newline-custom)
@@ -80,7 +80,7 @@
 
   ;; TODO: should probably be a defcustom
   ;; TODO: allow list
-  (setq-default messages-are-flowing-enhance-fill-newline-modes 'message-mode)
+  (setq-default messages-are-flowing-enhance-fill-newline-modes '(message-mode))
 
   ;; Special settings for flowed messages
   ;; an addition to "messages-are-flowing"
