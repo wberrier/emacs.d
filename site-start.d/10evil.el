@@ -1,18 +1,7 @@
 
-; treat underscore as a word char, finally! (for 'w' and searching)
-;;(modify-syntax-entry ?_ "w") ; NOTE: didn't work any longer?
-
 ;; NOTE: tried a method of using forward-evil-symbol instead of forward-evil-word, but that's
 ;; not the same as vim, which I think is preferrable.
 ;; vim probably has it wrong (ie: too simplistic), but that's what we're emulating
-
-;; Can't enable this for message-mode, emacs hangs...
-;; Do this to enable for all modes except message-mode
-(add-hook 'change-major-mode-after-body-hook #'(lambda ()
-  (if (equal major-mode 'message-mode)
-      (modify-syntax-entry ?_ "_")
-      (modify-syntax-entry ?_ "w")
-    )))
 
 (use-package evil
   :init
@@ -34,6 +23,17 @@
   ;; Use evil-collection instead
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
+
+  ;; treat underscore as a word char, finally! (for 'w' and searching)
+  ;;(modify-syntax-entry ?_ "w") ; NOTE: didn't work any longer?
+
+  ;; Can't enable this for message-mode, emacs hangs...
+  ;; Do this to enable for all modes except message-mode
+  (add-hook 'change-major-mode-after-body-hook #'(lambda ()
+    (if (equal major-mode 'message-mode)
+        (modify-syntax-entry ?_ "_")
+        (modify-syntax-entry ?_ "w")
+      )))
 
   :config
   ;; Load evil by default
