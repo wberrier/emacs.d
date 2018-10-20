@@ -11,8 +11,7 @@
   ;; an addition to "messages-are-flowing"
   (add-hook 'message-mode-hook 'messages-are-flowing-enhance-fill-newline)
 
-  ;; TODO: allow list
-  :custom (messages-are-flowing-enhance-fill-newline-modes 'message-mode)
+  :custom (messages-are-flowing-enhance-fill-newline-modes '(message-mode))
 )
 
 ;; What's the difference between message-mode and post-mode?
