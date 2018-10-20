@@ -34,6 +34,7 @@
   :config
   (require 'lsp-ui-peek)
   (require 'lsp-imenu)
+  ;; NOTE: normally hooks go in ":init" but I think these are ok
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
   (add-hook 'lsp-after-open-hook 'lsp-ui-peek-enable)
 

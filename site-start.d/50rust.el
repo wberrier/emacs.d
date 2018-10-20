@@ -1,10 +1,10 @@
 
 ;; lsp-rust
 (use-package lsp-rust
-  :config
+  :init
+  ;;(setq lsp-rust-rls-command '("rls"))
   (add-hook 'rust-mode-hook 'lsp-rust-enable)
   (add-hook 'rust-mode-hook 'flycheck-mode)
-  ;;(setq lsp-rust-rls-command '("rls"))
   )
 
 ;; rust-mode

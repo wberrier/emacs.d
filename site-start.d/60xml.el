@@ -1,7 +1,7 @@
 
 (use-package nxml-mode
   :ensure nil ;; built-in, don't try to install
-  :config
+  :init
   ;; Add support for "hiding" xml sections with hideshow minor mode
   (add-hook 'nxml-mode-hook 'hs-minor-mode)
 

@@ -24,12 +24,12 @@
 
 ;; TODO: seems this may still have some issues?
 (use-package meson-mode
-  :config
+  :init
   (add-hook 'meson-mode-hook 'company-mode)
   )
 
 (use-package which-key
-  :config
+  :init
   (which-key-mode)
   )
 

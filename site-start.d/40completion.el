@@ -17,7 +17,6 @@
   ;; This seems to help with irony, but not with rtags
   (setq company-idle-delay .1)
 
-  :config
   (add-hook 'after-init-hook 'global-company-mode)
 
   :general

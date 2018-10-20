@@ -1,7 +1,7 @@
 
 (use-package text-mode
   :ensure nil ;; built-in, don't attempt to download
-  :config
+  :init
   ;; Enable some minor modes for text-mode
   ;; NOTE: org and post modes derive from text mode
   (add-hook 'text-mode-hook 'turn-on-auto-fill)

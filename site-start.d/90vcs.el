@@ -4,7 +4,7 @@
 
 ;; git
 (use-package git-commit
-  :config
+  :init
   ;; git-commit mode wants to go into emacs state.  Force evil state.
   (add-hook 'with-editor-mode-hook 'evil-normal-state)
   )
