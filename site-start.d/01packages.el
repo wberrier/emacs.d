@@ -42,8 +42,9 @@
       (package-install p))))
 
 ;; bootstrap use-package
-;; TODO: how to handle cases where packages doesn't exist for a particular emacs version?
 (setq use-package-always-ensure t) ;; will force install packages when calling 'use-package'
+(setq use-package-compute-statistics t)
+(setq use-package-verbose t)
 (eval-when-compile
   (require 'use-package))
 (require 'diminish)
