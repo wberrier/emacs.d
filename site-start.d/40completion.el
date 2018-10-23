@@ -38,6 +38,9 @@
   (setq company-lsp-enable-recompletion t)
 
   :config
+  ;; This merges snippets, but the snippets show up when completing on
+  ;; a variable, so until then, just bind with another key
+  ;;(push '(company-lsp :with company-yasnippet) company-backends)
   (push 'company-lsp company-backends)
 
   )

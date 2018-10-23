@@ -125,6 +125,9 @@
   "r"  'jump-to-compile-bookmark
   ;; run debugger
   "d"  'emacs-debug
+
+  ;; yasnippet filter
+  "y" 'ivy-yasnippet
   )
 
 ;; make sure this is set up when going into org-mode
