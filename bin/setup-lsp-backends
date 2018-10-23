@@ -99,6 +99,12 @@ function lsp_html () {
     sudo npm i -g vscode-html-languageserver-bin
 }
 
+# Bash
+function lsp_bash () {
+    install_npm
+    sudo npm i -g bash-language-server
+}
+
 # Run each section
 lsp_cpp
 lsp_python
@@ -107,3 +113,4 @@ lsp_java
 lsp_rust
 lsp_js
 lsp_html
+lsp_bash
