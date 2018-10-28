@@ -201,4 +201,7 @@
                           xref
                           ))
   ;; Others to consider: python, all?
+  :custom
+  ;; disable youcompleteme TAB/S-TAB functionality
+  (evil-collection-company-use-tng nil)
   )

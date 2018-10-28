@@ -20,6 +20,14 @@
   (add-hook 'after-init-hook 'global-company-mode)
 
   :general
+  ;; also allow tab (in addition to enter) to complete selection
+  ;; some people like the ycm mode where tab/backtab go forwards and backwards
+  (:keymaps 'company-active-map "TAB" 'company-complete-selection)
+
+  ;; ctrl-space
+  ;; show all completions (initiate completions when no text yet)
+  (:keymaps 'global-map "C-@" nil) ;; required to allow C-SPC below
+  (:states 'insert :keymaps 'company-mode-map "C-SPC" 'company-complete-common)
 
   ;; Typically package loading is deferred if bindings are specified
   ;; this forces it to load
