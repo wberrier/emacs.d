@@ -8,16 +8,23 @@
 
 (use-package company
   :init
+  (add-hook 'after-init-hook 'global-company-mode)
+
+  :custom
 
   ;; disable company mode when running gdb
-  (setq company-global-modes '(not gud-mode))
+  (company-global-modes '(not gud-mode))
 
   ;; set timeout to zero so that completion pops up instantly
   ;; hrm... doesn't really seem to do anything...
   ;; This seems to help with irony, but not with rtags
-  (setq company-idle-delay .1)
+  (company-idle-delay .1)
 
-  (add-hook 'after-init-hook 'global-company-mode)
+  ;; Probably don't need to set this since can C-SPC to complete manually
+  ;;(company-minimum-prefix-length 1)
+
+  ;; be able to wrap completion list
+  (company-selection-wrap-around t)
 
   :general
   ;; also allow tab (in addition to enter) to complete selection
