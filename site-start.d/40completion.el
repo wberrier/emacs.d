@@ -43,16 +43,15 @@
 
 (use-package company-lsp
   :init
-  ;; disable company caching, as server is faster (recommended in lsp documentation)
-  (setq
-   company-transformers nil
-   ;; async completion
-   company-lsp-async t
-   company-lsp-cache-candidates nil
-   ;; Should help with c++ std:: type completions
-   company-lsp-enable-recompletion t
-   )
 
+  :custom
+  ;; disable company caching, as server is faster (recommended in lsp documentation)
+  (company-transformers nil)
+  ;; async completion
+  (company-lsp-async t)
+  (company-lsp-cache-candidates nil)
+  ;; Should help with c++ std:: type completions
+  (company-lsp-enable-recompletion t)
 
   :config
   ;; This merges snippets, but the snippets show up when completing on

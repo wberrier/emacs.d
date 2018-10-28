@@ -1,3 +1,7 @@
+;; 4 tabs instead of the 8 default
+;; NOTE: this makes it global for all files
+(setq-default tab-width 4)
+(setq-default tab-stop-list '(4 8 12))
 
 (use-package dtrt-indent
   :custom

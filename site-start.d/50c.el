@@ -113,9 +113,6 @@
   ;; ide-like debugging layout
   (setq gdb-many-windows t)
 
-  ;; speed up loading
-  (setq gdb-create-source-file-list nil)
-
   ;; attempt to prevent output from taking over
   ;; prevents following source code... ?
   ;;(defun set-window-undedicated-p (window flag)
@@ -123,10 +120,16 @@
   ;;  flag)
   ;;(advice-add 'set-window-dedicated-p :override #'set-window-undedicated-p)
 
-  ;; Don't force popup gdb's io window (requires emacs >= 25) (worked! the above didn't...)
-  (setq gdb-display-io-nopopup t)
+  :custom
 
-  (setq pop-up-windows nil)
+  ;; speed up loading
+  (gdb-create-source-file-list nil)
+
+
+  ;; Don't force popup gdb's io window (requires emacs >= 25) (worked! the above didn't...)
+  (gdb-display-io-nopopup t)
+
+  (pop-up-windows nil)
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -148,30 +151,21 @@
   (add-hook 'c++-mode-hook #'cquery//enable)
 
   ;; Set executable path if expected environment variable is found
+  ;; TODO: how to make this a custom variable?
   (if (equal (getenv "LOCAL_INSTALL_DIR") nil)
 	  nil
 	(setq cquery-executable (format "%s/bin/cquery" (getenv "LOCAL_INSTALL_DIR")))
 	)
 
+  :custom
+
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
   ;; Partially evaluate via backquote and comma.  (YUCK!)
-  (setq cquery-extra-args `(,(format "--log-file=%s/.cq.log" (getenv "HOME"))))
+  (cquery-extra-args `(,(format "--log-file=%s/.cq.log" (getenv "HOME"))))
 
-  (setq cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
+  (cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
 
-  ;; check this directory for compile_commands.json
-  ;; TODO: how to set this at runtime?
-  ;;(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-debug"))
-  ;;(setq cquery-extra-init-params '(:compilationDatabaseDirectory "build-cross"))
-
-  ;; works
-  (setq cquery-extra-init-params '(:compilationDatabaseCommand "/home/wberrier/.emacs.d/bin/generate-compile-commands.py"))
-
-  ;; TODO: get something like this working...
-  ;;(setq compile-command (format "%s/.emacs.d/bin/generate/compile-commands.py" (getenv "HOME")))
-  ;;(setq cquery-extra-init-params '(:compilationDatabaseCommand 'compile-command))
-
-  :custom
+  (cquery-extra-init-params '(:compilationDatabaseCommand "/home/wberrier/.emacs.d/bin/generate-compile-commands.py"))
   (cquery-project-root-matchers '(".emacs_project.json"))
   )
 ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers

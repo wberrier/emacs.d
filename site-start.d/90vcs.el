@@ -1,4 +1,15 @@
 
+(use-package vc-hooks
+  :ensure nil
+  :custom
+  ;; Turned on allows doing vc operations on symlinks, which is nice
+  ;; TODO: is there a case where having this off is really slow?
+  ;; (I can't remember why I originally disabled this)
+  (vc-follow-symlinks t)
+  ;; this makes loading/saving of files slow if it has to do git/hg status
+  ;;(vc-handled-backends ())
+  )
+
 ;; Basic syntax highlighting modes
 ;; (use backend agnostic vc for normal stuff)
 

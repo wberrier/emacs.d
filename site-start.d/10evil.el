@@ -5,10 +5,6 @@
 
 (use-package evil
   :init
-  ;; Make CTRL - u scroll up like I'm used to in vi
-  ;; This seems to be off by default
-  (setq evil-want-C-u-scroll t)
-  (setq evil-search-module 'evil-search)
 
   ;; some coloring options, try them out and see if they are wanted
   ;; looks like they don't work in console mode
@@ -20,10 +16,6 @@
   (setq evil-replace-state-cursor  '("red"    bar))
   (setq evil-operator-state-cursor '("red"    hollow))
 
-  ;; Use evil-collection instead
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-
   ;; treat underscore as a word char, finally! (for 'w' and searching)
   ;;(modify-syntax-entry ?_ "w") ; NOTE: didn't work any longer?
 
@@ -33,7 +25,17 @@
     (if (equal major-mode 'message-mode)
         (modify-syntax-entry ?_ "_")
         (modify-syntax-entry ?_ "w")
-      )))
+        )))
+
+  :custom
+  ;; Make CTRL - u scroll up like I'm used to in vi
+  ;; This seems to be off by default
+  (evil-want-C-u-scroll t)
+  (evil-search-module 'evil-search)
+
+  ;; Use evil-collection instead
+  (evil-want-integration t)
+  (evil-want-keybinding nil)
 
   :config
   ;; Load evil by default

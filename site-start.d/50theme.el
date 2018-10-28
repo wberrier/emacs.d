@@ -9,12 +9,14 @@
 ; seems to only work in 256 color mode, but has a nice 8 color fallback option
 ;;(use-package zenburn-theme)
 
-; Very nice theme
-;(setq solarized-termcolors 256) ; use 256 terminal color emulation
-; forces dark theme
-;(set-terminal-parameter nil 'background-mode 'dark)
-;(set-frame-parameter nil 'background-mode 'dark)
-;(load-theme 'solarized t)
+;; ; Very nice theme
+;; (use-package solarized-theme
+;;   :custom
+;;   (solarized-termcolors 256) ; use 256 terminal color emulation
+;;   ;; forces dark theme
+;;   (set-terminal-parameter nil 'background-mode 'dark)
+;;   (set-frame-parameter nil 'background-mode 'dark)
+;;   )
 
 ;; this forces the dark theme when using emacs client...
 ;; why is this even necessary?

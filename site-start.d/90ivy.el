@@ -19,17 +19,19 @@
 
   :config
   (ivy-mode 1)
-  (setq ivy-initial-inputs-alist nil) ;; clear input
+
+  :custom
+  (ivy-initial-inputs-alist nil) ;; clear input
   ;; increase size (any way to make this use the whole screen?  Like helm?)
-  (setq ivy-height 20)
+  (ivy-height 20)
 
   ;; These are suggested by the maintainers
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "%d/%d ")
+  (ivy-use-virtual-buffers t)
+  (ivy-count-format "%d/%d ")
 
   ;; Fix Finding of files
   ;; I like this better than counsel-projectile
-  (setq projectile-completion-system 'ivy)
+  (projectile-completion-system 'ivy)
 
   ;; grab current cursor item for input on projectile grep
   ;;(setq counsel-projectile-ag-initial-input '(ivy-thing-at-point))
