@@ -41,6 +41,11 @@
   :demand
   )
 
+(use-package company-statistics
+  :init
+  (company-statistics-mode)
+  )
+
 (use-package company-lsp
   :init
 
