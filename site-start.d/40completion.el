@@ -29,6 +29,8 @@
   :general
   ;; also allow tab (in addition to enter) to complete selection
   ;; some people like the ycm mode where tab/backtab go forwards and backwards
+  ;; TODO: need to intercept tab for completion when filling out
+  ;; completed function parameters
   (:keymaps 'company-active-map "TAB" 'company-complete-selection)
 
   ;; ctrl-space
@@ -46,12 +48,25 @@
   (company-statistics-mode)
   )
 
+;; custom yasnippet backend from
+;; https://github.com/company-mode/company-mode/issues/840
+(defun company-yasnippet-unless-member-access (command &optional arg &rest ignore)
+  (if (eq command 'prefix)
+      (let ((prefix (company-yasnippet 'prefix)))
+        (and prefix
+             (save-excursion
+               (forward-char (- (length prefix)))
+               ;;(not (looking-back (rx (or "." "->")) (line-beginning-position))))
+               ;; TODO: put these in a variable?  based on language?
+               (not (looking-back (rx (or "." "->" "::")) (line-beginning-position))))
+             prefix))
+    (company-yasnippet command arg)))
+
 (use-package company-lsp
   :init
 
   :custom
   ;; disable company caching, as server is faster (recommended in lsp documentation)
-  (company-transformers nil)
   ;; async completion
   (company-lsp-async t)
   (company-lsp-cache-candidates nil)
@@ -59,13 +74,13 @@
   (company-lsp-enable-recompletion t)
 
   :config
-  ;; This merges snippets, but the snippets show up when completing on
-  ;; a variable, so until then, just bind with another key
-  ;;(push '(company-lsp :with company-yasnippet) company-backends)
-  (push 'company-lsp company-backends)
-
+  ;; This merges snippets, but use the custom backend so that snippets
+  ;; aren't shown when doing trigger completions
+  ;; https://github.com/company-mode/company-mode/issues/485
+  ;; https://github.com/company-mode/company-mode/issues/840
+  ;; :separate put yasnippets at the bottom of the list for trigger characters
+  (push '(:separate company-lsp :with company-yasnippet-unless-member-access) company-backends)
   )
-
 
 (use-package company-qml
   :config
