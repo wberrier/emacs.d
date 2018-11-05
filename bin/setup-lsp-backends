@@ -6,6 +6,15 @@ function is_redhat () {
     type yum
 }
 
+# Default to cmake3 since cquery depends on that
+function find_cmake3 () {
+    if type cmake3 ; then
+        echo cmake3
+    else
+        echo cmake
+    fi
+}
+
 # c++ (cquery)
 function lsp_cpp () {
 
@@ -17,11 +26,12 @@ function lsp_cpp () {
     pushd ~/wa/git
 
     if [ ! -e cquery ] ; then
-        git rclone https://github.com/cquery-project/cquery.git
+        git clone --recurse-submodules https://github.com/cquery-project/cquery.git
     else
         pushd cquery
         git pull
-        git sub-update
+        git submodule sync
+        git submodule update --init --recursive
         popd
     fi
 
@@ -31,7 +41,7 @@ function lsp_cpp () {
 
     if [ ! -e CMakeCache.txt ] ; then
         # TODO: need to make sure it's using a newer toolchain...
-        local_cmake3 ..
+        $(find_cmake3) -D CMAKE_INSTALL_PREFIX=$LOCAL_INSTALL_DIR ..
     fi
 
     make

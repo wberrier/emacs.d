@@ -150,12 +150,8 @@
   (add-hook 'c-mode-hook #'cquery//enable)
   (add-hook 'c++-mode-hook #'cquery//enable)
 
-  ;; Set executable path if expected environment variable is found
   ;; TODO: how to make this a custom variable?
-  (if (equal (getenv "LOCAL_INSTALL_DIR") nil)
-	  nil
-	(setq cquery-executable (format "%s/bin/cquery" (getenv "LOCAL_INSTALL_DIR")))
-	)
+  (setq cquery-executable (format "%s/bin/cquery" local-install-dir))
 
   :custom
 
