@@ -1,6 +1,8 @@
 ;; Enable lsp-ui
 
 (use-package lsp-mode
+  :init
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
   :custom
   ;; Enable symbol information
   (lsp-enable-eldoc t)
@@ -16,13 +18,18 @@
   ;;(lsp-print-io t)
   )
 
+(use-package imenu
+  :ensure nil
+  :custom
+  (imenu-auto-rescan t)
+  )
+
 (use-package lsp-ui
   :init
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
   :custom
   (lsp-ui-sideline-enable nil)
-  (imenu-auto-rescan t)
   ;; disable ui-doc since it behaves badly with wrapped lines and smooth scrolling
   ;; TODO: should file bug
   (lsp-ui-doc-enable nil)
