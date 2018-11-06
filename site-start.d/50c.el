@@ -82,9 +82,6 @@
 	; compile command for this mode
 	(setq compile-command "~/.emacs.d/bin/emacs_build")
 
-	;; Enable showing what current function is
-	(which-function-mode 1)
-	(flycheck-mode 1)
 	)
     )
 

@@ -6,5 +6,7 @@
   ;;(global-flycheck-mode)
   :custom
   (flycheck-error-list-minimum-level (quote warning))
+
+  (flycheck-checker-error-threshold 1000)
   )
 
