@@ -1,4 +1,4 @@
-;; Enable lsp-mode
+;; Enable lsp-ui
 
 (use-package lsp-mode
   :custom
@@ -16,7 +16,27 @@
   ;;(lsp-print-io t)
   )
 
-;; NOTE: ended up not using lsp-ui, turned most of it off anyways
-;; and seems to interfere with flycheck
-;; it seems to have flycheck integration for lsp, but it didn't seem
-;; to work very well
+(use-package lsp-ui
+  :init
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+  :custom
+  (lsp-ui-sideline-enable nil)
+  (imenu-auto-rescan t)
+  ;; disable ui-doc since it behaves badly with wrapped lines and smooth scrolling
+  ;; TODO: should file bug
+  (lsp-ui-doc-enable nil)
+  ;; Experimenting...
+  (lsp-ui-doc-header t)
+  (lsp-ui-doc-include-signature t)
+  (lsp-ui-doc-position 'at-point)
+
+  :config
+  (require 'lsp-ui-peek)
+  (require 'lsp-imenu)
+  ;; NOTE: normally hooks go in ":init" but I think these are ok
+  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
+  (add-hook 'lsp-after-open-hook 'lsp-ui-peek-enable)
+
+  ;; TODO: could set up lsp-ui-peek bindings to replace xref
+  )

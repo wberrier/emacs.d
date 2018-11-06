@@ -145,6 +145,9 @@
   ;;"g" 'generate-password
   "n" 'neotree-project-dir
   "f" 'switch-to-buffer
+
+  ;; lsp-ui-imenu
+  "i" 'lsp-ui-imenu
   )
 
 ;; leader keys that are useful in visual mode
@@ -188,6 +191,7 @@
                           ivy
                           kotlin
                           log-view
+                          lsp-ui-imenu
                           neotree
                           package-menu
                           vc-annotate
