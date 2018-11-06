@@ -26,7 +26,9 @@
 
 (use-package lsp-ui
   :init
-  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+  ;; Don't enable all of lsp-ui-mode's features, just enable as needed
+  ;; (really only using flycheck)
+  ;;(add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
   :custom
   (lsp-ui-sideline-enable nil)
@@ -37,13 +39,6 @@
   (lsp-ui-doc-header t)
   (lsp-ui-doc-include-signature t)
   (lsp-ui-doc-position 'at-point)
-
-  :config
-  (require 'lsp-ui-peek)
-  (require 'lsp-imenu)
-  ;; NOTE: normally hooks go in ":init" but I think these are ok
-  (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
-  (add-hook 'lsp-after-open-hook 'lsp-ui-peek-enable)
 
   ;; TODO: could set up lsp-ui-peek bindings to replace xref
   )

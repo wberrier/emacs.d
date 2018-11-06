@@ -79,8 +79,12 @@
 	;; But, this doesn't clean up abandoned indents
 	;;(define-key c-mode-base-map "\C-m" 'c-context-line-break)
 
-	; compile command for this mode
+	;; compile command for this mode
 	(setq compile-command "~/.emacs.d/bin/emacs_build")
+
+	;; enable on demand since this disables all other checkers
+	;; NOTE: this also enables for java (since it's derived of c-mode)
+	(lsp-ui-flycheck-enable 1)
 
 	)
     )
