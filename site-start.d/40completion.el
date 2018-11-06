@@ -47,7 +47,13 @@
   (company-selection-wrap-around t)
 
   :general
-  ;; also allow tab (in addition to enter) to complete selection
+  ;; Make enter do a newline
+  ;; otherwise, I may want to type something, it happens to match, but
+  ;; enter selects my match
+  ;; (This happens quite a bit in text mode)
+  (:keymaps 'company-active-map "RET" nil)
+
+  ;; also allow tab to complete selection
   ;; some people like the ycm mode where tab/backtab go forwards and backwards
   ;; TODO: need to intercept tab for completion when filling out
   ;; completed function parameters
