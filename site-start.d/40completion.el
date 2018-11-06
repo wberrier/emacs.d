@@ -6,6 +6,24 @@
   (xref-prompt-for-identifier (quote (not xref-find-definitions xref-find-definitions-other-window xref-find-definitions-other-frame xref-find-references)))
   )
 
+(defun compare--underscore-last (x y)
+  (cond
+   ((and (string-prefix-p "_" x)
+         (not (string-prefix-p "_" y)))
+    nil)
+   ((and (string-prefix-p "_" y)
+         (not (string-prefix-p "_" x)))
+    t)
+   (t (string-lessp x y))))
+
+(defun company-transform-underscore-last (candidates)
+  "Put stuff starting with underscore last completion list
+ ordering.  Helpful for c++ and python.
+
+ See `company-transformers'."
+  (seq-sort-by 'company-strip-prefix 'compare--underscore-last
+               candidates))
+
 (use-package company
   :init
   (add-hook 'after-init-hook 'global-company-mode)
@@ -20,8 +38,10 @@
   ;; This seems to help with irony, but not with rtags
   (company-idle-delay .1)
 
-  ;; Probably don't need to set this since can C-SPC to complete manually
-  ;;(company-minimum-prefix-length 1)
+  ;; Put underscore last in the list
+  ;; https://emacs.stackexchange.com/questions/12360/how-to-make-private-python-methods-the-last-company-mode-choices
+  ;; TODO: only do based on language?
+  (company-transformers (quote (company-transform-underscore-last)))
 
   ;; be able to wrap completion list
   (company-selection-wrap-around t)
@@ -41,11 +61,6 @@
   ;; Typically package loading is deferred if bindings are specified
   ;; this forces it to load
   :demand
-  )
-
-(use-package company-statistics
-  :init
-  (company-statistics-mode)
   )
 
 ;; custom yasnippet backend from
