@@ -26,14 +26,20 @@ function lsp_cpp () {
     pushd ~/wa/git
 
     if [ ! -e cquery ] ; then
-        git clone --recurse-submodules https://github.com/cquery-project/cquery.git
+        git clone https://github.com/cquery-project/cquery.git
     else
         pushd cquery
         git pull
-        git submodule sync
-        git submodule update --init --recursive
         popd
     fi
+
+    pushd cquery
+    # Temp fix for race condition
+    git checkout dcc8eb2
+
+    git submodule sync
+    git submodule update --init --recursive
+    popd
 
     mkdir -p cquery/build
 
