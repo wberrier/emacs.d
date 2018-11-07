@@ -34,8 +34,8 @@ function lsp_cpp () {
     fi
 
     pushd cquery
-    # Temp fix for race condition
-    git checkout dcc8eb2
+    # Only use the latest tag
+    git checkout $(git tag -l | sort | tail -n1)
 
     git submodule sync
     git submodule update --init --recursive
