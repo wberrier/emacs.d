@@ -23,6 +23,8 @@
 ;; Whitespace settings
 ;; Highlight trailing whitespace
 (setq-default show-trailing-whitespace t)
+;; TODO: check out ws-butler, looks to trim whitespace only for stuff
+;; you've changed
 
 (setq linum-format "%4d ")
 

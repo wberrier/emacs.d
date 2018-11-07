@@ -64,6 +64,8 @@ function lsp_python () {
     pip install --user 'python-language-server[all]'
     # also install debug server
     pip install --user 'ptvsd>=4.1.1a11'
+    # some backends for flymake
+    pip install --user flake8
 }
 
 # Go

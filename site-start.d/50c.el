@@ -107,6 +107,8 @@
 ;; gdb settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; TODO: check out "realgud" ?
+
 (use-package gud
   :ensure nil
   :init
