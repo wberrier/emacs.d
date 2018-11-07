@@ -21,10 +21,6 @@
   (cquery-xref-find-custom "$cquery/vars")
   )
 
-;; TODO: where to put these?
-(use-package projectile)
-(use-package ripgrep)
-
 (defun my-projectile-ripgrep-regexp ()
   (interactive)
   (setq current-prefix-arg t) ;; not sure this is accurate, but it works
