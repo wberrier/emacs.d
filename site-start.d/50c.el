@@ -14,6 +14,8 @@
 ;; the only things I modified in vim were to push back
 ;; "public/private" and case labels an indentation level
 
+;; TODO: look into cstyle/clangformat
+
 (defconst my-c-style
   '((c-tab-always-indent        . t)
     (c-comment-only-line-offset . 0) ; don't indent comment only lines
