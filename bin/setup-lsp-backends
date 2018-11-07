@@ -29,7 +29,7 @@ function lsp_cpp () {
         git clone https://github.com/cquery-project/cquery.git
     else
         pushd cquery
-        git pull
+        git fetch -p
         popd
     fi
 
