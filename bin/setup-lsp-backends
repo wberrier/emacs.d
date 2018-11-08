@@ -47,6 +47,7 @@ function lsp_cpp () {
 
     if [ ! -e CMakeCache.txt ] ; then
         # TODO: need to make sure it's using a newer toolchain...
+        # TODO: consider using ninja?
         $(find_cmake3) -D CMAKE_INSTALL_PREFIX=$LOCAL_INSTALL_DIR -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ..
     fi
 
@@ -65,7 +66,7 @@ function lsp_python () {
     # also install debug server
     pip install --user 'ptvsd>=4.1.1a11'
     # some backends for flymake
-    pip install --user flake8
+    pip install --user flake8 pylint
 }
 
 # Go
