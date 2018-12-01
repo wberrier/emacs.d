@@ -61,12 +61,19 @@ function lsp_cpp () {
 
 # python
 function lsp_python () {
-    # TODO: certificates
-    pip install --user 'python-language-server[all]'
-    # also install debug server
-    pip install --user 'ptvsd>=4.1.1a11'
-    # some backends for flymake
-    pip install --user flake8 pylint
+
+    # Install for both python 2 and 3
+    for p in pip pip3 ; do
+        # TODO: certificates
+        $p install --user 'python-language-server[all]'
+        # also install debug server
+        $p install --user 'ptvsd>=4.1.1a11'
+        # some backends for flycheck
+        $p install --user flake8 pylint
+    done
+
+    # python 3 only
+    pip3 install --user mypy pyls-mypy
 }
 
 # Go
