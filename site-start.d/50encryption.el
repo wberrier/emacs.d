@@ -20,7 +20,8 @@
 ;; -> just use gpg2 formats
 
 ;; With newer versions of emacs and gpg, you can set the pin entry
-;; mode to 'loopback' when customizing the settings
+;; give this another try
+(setf epa-pinentry-mode 'loopback)
 ;; until then, it seems to work best with no settings using gpg2
 
 ;; TODO: how to fix this on ubuntu
