@@ -21,6 +21,7 @@
 
 (use-package prog-mode
   :ensure nil
+  :after (flycheck)
   :init
   (add-hook 'prog-mode-hook 'my-prog-mode-stuff)
 )
