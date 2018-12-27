@@ -12,6 +12,8 @@
 (use-package epa
   :ensure nil
   :custom
+  ;; NOTE: this probably requires emacs 25.1
+  ;; seems to default to older pinentry otherwise
   (epa-pinentry-mode 'loopback)
 )
 
