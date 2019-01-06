@@ -18,10 +18,14 @@ if [ -n "$EMACS_FLATPAK" ] ; then
 
 	# Works, no client mode :(
 	command="flatpak run org.gnu.emacs"
-	options="-nw"
 else
 	command="emacsclient"
-	options="--alternate-editor= --create-frame -nw"
+	options="--alternate-editor= --create-frame"
+
+fi
+
+if [ "$EMACS_CLI" = "1" ] ; then
+	options="$options -nw"
 fi
 
 exec $command $options "$@"
