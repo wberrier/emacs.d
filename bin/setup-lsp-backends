@@ -45,11 +45,9 @@ function lsp_cpp () {
 
     pushd cquery/build
 
-    if [ ! -e CMakeCache.txt ] ; then
-        # TODO: need to make sure it's using a newer toolchain...
-        # TODO: consider using ninja?
-        $(find_cmake3) -D CMAKE_INSTALL_PREFIX=$LOCAL_INSTALL_DIR -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-    fi
+    # TODO: need to make sure it's using a newer toolchain...
+    # TODO: consider using ninja?
+    $(find_cmake3) -D CMAKE_INSTALL_PREFIX=$LOCAL_INSTALL_DIR -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ..
 
     make
     make install
