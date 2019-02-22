@@ -86,7 +86,8 @@
 
 	;; enable on demand since this disables all other checkers
 	;; NOTE: this also enables for java (since it's derived of c-mode)
-	(lsp-ui-flycheck-enable 1)
+	;; TODO: how to enable this?
+	;;(lsp-ui-flycheck-enable 1)
 
 	)
     )
@@ -141,24 +142,15 @@
 ;; cquery settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun cquery//enable ()
-  (condition-case nil
-      (lsp-cquery-enable)
-    (user-error nil)
-	)
-  )
-
 (use-package cquery
-  :commands lsp-cquery-enable
   :init
   ;; Enable lsp for all c/c++ modes
-  (add-hook 'c-mode-hook #'cquery//enable)
-  (add-hook 'c++-mode-hook #'cquery//enable)
-
-  ;; TODO: how to make this a custom variable?
-  (setq cquery-executable (format "%s/bin/cquery" local-install-dir))
+  (add-hook 'c-mode-hook #'lsp)
+  (add-hook 'c++-mode-hook #'lsp)
 
   :custom
+
+  (cquery-executable (format "%s/bin/cquery" local-install-dir))
 
   ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
   ;; Partially evaluate via backquote and comma.  (YUCK!)

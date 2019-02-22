@@ -1,6 +1,7 @@
 ;; Enable lsp-ui
 
 (use-package lsp-mode
+  :commands lsp
   :init
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
   :custom
@@ -25,6 +26,7 @@
   )
 
 (use-package lsp-ui
+  :commands lsp-ui-mode
   :init
   ;; Don't enable all of lsp-ui-mode's features, just enable as needed
   ;; (really only using flycheck)

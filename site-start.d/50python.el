@@ -9,14 +9,10 @@
   :ensure nil
   :init
   (add-hook 'python-mode-hook #'disable-eldoc)
+  (add-hook 'python-mode-hook #'lsp)
   :custom
   ;; Not sure how to change this dynamically, so at least know what to change
   (python-shell-interpreter "python3")
-  )
-
-(use-package lsp-python
-  :after (lsp-mode)
-  :init (add-hook 'python-mode-hook #'lsp-python-enable)
   :config
   (require 'dap-python)
   ;; add lsp-ui-flycheck to the end of the list of available checkers

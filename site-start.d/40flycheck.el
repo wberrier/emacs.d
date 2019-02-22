@@ -1,5 +1,6 @@
 
 (use-package flycheck
+  :commands flycheck-add-next-checker
   :init
   ;; Run pylint after running flake8
   (flycheck-add-next-checker 'python-flake8 'python-pylint)
