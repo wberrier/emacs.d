@@ -6,10 +6,10 @@
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
   :custom
   ;; Enable symbol information
-  (lsp-enable-eldoc t)
+  ;;(lsp-enable-eldoc t)
 
   ;; Only show symbol "language" string
-  (lsp-eldoc-render-all nil)
+  ;;(lsp-eldoc-render-all nil)
 
   ;; Don't determine indentation.  Leave that up to the editor (dtrt-indent-mode)
   ;; Sometimes I would get weird indentation.  Maybe this is the reason... ?
