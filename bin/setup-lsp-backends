@@ -76,6 +76,10 @@ function lsp_python () {
 
 # Go
 function lsp_go () {
+    if is_redhat ; then
+        sudo yum install -y golang-bin
+    # TODO: ubuntu
+    fi
     go get -u github.com/sourcegraph/go-langserver
 }
 
