@@ -23,3 +23,5 @@ eclipse\.jdt\.ls
 speed-type
 
 *.swp
+
+\.mypy_cache
