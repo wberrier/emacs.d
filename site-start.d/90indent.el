@@ -13,8 +13,10 @@
   :diminish dtrt-indent-mode
   )
 
-(use-package smart-tabs-mode
-  :config
-  ;; enable smart tabs for various languages
-  (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
-  )
+;; TODO: this forces tabs in whitespace mode, need to
+;; figure out how to enable only after dtrt detects tabs
+;; (use-package smart-tabs-mode
+;;   :config
+;;   ;; enable smart tabs for various languages
+;;   (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
+;;   )
