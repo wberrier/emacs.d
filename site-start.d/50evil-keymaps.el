@@ -138,6 +138,12 @@
 
   ;; lsp-ui-imenu
   "i" 'lsp-ui-imenu
+
+  ;; set "prefix argument"
+  ;; by default this is ctrl-u in emacs.  Since using evil, I unmapped
+  ;; that so that scroll up worked.  Call this before calling functions
+  ;; to get that functionality
+  "u" 'universal-argument
   )
 
 ;; leader keys that are useful in visual mode
