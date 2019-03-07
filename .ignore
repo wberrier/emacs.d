@@ -1,3 +1,7 @@
 # ignore for rg and ag
 
 elpa*
+
+manual-packages
+speed-type
+
