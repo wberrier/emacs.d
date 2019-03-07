@@ -1,9 +1,4 @@
 
-(defun custom-find-derived ()
-  (interactive)
-  (cquery-xref-find-custom "$cquery/derived")
-  )
-
 (defun custom-find-callers ()
   (interactive)
   (cquery-xref-find-custom "$cquery/callers")
@@ -39,7 +34,6 @@
 
   "\C-\\ s" 'xref-find-references
   ;; TODO: how to define these inline?  Lambda?
-  "\C-\\ v" 'custom-find-derived
   "\C-\\ c" 'custom-find-callers
 
   ;; Show full documentation
