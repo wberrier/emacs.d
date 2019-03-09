@@ -83,12 +83,6 @@
 
 	;; compile command for this mode
 	(setq compile-command "~/.emacs.d/bin/emacs_build")
-
-	;; enable on demand since this disables all other checkers
-	;; NOTE: this also enables for java (since it's derived of c-mode)
-	;; TODO: how to enable this?
-	;;(lsp-ui-flycheck-enable 1)
-
 	)
     )
 

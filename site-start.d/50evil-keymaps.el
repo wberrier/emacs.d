@@ -136,9 +136,6 @@
   "n" 'neotree-project-dir
   "f" 'switch-to-buffer
 
-  ;; lsp-ui-imenu
-  "i" 'lsp-ui-imenu
-
   ;; set "prefix argument"
   ;; by default this is ctrl-u in emacs.  Since using evil, I unmapped
   ;; that so that scroll up worked.  Call this before calling functions
@@ -182,12 +179,11 @@
                           diff-mode
                           dired
                           ediff
-                          flycheck
+                          flymake
                           grep
                           ivy
                           kotlin
                           log-view
-                          lsp-ui-imenu
                           neotree
                           package-menu
                           vc-annotate

@@ -2,5 +2,4 @@
 ;; Kotlin
 (use-package kotlin-mode)
 
-;; TODO: replace this with lsp
-;; (use-package flycheck-kotlin)
+;; TODO: is there a kotlin language server?
