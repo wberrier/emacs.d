@@ -1,0 +1,12 @@
+[
+{
+  "directory": "dir1",
+  "command": "command1",
+  "file": "file1"
+},
+{
+  "directory": "dir2",
+  "command": "command2",
+  "file": "file2"
+}
+]

@@ -1,0 +1,10 @@
+{
+	"cquery": {
+		"working_dir": ".",
+
+		"compile_commands_files": [
+			"compile_commands.json",
+			"compile_commands2.json"
+		]
+	}
+}
