@@ -20,6 +20,7 @@
 
 (use-package yaml-mode
   :mode "\\.yml$"
+  :mode "\\.bst$"
   )
 
 ;; TODO: seems this may still have some issues?
