@@ -133,7 +133,7 @@
   ;; TODO: need to figure out how to capture output and insert into buffer
   ;;  or, just do the vim command?  Not sure how that works...
   ;;"g" 'generate-password
-  "n" 'neotree-project-dir
+  "n" 'neotree-toggle
   "f" 'switch-to-buffer
 
   ;; set "prefix argument"
