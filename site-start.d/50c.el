@@ -136,11 +136,18 @@
 ;; cquery settings
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun cquery//enable ()
+  (condition-case nil
+      (lsp)
+    (user-error nil)))
+
 (use-package cquery
+  ;; TODO: this is suggested by cquery, but doing so uses clangd instead cquery ??
+  ;;:commands lsp
   :init
   ;; Enable lsp for all c/c++ modes
-  (add-hook 'c-mode-hook #'lsp)
-  (add-hook 'c++-mode-hook #'lsp)
+  (add-hook 'c-mode-hook #'cquery//enable)
+  (add-hook 'c++-mode-hook #'cquery//enable)
 
   :custom
 
