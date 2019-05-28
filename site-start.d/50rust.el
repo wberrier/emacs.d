@@ -4,3 +4,8 @@
   :init
   (add-hook 'rust-mode-hook #'lsp)
   )
+
+(use-package cargo
+  :init
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  )
