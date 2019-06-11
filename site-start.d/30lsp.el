@@ -17,6 +17,14 @@
 
   ;; Show lsp messages in *Messages*
   ;;(lsp-print-io t)
+
+  ;; disable symbol highlighting (in attempt to not interrupt typing)
+  ;; -> nope, didn't help
+  ;;(lsp-enable-symbol-highlighting nil)
+
+  ;; Don't highlight current symbol, just the other references
+  ;;(lsp-symbol-highlighting-skip-current t)
+
   )
 
 (use-package imenu
