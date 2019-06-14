@@ -186,6 +186,7 @@
                           log-view
                           neotree
                           package-menu
+                          profiler
                           vc-annotate
                           xref
                           ))
