@@ -166,6 +166,23 @@
   ;; TODO: others?  (Reference evil-collection-ag)
   )
 
+;; Not sure where this would be submitted upstream since...
+(general-define-key
+  :states 'normal
+  :keymaps 'diff-mode-map
+
+  "s" 'diffstat
+  )
+
+;; TODO: submit this upstream
+(general-define-key
+  :states 'normal
+  :keymaps 'diffstat-mode-map
+
+  "<RET>" 'diffstat-goto-diff
+  "q" 'diffstat-quit
+  )
+
 (use-package evil-collection
   :after evil
   :config

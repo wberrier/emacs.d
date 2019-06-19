@@ -31,3 +31,9 @@
 (use-package mercurial
   :ensure nil ;; manual package, don't attempt to download
   )
+
+;; diff stat mode
+(use-package diffstat
+  :ensure nil ;; manual package
+  ;; add keybinding
+)
