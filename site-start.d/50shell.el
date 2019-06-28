@@ -5,6 +5,11 @@
   :mode ("bash_profile" "bashrc")
   )
 
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :init
+  (add-hook 'sh-mode-hook 'flymake-shellcheck-load))
+
 ;; make compilation output color nice
 (use-package xterm-color
   :init
