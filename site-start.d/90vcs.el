@@ -10,6 +10,18 @@
   ;;(vc-handled-backends ())
   )
 
+;; 26.2 adds some background colors to annotate, making it really hard
+;; to see when running in a terminal with the "ample" color theme
+;; disable it
+;; TODO: maybe it looks better in the gui version?  Not sure...
+;; also, it seems off by default?  Not sure how it gets enabled,
+;; just disable here...
+(use-package vc-annotate
+  :ensure nil
+  :custom
+  (vc-annotate-background-mode nil)
+ )
+
 ;; Basic syntax highlighting modes
 ;; (use backend agnostic vc for normal stuff)
 
