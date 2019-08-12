@@ -102,3 +102,6 @@
 ;  :mode "/tmp/evo*"
 ;  )
 
+(use-package mutt-mode
+  :mode "*muttrc*"
+  )
