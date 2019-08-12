@@ -2,8 +2,7 @@
 ;; LSP will initiate flycheck, but not all modes...
 (use-package flymake-mode
   :ensure nil
-  :init
-  (add-hook 'prog-mode-hook 'flymake-mode))
+  :hook prog-mode)
 
 ;; show flymake errors in popup/minibuffer
 (use-package flymake-diagnostic-at-point
