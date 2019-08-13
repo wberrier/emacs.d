@@ -103,5 +103,5 @@
 ;  )
 
 (use-package mutt-mode
-  :mode "*muttrc*"
+  :mode "muttrc"
   )
