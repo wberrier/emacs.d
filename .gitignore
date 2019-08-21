@@ -1,0 +1,26 @@
+
+bookmarks
+saved-places
+auto-save-list
+
+manual-packages
+elpa*
+
+smex-items
+
+recentf
+
+projectile-bookmarks.eld
+projectile.cache
+*.pyc
+
+# java lsp
+workspace
+eclipse.jdt.ls
+
+# text snippets
+speed-type
+
+*.swp
+
+.mypy_cache
