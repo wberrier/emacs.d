@@ -6,7 +6,7 @@ min_required_version="24.4"
 # Just assume that if we have the flatpak version installed, it's recent enough
 # Running the emacs query command below from bash_profile/rc hangs for a long time
 # on ubuntu... (Not sure what's up with that)
-if ~/wa/hg/emacs.d/bin/flatpak-emacs-installed ; then
+if ~/.emacs.d/bin/flatpak-emacs-installed ; then
 	exit 0
 else
 
