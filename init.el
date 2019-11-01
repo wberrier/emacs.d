@@ -1,6 +1,10 @@
 ;; Set a default variable for env variable
 ;; Do Here so that manual-packages can also use this if needs be
 
+;; Sometimes the archive signatures are broken
+;; Can uncomment this in a pinch
+;;(setq package-check-signature nil)
+
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
