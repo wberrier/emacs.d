@@ -60,13 +60,12 @@ function lsp_cpp () {
 # python
 function lsp_python () {
 
-    # Install for both python 2 and 3
-    for p in pip pip3 ; do
-        # TODO: certificates
-        $p install --user 'python-language-server[all]'
-        # also install debug server
-        $p install --user 'ptvsd>=4.1.1a11'
-    done
+    # TODO: certificates
+
+    # Language server
+    pip3 install --user 'python-language-server[all]'
+    # also install debug server
+    pip3 install --user 'ptvsd>=4.1.1a11'
 
     # python 3 only
     pip3 install --user mypy pyls-mypy
