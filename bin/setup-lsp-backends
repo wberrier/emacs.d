@@ -114,19 +114,16 @@ function install_npm () {
 
 # Javascript
 function lsp_js () {
-    install_npm
     sudo npm i -g javascript-typescript-langserver
 }
 
 # HTML
 function lsp_html () {
-    install_npm
     sudo npm i -g vscode-html-languageserver-bin
 }
 
 # Bash
 function lsp_bash () {
-    install_npm
     sudo npm i -g bash-language-server
 }
 
@@ -136,6 +133,9 @@ lsp_python
 lsp_go
 lsp_java
 lsp_rust
+
+install_npm
+
 lsp_js
 lsp_html
 lsp_bash
