@@ -37,3 +37,8 @@
 (use-package qmake-mode
   :ensure nil ;; manual-package, don't attempt to download
   )
+
+(use-package dts-mode
+  :mode "\\.dts$"
+  :mode "\\.dtsi$"
+  )
