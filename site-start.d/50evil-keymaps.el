@@ -104,9 +104,15 @@
   (gdb "~/.emacs.d/bin/emacs_debug")
   )
 
+;; Can add other formatting functions for various modes
+(defun format-code ()
+  (interactive)
+  (if (equal major-mode 'rust-mode)
+      (rust-format-buffer)))
+
 (my-leader-def
   :keymaps 'normal
-  ;; "build release/cross/debug"
+  ;; "build: release/cross/debug"
   "br" 'bookmark-then-compile
   "bc" 'bookmark-then-compile-cross
   "bd" 'bookmark-then-compile-debug
@@ -115,6 +121,9 @@
   "r"  'jump-to-compile-bookmark
   ;; run debugger
   "d"  'emacs-debug
+
+  ;; format code "code: format"
+  "cf" 'format-code
   )
 
 ;; make sure this is set up when going into org-mode
@@ -153,7 +162,7 @@
 
   ;; comment stuff out
   ;; NOTE: comment-line can act as a toggle (opposed to comment-region)
-  "c" 'comment-line
+  "cc" 'comment-line ;; "code: comment"
   )
 
 ;; TODO: submit this upstream to evil-collection
