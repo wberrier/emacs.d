@@ -1,0 +1,144 @@
+#!/usr/bin/env python3
+
+# Do some project level things
+# TODO: make this into an emacs package instead
+
+import os
+import os.path
+import sys
+
+# TODO: yuck, not sure I like how this turned out just yet...
+
+# This is processed in order of precedence
+# TODO: consider running all of the builds? Not sure that makes sense...
+# Default tool table
+# TODO: make overwritable?
+TOOL_TABLE = {
+    'rust': {
+        'file': 'Cargo.toml',
+        'build': {
+            'debug':   'cargo build --all',
+            'release': 'cargo build --all --release',
+            'cross':   'cargo build --all --target=aarch64-unknown-linux-gnu',
+            },
+        'debug': 'cargo debug', # TODO: cargo-debug
+        'test': 'cargo test',
+    },
+    'clip': {
+        'file': '.clip.json',
+        'build': {
+            'debug':   '~/wa/git/clip/bin/clip build debug',
+            'release': '~/wa/git/clip/bin/clip build release',
+            'cross':   '~/wa/git/clip/bin/clip build cross',
+            },
+        'debug': '~/wa/git/clip/bin/clip debug',
+        'test': '~/wa/git/clip/bin/clip build test',
+    },
+    # TODO: more?
+}
+
+
+def get_tool_dir(target_file):
+    """Get the directory that has the config file"""
+
+    curdir = os.getcwd()
+    while curdir != "/":
+
+        test_file = curdir + "/" + target_file
+        if os.path.exists(test_file):
+            return curdir
+
+        curdir = os.path.dirname(curdir)
+
+    # Didn't find the config dir...
+    return ""
+
+
+def get_tool_info():
+    for k, v in TOOL_TABLE.items():
+        project_dir = get_tool_dir(v['file'])
+
+        if len(project_dir) > 0:
+            return (project_dir, k, v)
+    return ('', '', '')
+
+
+def subcommand_build(subcommand_args):
+
+    # Default to release build
+    build_type = "release"
+    try:
+        build_type = subcommand_args[0]
+    except IndexError:
+        pass
+
+    (project_dir, tool, info) = get_tool_info()
+
+    if len(project_dir) > 0:
+        print("Project dir: {}".format(project_dir))
+
+        # Print out directory for emacs benefit (compilation-mode)
+        # (it's expecting 'make' to be used, which prints out in this format)
+        print("Entering directory `%s'" % project_dir)
+
+        os.chdir(project_dir)
+
+        command = os.path.expanduser(info['build'][build_type])
+        print("Command: " + command)
+        return os.WEXITSTATUS(os.system(command))
+
+    else:
+        print("Unable to find suitable build tool for directory: {}".format(os.getcwd()))
+        sys.exit(1)
+
+
+def subcommand_debug(subcommand_args):
+
+    (project_dir, tool, info) = get_tool_info()
+
+    if len(project_dir) > 0:
+        print("Project dir: {}".format(project_dir))
+
+        os.chdir(project_dir)
+
+        command = os.path.expanduser(info['debug'])
+        print("Command: " + command)
+        return os.WEXITSTATUS(os.system(command))
+
+    else:
+        print("Unable to find suitable debug tool for directory: {}".format(os.getcwd()))
+        sys.exit(1)
+
+
+def usage():
+    usage_text = """
+./clip <sub command> <sub command arguments>
+
+ Sub commands:
+
+  build [target]
+  debug
+"""
+    print(usage_text)
+
+
+def main():
+
+    try:
+        subcommand = sys.argv[1]
+        subcommand_args = sys.argv[2:]
+    except IndexError:
+        usage()
+        sys.exit(1)
+
+    if 'build' == subcommand:
+        subcommand_build(subcommand_args)
+    elif 'debug' == subcommand:
+        subcommand_debug(subcommand_args)
+    else:
+        usage()
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

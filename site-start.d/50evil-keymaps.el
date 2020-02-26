@@ -73,25 +73,25 @@
 (defun bookmark-then-compile ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "~/.emacs.d/bin/emacs_build")
+  (compile "~/.emacs.d/bin/emacsproject build")
   )
 
 (defun bookmark-then-compile-cross ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "~/.emacs.d/bin/emacs_build cross")
+  (compile "~/.emacs.d/bin/emacsproject build cross")
   )
 
 (defun bookmark-then-compile-debug ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "~/.emacs.d/bin/emacs_build debug")
+  (compile "~/.emacs.d/bin/emacsproject build debug")
   )
 
 (defun bookmark-then-run-test ()
   (interactive)
   (bookmark-set "compile-bookmark") ; set a bookmark to easily return to
-  (compile "~/.emacs.d/bin/emacs_build test")
+  (compile "~/.emacs.d/bin/emacsproject test")
   )
 
 (defun jump-to-compile-bookmark ()
@@ -101,7 +101,7 @@
 
 (defun emacs-debug ()
   (interactive)
-  (gdb "~/.emacs.d/bin/emacs_debug")
+  (gdb "~/.emacs.d/bin/emacsproject debug")
   )
 
 ;; Can add other formatting functions for various modes

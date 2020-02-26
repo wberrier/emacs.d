@@ -82,7 +82,7 @@
 	;;(define-key c-mode-base-map "\C-m" 'c-context-line-break)
 
 	;; compile command for this mode
-	(setq compile-command "~/.emacs.d/bin/emacs_build")
+	(setq compile-command "~/.emacs.d/bin/emacsproject build")
 	)
     )
 
@@ -159,8 +159,8 @@
 
   (cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
 
-  (cquery-extra-init-params '(:compilationDatabaseCommand "/home/wberrier/.emacs.d/bin/generate-compile-commands.py"))
-  (cquery-project-root-matchers '(".emacs_project.json"))
+  (cquery-extra-init-params '(:compilationDatabaseCommand "/home/wberrier/.emacs.d/bin/generate-compile-commands"))
+  (cquery-project-root-matchers '(".clip.json"))
   )
 ;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
 
