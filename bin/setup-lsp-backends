@@ -96,13 +96,25 @@ function lsp_java () {
 
 # Rust
 function lsp_rust () {
+    source $HOME/.cargo/env
     if is_redhat ; then
         sudo yum install -y rls-preview rust-analysis rust-src cargo
     else
         curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-        source $HOME/.cargo/env
         rustup component add rls-preview rust-analysis rust-src
     fi
+
+    pushd ~/wa/git
+        if [ ! -e rust-analyzer ] ; then
+            git clone https://github.com/rust-analyzer/rust-analyzer.git
+        fi
+
+        pushd rust-analyzer
+            git pull
+            cargo xtask install --server
+        popd
+
+    popd
 }
 
 function install_npm () {
