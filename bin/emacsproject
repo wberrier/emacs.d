@@ -97,12 +97,12 @@ def subcommand_debug(subcommand_args):
     (project_dir, tool, info) = get_tool_info()
 
     if len(project_dir) > 0:
-        print("Project dir: {}".format(project_dir))
+        # print("Project dir: {}".format(project_dir))
 
         os.chdir(project_dir)
 
         command = os.path.expanduser(info['debug'])
-        print("Command: " + command)
+        # print("Command: " + command)
         return os.WEXITSTATUS(os.system(command))
 
     else:
