@@ -110,6 +110,24 @@ def subcommand_debug(subcommand_args):
         sys.exit(1)
 
 
+def subcommand_test(subcommand_args):
+
+    (project_dir, tool, info) = get_tool_info()
+
+    if len(project_dir) > 0:
+        # print("Project dir: {}".format(project_dir))
+
+        os.chdir(project_dir)
+
+        command = os.path.expanduser(info['test'])
+        # print("Command: " + command)
+        return os.WEXITSTATUS(os.system(command))
+
+    else:
+        print("Unable to find suitable test tool for directory: {}".format(os.getcwd()))
+        sys.exit(1)
+
+
 def usage():
     usage_text = """
 ./clip <sub command> <sub command arguments>
@@ -135,6 +153,8 @@ def main():
         subcommand_build(subcommand_args)
     elif 'debug' == subcommand:
         subcommand_debug(subcommand_args)
+    elif 'test' == subcommand:
+        subcommand_test(subcommand_args)
     else:
         usage()
         sys.exit(1)
