@@ -117,6 +117,24 @@ function lsp_rust () {
     popd
 }
 
+# Lua
+function lsp_lua () {
+    if is_redhat ; then
+        sudo yum install -y luarocks lua-devel
+    fi
+
+    # Install as user or root?
+
+    luarocks install --local --server=http://luarocks.org/dev lua-lsp
+
+    # Install some other helpers
+    luarocks install --local luacheck
+
+    # These depend on the version of lua, just install both
+    luarocks install --local Formatter # 5.1 and 5.4 only
+    luarocks install --local lcf
+}
+
 function install_npm () {
 
     if is_redhat ; then
@@ -145,6 +163,7 @@ lsp_python
 lsp_go
 lsp_java
 lsp_rust
+lsp_lua
 
 install_npm
 
