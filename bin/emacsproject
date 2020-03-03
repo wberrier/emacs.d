@@ -13,6 +13,8 @@ import sys
 # TODO: consider running all of the builds? Not sure that makes sense...
 # Default tool table
 # TODO: make overwritable?
+# Could represent this table in lisp (list with :keyword items)
+# got the idea from configuration of dap-mode templates
 TOOL_TABLE = {
     'rust': {
         'file': 'Cargo.toml',
