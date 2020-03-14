@@ -42,3 +42,7 @@
   :mode "\\.dts$"
   :mode "\\.dtsi$"
   )
+
+(use-package bitbake
+  :mode ("\\.bb$" . bitbake-mode)
+  )
