@@ -45,4 +45,5 @@
 
 (use-package bitbake
   :mode ("\\.bb$" . bitbake-mode)
+  :mode ("\\.bbclass$" . bitbake-mode)
   )
