@@ -110,6 +110,8 @@ function lsp_rust () {
         fi
 
         pushd rust-analyzer
+            # Grab the latest release
+            git checkout release
             git pull
             cargo xtask install --server
         popd
