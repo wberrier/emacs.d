@@ -25,6 +25,9 @@
   ;; Don't highlight current symbol, just the other references
   ;;(lsp-symbol-highlighting-skip-current t)
 
+  ;; this enabled takes a long time on big projects, not sure it's necessary?
+  (lsp-enable-file-watchers nil)
+
   )
 
 (use-package imenu
