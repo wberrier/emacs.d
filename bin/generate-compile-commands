@@ -1,5 +1,0 @@
-#!/bin/sh
-
-# cquery doesn't support multiple args, must provide a script to call clip :(
-
-~/wa/git/clip/bin/clip generate-compile-db "$@"

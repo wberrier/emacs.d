@@ -1,21 +1,4 @@
 
-(defun custom-find-callers ()
-  (interactive)
-  (cquery-xref-find-custom "$cquery/callers")
-  )
-
-;; how are these used?
-
-(defun custom-find-base ()
-  (interactive)
-  (cquery-xref-find-custom "$cquery/base")
-  )
-
-(defun custom-find-vars ()
-  (interactive)
-  (cquery-xref-find-custom "$cquery/vars")
-  )
-
 (defun my-projectile-ripgrep-regexp ()
   (interactive)
   (setq current-prefix-arg t) ;; not sure this is accurate, but it works
@@ -33,8 +16,6 @@
   ;;"\C-t" 'pop-tag-mark
 
   "\C-\\ s" 'xref-find-references
-  ;; TODO: how to define these inline?  Lambda?
-  "\C-\\ c" 'custom-find-callers
 
   ;; Show full documentation
   "\C-\\ d" 'lsp-describe-thing-at-point

@@ -15,46 +15,14 @@ function find_cmake3 () {
     fi
 }
 
-# c++ (cquery)
+# c++
 function lsp_cpp () {
 
     if is_redhat ; then
-        # el7 has both cmake and cmake3, cquery requires cmake3
-        sudo yum install -y cmake cmake3
-    fi
-
-    pushd ~/wa/git
-
-    if [ ! -e cquery ] ; then
-        git clone https://github.com/cquery-project/cquery.git
+        sudo yum install -y clang-tools-extra
     else
-        pushd cquery
-        git fetch --prune --tags
-        popd
+        echo "TODO: install clangd"
     fi
-
-    pushd cquery
-    # Only use the latest tag
-    git checkout $(git tag -l | sort | tail -n1)
-
-    git submodule sync
-    git submodule update --init --recursive
-    popd
-
-    mkdir -p cquery/build
-
-    pushd cquery/build
-
-    # TODO: need to make sure it's using a newer toolchain...
-    # TODO: consider using ninja?
-    $(find_cmake3) -D CMAKE_INSTALL_PREFIX=$LOCAL_INSTALL_DIR -D CMAKE_EXPORT_COMPILE_COMMANDS=ON ..
-
-    make
-    make install
-
-    popd
-
-    popd
 }
 
 # python

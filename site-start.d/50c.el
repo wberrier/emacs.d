@@ -131,36 +131,3 @@
 
   (pop-up-windows nil)
   )
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; cquery settings
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun cquery//enable ()
-  (condition-case nil
-      (lsp)
-    (user-error nil)))
-
-(use-package cquery
-  ;; TODO: this is suggested by cquery, but doing so uses clangd instead cquery ??
-  ;;:commands lsp
-  :init
-  ;; Enable lsp for all c/c++ modes
-  (add-hook 'c-mode-hook #'cquery//enable)
-  (add-hook 'c++-mode-hook #'cquery//enable)
-
-  :custom
-
-  (cquery-executable (format "%s/bin/cquery" local-install-dir))
-
-  ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Backquote.html
-  ;; Partially evaluate via backquote and comma.  (YUCK!)
-  (cquery-extra-args `(,(format "--log-file=%s/.cq.log" (getenv "HOME"))))
-
-  (cquery-cache-dir (format "%s/.cquery_cached_index" (getenv "HOME")))
-
-  (cquery-extra-init-params '(:compilationDatabaseCommand "/home/wberrier/.emacs.d/bin/generate-compile-commands"))
-  (cquery-project-root-matchers '(".clip.json"))
-  )
-;; Also see lsp-project-whitelist lsp-project-blacklist cquery-root-matchers
-

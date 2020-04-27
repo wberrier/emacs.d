@@ -2,6 +2,11 @@
 
 (use-package lsp-mode
   :commands lsp
+  :hook (
+         (c-mode . lsp)
+         (c++-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration)
+         )
   :init
   (add-hook 'lsp-after-open-hook 'lsp-enable-imenu)
   :custom
@@ -27,6 +32,13 @@
 
   ;; this enabled takes a long time on big projects, not sure it's necessary?
   (lsp-enable-file-watchers nil)
+
+  ;; TODO: add some stuff to this
+  ;;(lsp-file-watch-ignored )
+
+  ;; use clangd wrapper to generate compile_commands.json through clip
+  (lsp-clients-clangd-executable (format "%s/wa/git/clip/bin/clip" (getenv "HOME")))
+  (lsp-clients-clangd-args '("start-clangd"))
 
   )
 
