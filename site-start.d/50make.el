@@ -4,4 +4,7 @@
   :init
   ;; Add some additional filenames
   :mode "make\\.inc$"
+  :mode "Kbuild"
+  ;; more inclusive than the default (ie: Makefile.blah)
+  :mode "Makefile"
   )

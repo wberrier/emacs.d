@@ -47,3 +47,8 @@
   :mode ("\\.bb$" . bitbake-mode)
   :mode ("\\.bbclass$" . bitbake-mode)
   )
+
+(use-package kconfig-mode
+  :mode ("Kconfig\\." . kconfig-mode)
+  :mode ("AmbaConfig" . kconfig-mode)
+  )
