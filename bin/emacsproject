@@ -19,9 +19,9 @@ TOOL_TABLE = {
     'rust': {
         'file': 'Cargo.toml',
         'build': {
-            'debug':   'cargo build --all',
-            'release': 'cargo build --all --release',
-            'cross':   'cargo build --all --target=aarch64-unknown-linux-gnu',
+            'debug':   'cargo build --workspace --all-targets',
+            'release': 'cargo build --workspace --all-targets --release',
+            'cross':   'cargo build --workspace --all-targets --target=aarch64-unknown-linux-gnu',
             },
         'debug': 'cargo debug', # TODO: cargo-debug
         'test': 'cargo test',
