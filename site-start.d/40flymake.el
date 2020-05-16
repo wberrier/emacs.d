@@ -12,4 +12,8 @@
   ;;(flymake-diagnostic-at-point-display-diagnostic-function 'flymake-diagnostic-at-point-display-minibuffer)
   :config
   (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)
+  :custom
+  ;; maybe this will make it so flymake isn't so slow?
+  ;; I really wish it would give up if x number of errors
+  (flymake-start-syntax-check-on-newline nil)
   )
