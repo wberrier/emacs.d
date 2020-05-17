@@ -40,3 +40,10 @@
   ;;(counsel-projectile-mode)
 
   )
+
+;; Use ivy for spelling corrections
+(use-package flyspell-correct
+  :after flyspell)
+
+(use-package flyspell-correct-ivy
+  :after flyspell-correct)

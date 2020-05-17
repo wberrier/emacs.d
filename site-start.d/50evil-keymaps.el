@@ -173,6 +173,15 @@
   "q" 'diffstat-quit
   )
 
+;; This overrides ispell binding...
+;; Not sure if there's a better way to do this?
+(general-define-key
+  :states 'normal
+  :keymaps 'flyspell-mode-map
+
+  "z=" 'flyspell-correct-wrapper
+  )
+
 (use-package evil-collection
   :after evil
   :config
