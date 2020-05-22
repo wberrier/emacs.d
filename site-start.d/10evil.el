@@ -41,6 +41,12 @@
   ;; Load evil by default
   (evil-mode 1)
 
+  ;; call ibuffer instesad of 'list-buffers
+  ;; originally tried getting evil-collection to work for
+  ;; buffer-menu-mode, but it wasn't working, and I'm not quite sure why
+  ;; just use ibuffer instead
+  (evil-ex-define-cmd "buffers" 'ibuffer)
+
   ;; doesn't seem to be necessary?
   ;;general:
   ;; Indent after pressing return (like vim)

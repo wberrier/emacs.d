@@ -110,6 +110,7 @@
 ;; make sure this is set up when going into org-mode
 ;; seems like a hack that shouldn't necessary, but it works
 ;; TODO: these not working with general?
+;; TODO: submit these to evil-collection?
 (general-define-key :states 'normal :keymaps 'org-mode-map "TAB" 'org-cycle)
 (general-define-key :states 'normal :keymaps 'markdown-mode-map "TAB" 'markdown-cycle)
 
@@ -188,25 +189,37 @@
   ;; Nice that I can pick and choose
   ;; I was setting a lot of bindings for several of these
   (evil-collection-init '(
+                          buff-menu
                           comint
+                          cmake-mode
                           company
                           compile
                           custom
                           diff-mode
                           dired
                           ediff
+                          elisp-mode
                           flymake
                           grep
+                          go-mode
+                          ibuffer
                           ivy
-                          kotlin
+                          js2-mode
+                          kotlin-mode
+                          lua-mode
                           log-view
+                          magit
                           neotree
                           package-menu
+                          process-menu
                           profiler
+                          python
+                          realgud
+                          ruby-mode
                           vc-annotate
                           xref
                           ))
-  ;; Others to consider: python, all?
+  ;; Others to consider: all?
   :custom
   ;; disable youcompleteme TAB/S-TAB functionality
   (evil-collection-company-use-tng nil)
