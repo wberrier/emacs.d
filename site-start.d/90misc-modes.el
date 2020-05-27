@@ -35,6 +35,7 @@
   )
 
 (use-package qmake-mode
+  :load-path "~/.emacs.d/manual-packages/qmake-mode"
   :ensure nil ;; manual-package, don't attempt to download
   )
 

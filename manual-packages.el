@@ -20,15 +20,11 @@
   (shell-command "git clone http://git.code.sf.net/p/post-mode/code ~/.emacs.d/manual-packages/post-mode")
   )
 
-;; Make post-mode available
-(add-to-list 'load-path "~/.emacs.d/manual-packages/post-mode")
-
 ;;qmake-mode
 (if (file-exists-p "~/.emacs.d/manual-packages/qmake-mode")
     nil
   (shell-command "git clone https://github.com/inlinechan/qmake-mode.git ~/.emacs.d/manual-packages/qmake-mode")
   )
-(add-to-list 'load-path "~/.emacs.d/manual-packages/qmake-mode")
 
 ;; mercural (mainly for commit mode)
 (if (file-exists-p "~/.emacs.d/manual-packages/mercurial")
@@ -36,7 +32,6 @@
   (make-directory "~/.emacs.d/manual-packages/mercurial")
   (shell-command "wget https://www.mercurial-scm.org/repo/hg/raw-file/default/contrib/mercurial.el -O ~/.emacs.d/manual-packages/mercurial/mercurial.el")
   )
-(add-to-list 'load-path "~/.emacs.d/manual-packages/mercurial")
 
 ;; diffstat mode
 (if (file-exists-p "~/.emacs.d/manual-packages/diffstat")
@@ -44,8 +39,6 @@
   (make-directory "~/.emacs.d/manual-packages/diffstat")
   (shell-command "wget http://www.emacswiki.org/emacs/download/diffstat.el -O ~/.emacs.d/manual-packages/diffstat/diffstat.el")
   )
-(add-to-list 'load-path "~/.emacs.d/manual-packages/diffstat")
-
 
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?

@@ -97,10 +97,11 @@
 
   )
 
-;(use-package post-mode
-;  :mode "tmp/mutt*\\|\\.article|\\.followup"
-;  :mode "/tmp/evo*"
-;  )
+;;(use-package post-mode
+;;  :load-path "~/.emacs.d/manual-packages/post-mode"
+;;  :mode "tmp/mutt*\\|\\.article|\\.followup"
+;;  :mode "/tmp/evo*"
+;;  )
 
 (use-package mutt-mode
   :mode "muttrc"

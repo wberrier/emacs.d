@@ -41,11 +41,13 @@
 
 ;; TODO: disable for now since this really slows things down when loading/saving files?
 (use-package mercurial
+  :load-path "~/.emacs.d/manual-packages/mercurial"
   :ensure nil ;; manual package, don't attempt to download
   )
 
 ;; diff stat mode
 (use-package diffstat
+  :load-path "~/.emacs.d/manual-packages/diffstat"
   :ensure nil ;; manual package
   ;; add keybinding
 )
