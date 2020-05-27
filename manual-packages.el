@@ -40,6 +40,12 @@
   (shell-command "wget http://www.emacswiki.org/emacs/download/diffstat.el -O ~/.emacs.d/manual-packages/diffstat/diffstat.el")
   )
 
+(if (file-exists-p "~/.emacs.d/manual-packages/vim-empty-lines-mode")
+    nil
+  (make-directory "~/.emacs.d/manual-packages/vim-empty-lines-mode")
+  (shell-command "git clone https://github.com/hchbaw/vim-empty-lines-mode ~/.emacs.d/manual-packages/vim-empty-lines-mode")
+  )
+
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?
 ;;git-modes ; not sure if this is necessary?

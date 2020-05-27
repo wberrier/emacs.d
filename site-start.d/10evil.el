@@ -69,6 +69,7 @@
 ;; apparently buggy though? We'll try it out...
 ;; NOTE: this supercedes "vi-tilde-fringe"
 (use-package vim-empty-lines-mode
+  :load-path "~/.emacs.d/manual-packages/vim-empty-lines-mode"
   :config
   ;; enable for all modes
   (global-vim-empty-lines-mode)
