@@ -1,50 +1,64 @@
 ;; these are for packages that are not installable, and must be done manually
 
-;; TODO: create a list of stuff to genericize this?
+;; TODO: is there a more standard way to do manual packages?
 
-(if (file-exists-p "~/.emacs.d/manual-packages")
-    nil
-  (make-directory "~/.emacs.d/manual-packages" t)
+;; use some common lisp for argument parsing
+(require 'cl-lib)
+
+(setq manual-packages-dir "~/.emacs.d/manual-packages")
+
+(unless (file-exists-p manual-packages-dir)
+  (make-directory manual-packages-dir t)
   )
 
-;; Check for directories and checkout if they don't exist
-;; TODO: is there a more standard version to this?
-(if (file-exists-p "~/.emacs.d/manual-packages/my-site-start")
-    nil
-  (shell-command "git clone https://github.com/tripleee/my-site-start ~/.emacs.d/manual-packages/my-site-start")
+(cl-defun manual-package (&key name git url)
+  "define a manual package, either git repo or url"
+
+  ;; TODO: do some error checking
+  ;; (unless name
+  ;;   (error "must pass at least :name"))
+
+  ;; Check for directories and run command if they don't exist
+  (setq package-path (format "%s/%s" manual-packages-dir name))
+
+  (unless (file-exists-p package-path)
+    (when git
+      (shell-command (format "git clone %s %s" git package-path))
+      )
+    (when url
+      (make-directory package-path t)
+      (shell-command (format "wget --no-verbose %s -O %s/%s" url package-path (file-name-nondirectory url)))
+      )
+    )
   )
 
-;;post-mode
-(if (file-exists-p "~/.emacs.d/manual-packages/post-mode")
-    nil
-  (shell-command "git clone http://git.code.sf.net/p/post-mode/code ~/.emacs.d/manual-packages/post-mode")
-  )
+(manual-package
+ :name "mercurial"
+ :url "https://www.mercurial-scm.org/repo/hg/raw-file/default/contrib/mercurial.el"
+ )
 
-;;qmake-mode
-(if (file-exists-p "~/.emacs.d/manual-packages/qmake-mode")
-    nil
-  (shell-command "git clone https://github.com/inlinechan/qmake-mode.git ~/.emacs.d/manual-packages/qmake-mode")
-  )
+(manual-package
+ :name "diffstat"
+ :url "http://www.emacswiki.org/emacs/download/diffstat.el"
+ )
 
-;; mercural (mainly for commit mode)
-(if (file-exists-p "~/.emacs.d/manual-packages/mercurial")
-    nil
-  (make-directory "~/.emacs.d/manual-packages/mercurial")
-  (shell-command "wget https://www.mercurial-scm.org/repo/hg/raw-file/default/contrib/mercurial.el -O ~/.emacs.d/manual-packages/mercurial/mercurial.el")
-  )
+(manual-package
+ :name "my-site-start"
+ :git "https://github.com/tripleee/my-site-start")
 
-;; diffstat mode
-(if (file-exists-p "~/.emacs.d/manual-packages/diffstat")
-    nil
-  (make-directory "~/.emacs.d/manual-packages/diffstat")
-  (shell-command "wget http://www.emacswiki.org/emacs/download/diffstat.el -O ~/.emacs.d/manual-packages/diffstat/diffstat.el")
-  )
+;; post-mode
+(manual-package
+ :name "post-mode"
+ :git "http://git.code.sf.net/p/post-mode/code")
 
-(if (file-exists-p "~/.emacs.d/manual-packages/vim-empty-lines-mode")
-    nil
-  (make-directory "~/.emacs.d/manual-packages/vim-empty-lines-mode")
-  (shell-command "git clone https://github.com/hchbaw/vim-empty-lines-mode ~/.emacs.d/manual-packages/vim-empty-lines-mode")
-  )
+;; qmake-mode
+(manual-package
+ :name "qmake-mode"
+ :git "https://github.com/inlinechan/qmake-mode")
+
+(manual-package
+ :name "vim-empty-lines-mode"
+ :git "https://github.com/hchbaw/vim-empty-lines-mode")
 
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?
