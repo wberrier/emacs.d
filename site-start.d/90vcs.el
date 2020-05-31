@@ -50,4 +50,14 @@
   :load-path "~/.emacs.d/manual-packages/diffstat"
   :ensure nil ;; manual package
   ;; add keybinding
-)
+  )
+
+;; nice interface for browsing git history?
+;; we'll have to compare this with vc-annotate and magit-blame
+(use-package git-timemachine)
+
+;; magit
+;; previously I used vc-mode because it's backend agnostic
+;; but, not that bitbucket (and me) abandoned Mercurial, it's probably
+;; better to just dive in
+(use-package magit)

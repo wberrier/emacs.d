@@ -135,6 +135,8 @@
 
   ;; go to last change
   "g" 'goto-last-change
+
+  ;; TODO: magit bindings?
   )
 
 ;; leader keys that are useful in visual mode
