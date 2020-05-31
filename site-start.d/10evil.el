@@ -74,3 +74,5 @@
   ;; enable for all modes
   (global-vim-empty-lines-mode)
   )
+
+(use-package goto-chg)

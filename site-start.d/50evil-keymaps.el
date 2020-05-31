@@ -132,6 +132,9 @@
   ;; that so that scroll up worked.  Call this before calling functions
   ;; to get that functionality
   "u" 'universal-argument
+
+  ;; go to last change
+  "g" 'goto-last-change
   )
 
 ;; leader keys that are useful in visual mode
