@@ -42,3 +42,8 @@
 ;;(use-package cyberpunk-theme)
 ;;(use-package moe-theme)
 
+;; Seems fine enough place for highlight settings
+(use-package hl-todo
+  :config
+  (global-hl-todo-mode)
+  )
