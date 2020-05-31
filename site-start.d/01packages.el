@@ -52,3 +52,9 @@
 
 ;; manually require this since it provides functionality with use-package
 (require 'general)
+
+;; package interface
+(use-package paradox
+  :config
+  (paradox-enable)
+  )
