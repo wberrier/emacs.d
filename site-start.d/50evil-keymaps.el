@@ -135,8 +135,6 @@
 
   ;; go to last change
   "g" 'goto-last-change
-
-  ;; TODO: magit bindings?
   )
 
 ;; leader keys that are useful in visual mode
@@ -229,3 +227,5 @@
   ;; disable youcompleteme TAB/S-TAB functionality
   (evil-collection-company-use-tng nil)
   )
+
+(use-package evil-magit)
