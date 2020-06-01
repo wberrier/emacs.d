@@ -20,3 +20,10 @@
 ;;   ;; enable smart tabs for various languages
 ;;   (smart-tabs-insinuate 'c 'c++ 'java 'javascript)
 ;;   )
+
+;; This does more than indenting, but can make emacs respect .editorconfig files
+;; See editorconfig.org
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1)
+  )
