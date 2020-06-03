@@ -60,4 +60,8 @@
 ;; previously I used vc-mode because it's backend agnostic
 ;; but, not that bitbucket (and me) abandoned Mercurial, it's probably
 ;; better to just dive in
-(use-package magit)
+(use-package magit
+  :init
+  ;; vim-empty-lines-mode breaks the last line of magit-status
+  (add-hook 'magit-status-mode-hook '(lambda () (vim-empty-lines-mode -1)))
+  )
