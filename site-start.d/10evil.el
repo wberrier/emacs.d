@@ -65,15 +65,4 @@
   (clean-aindent-mode 1) ;; enable for all modes
   )
 
-;; show tildes for lines that are not part of the file
-;; apparently buggy though? We'll try it out...
-;; NOTE: this supercedes "vi-tilde-fringe"
-;; NOTE: even the branch is still buggy with company mode, ugh
-(use-package vim-empty-lines-mode
-  :load-path "~/.emacs.d/manual-packages/vim-empty-lines-mode"
-  :config
-  ;; enable for all modes
-  (global-vim-empty-lines-mode)
-  )
-
 (use-package goto-chg)
