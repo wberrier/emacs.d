@@ -1,10 +1,12 @@
 
 ;; hide menu bar (File, Edit, etc...) when in gui mode
+;; NOTE: F10 in gui mode will show this menu
+;; can also enable menu-bar-mode (as well as the others below) as needed
 (menu-bar-mode -1)
 ;(text-scale-decrease) ; go from 11 to 10 (Hope that works)
 
 ;; Don't show the toolbar in gui mode
-;; NOTE: for cases where the toolbar is useful (gdb, dap-mode, etc...) this can always be toggled as necessary
+;; NOTE: for cases where the toolbar is useful (gdb, dap-mode, etc...)
 (tool-bar-mode -1)
 
 ;; Don't show scrollbars in gui mode
