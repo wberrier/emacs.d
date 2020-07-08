@@ -20,6 +20,10 @@
   ;; Sometimes I would get weird indentation.  Maybe this is the reason... ?
   (lsp-enable-indentation nil)
 
+  ;; nor text formatting from the server...
+  (lsp-completion-enable-additional-text-edit nil)
+  (lsp-enable-on-type-formatting nil)
+
   ;; Show lsp messages in *Messages*
   ;;(lsp-print-io t)
 
