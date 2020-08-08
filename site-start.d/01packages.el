@@ -4,7 +4,7 @@
 ;; Package initialization
 (require 'package)
 ;; TODO: stable version?
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 ;; list of packages to bootstrap use-package/general
