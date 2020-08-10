@@ -23,6 +23,8 @@
   (setq local-install-dir (getenv "LOCAL_INSTALL_DIR"))
   )
 
+;; TODO: use melpa init-loader instead of my-site-start?
+
 ;; Initialize manual packages (including my-site-start)
 (load "~/.emacs.d/manual-packages.el")
 
