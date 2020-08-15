@@ -61,3 +61,6 @@
 ;; but, not that bitbucket (and me) abandoned Mercurial, it's probably
 ;; better to just dive in
 (use-package magit)
+
+;; like quilt on top of git
+(use-package stgit)
