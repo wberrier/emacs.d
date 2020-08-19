@@ -62,5 +62,6 @@
 ;; better to just dive in
 (use-package magit)
 
-;; like quilt on top of git
-(use-package stgit)
+;; it has a (require 'git), causing an error :/
+;; ;; like quilt on top of git
+;; (use-package stgit)
