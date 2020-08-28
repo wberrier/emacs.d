@@ -29,7 +29,10 @@
 
 ; ample theme
 ; ** like this one **
-(use-package ample-theme)
+(use-package ample-theme
+  :config
+  (enable-theme 'ample)
+  )
 ;;(use-package zerodark-theme)
 
 ; sanityinc themes, can't seem to get them to work

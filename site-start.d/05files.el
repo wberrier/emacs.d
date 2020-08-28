@@ -23,14 +23,13 @@
 
 ;; Save place in files when visiting
 (use-package saveplace
-  :init
-  (setq-default save-place t) ;; 24.5 and older
   :custom
   (save-place-file "~/.emacs.d/saved-places")
   :config
   ;; for 25.1 and newer
   (if (not (version< emacs-version "25.1"))
 	  (save-place-mode 1)
+	(setq-default save-place t) ;; 24.5 and older
 	)
-  )
+)
 
