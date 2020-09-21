@@ -45,7 +45,7 @@ function lsp_go () {
         sudo yum install -y golang-bin
     # TODO: ubuntu
     fi
-    go get -u github.com/sourcegraph/go-langserver
+    go get golang.org/x/tools/gopls
 }
 
 # Java
