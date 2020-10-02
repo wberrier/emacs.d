@@ -66,7 +66,7 @@ function lsp_java () {
 function lsp_rust () {
     source $HOME/.cargo/env
     if is_redhat ; then
-        sudo yum install -y rls-preview rust-analysis rust-src cargo
+        sudo yum install -y rust-src cargo
     else
         curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
         rustup component add rls-preview rust-analysis rust-src
@@ -79,9 +79,16 @@ function lsp_rust () {
 
         pushd rust-analyzer
             # Grab the latest release
-            git checkout release
-            git pull
-            cargo xtask install --server
+            # NOTE: this is the latest release that works with 1.45.2 (f32)
+            # [x] 2020-05-18
+            # [x] 2020-08-03
+            # [x] 2020-08-10
+            # [ ] 2020-08-17
+            # [ ] 2020-08-24
+            # [-] 2020-08-31
+            git fetch -pa
+            git checkout 2020-08-24
+            cargo xtask install
         popd
 
     popd
@@ -133,7 +140,7 @@ lsp_python
 lsp_go
 lsp_java
 lsp_rust
-lsp_lua
+lsp_lua # broken on f32 in Oct 2020
 
 install_npm
 
