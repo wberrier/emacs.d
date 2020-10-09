@@ -69,40 +69,6 @@
   :demand
   )
 
-;; custom yasnippet backend from
-;; https://github.com/company-mode/company-mode/issues/840
-(defun company-yasnippet-unless-member-access (command &optional arg &rest ignore)
-  (if (eq command 'prefix)
-      (let ((prefix (company-yasnippet 'prefix)))
-        (and prefix
-             (save-excursion
-               (forward-char (- (length prefix)))
-               ;;(not (looking-back (rx (or "." "->")) (line-beginning-position))))
-               ;; TODO: put these in a variable?  based on language?
-               (not (looking-back (rx (or "." "->" "::")) (line-beginning-position))))
-             prefix))
-    (company-yasnippet command arg)))
-
-(use-package company-lsp
-  :init
-
-  :custom
-  ;; disable company caching, as server is faster (recommended in lsp documentation)
-  ;; async completion
-  (company-lsp-async t)
-  (company-lsp-cache-candidates nil)
-  ;; Should help with c++ std:: type completions
-  (company-lsp-enable-recompletion t)
-
-  :config
-  ;; This merges snippets, but use the custom backend so that snippets
-  ;; aren't shown when doing trigger completions
-  ;; https://github.com/company-mode/company-mode/issues/485
-  ;; https://github.com/company-mode/company-mode/issues/840
-  ;; :separate put yasnippets at the bottom of the list for trigger characters
-  (push '(:separate company-lsp :with company-yasnippet-unless-member-access) company-backends)
-  )
-
 (use-package company-qml
   :config
   (push 'company-qml company-backends)
