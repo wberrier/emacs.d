@@ -37,6 +37,9 @@
   (evil-want-integration t)
   (evil-want-keybinding nil)
 
+  ;; Select undo implementation
+  (evil-undo-system 'undo-fu)
+
   :config
   ;; Load evil by default
   (evil-mode 1)
@@ -66,3 +69,7 @@
   )
 
 (use-package goto-chg)
+
+;; apparently emacs 28 has undo-redo, and the built-in undo-tree has a
+;; bunch of bugs, so use undo-fu in the meantime
+(use-package undo-fu)
