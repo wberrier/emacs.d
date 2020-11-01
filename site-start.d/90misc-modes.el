@@ -47,6 +47,7 @@
 (use-package bitbake
   :mode ("\\.bb$" . bitbake-mode)
   :mode ("\\.bbclass$" . bitbake-mode)
+  :mode ("\\.bbappend$" . bitbake-mode)
   )
 
 (use-package kconfig-mode
