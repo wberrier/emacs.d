@@ -112,28 +112,6 @@ function lsp_lua () {
     luarocks install --local lcf
 }
 
-function install_npm () {
-
-    if is_redhat ; then
-        sudo yum install -y npm
-    fi
-}
-
-# Javascript
-function lsp_js () {
-    sudo npm i -g javascript-typescript-langserver
-}
-
-# HTML
-function lsp_html () {
-    sudo npm i -g vscode-html-languageserver-bin
-}
-
-# Bash
-function lsp_bash () {
-    sudo npm i -g bash-language-server
-}
-
 # Run each section
 lsp_cpp
 lsp_python
@@ -142,8 +120,4 @@ lsp_java
 lsp_rust
 lsp_lua # broken on f32 in Oct 2020
 
-install_npm
-
-lsp_js
-lsp_html
-lsp_bash
+# NOTE: lsp-mode has internal/automatic support for npm based language servers
