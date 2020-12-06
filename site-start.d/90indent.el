@@ -17,7 +17,7 @@
   ;; TODO: need to figure out why, seems like I'm missing something
   ;; about entering the mode not "adapting" by design
   ;; No idea why protobuf-mode doesn't inherit from prog-mode??
-  :hook ((prog-mode protobuf-mode) .
+  :hook ((prog-mode text-mode protobuf-mode) .
 	(lambda ()
 	  (dtrt-indent-adapt)))
 
