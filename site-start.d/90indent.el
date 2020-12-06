@@ -5,9 +5,21 @@
 
 (use-package dtrt-indent
   :custom
-  (dtrt-indent-global-mode t)
+  (dtrt-indent-mode t)
   (dtrt-indent-verbosity 2)
+
+  ;; Run even when "smie" is in use (Simple Minded Indentation Engine)
   (dtrt-indent-run-after-smie t)
+
+  ;; TODO: still need to fix files with 2 space indenting... ??
+
+  ;; run "adapt" after getting into this mode
+  ;; TODO: need to figure out why, seems like I'm missing something
+  ;; about entering the mode not "adapting" by design
+  ;; No idea why protobuf-mode doesn't inherit from prog-mode??
+  :hook ((prog-mode protobuf-mode) .
+	(lambda ()
+	  (dtrt-indent-adapt)))
 
   ;; don't show in modeline
   :diminish dtrt-indent-mode
