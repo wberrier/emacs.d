@@ -14,7 +14,8 @@
   ;; run "adapt" after getting into this mode
   ;; TODO: need to figure out why, seems like I'm missing something
   ;; about entering the mode not "adapting" by design
-  :hook ((prog-mode text-mode) . dtrt-indent-adapt)
+  ;; NOTE: no idea why sometimes protobuf-mode needs to be listed here??
+  :hook ((prog-mode text-mode protobuf-mode) . dtrt-indent-adapt)
 
   ;; don't show in modeline
   :diminish dtrt-indent-mode
