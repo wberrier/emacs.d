@@ -51,15 +51,7 @@
     (c-echo-syntactic-information-p . t))
   "My C Programming Style")
 
-;; NOTE: this is really for c-mode, but there's no package called c-mode
-;; and it's in a cc-mode.el file, just use that name
-(use-package cc-mode
-  :ensure nil ;; built-in
-
-  :init
-
-  ;; TODO: not sure why this has to be a hook instead of just run in :config
-  (add-hook 'c-mode-common-hook (lambda ()
+(defun load-my-c-style ()
 	;; Customizations for all modes in CC Mode.
 
 	;; set my personal style for the current buffer
@@ -84,8 +76,14 @@
 	;; compile command for this mode
 	(setq compile-command "~/.emacs.d/bin/emacsproject build")
 	)
-    )
 
+;; NOTE: this is really for c-mode, but there's no package called c-mode
+;; and it's in a cc-mode.el file, just use that name
+(use-package cc-mode
+  :ensure nil ;; built-in
+  ;; NOTE: apparently it's frowned upon to use lambdas in hooks
+  ;; this seems to fix some hook ordering issues (specifically, with dtrt)
+  :hook (c-mode-common-hook . load-my-c-style)
   )
 
 (use-package c++-mode
