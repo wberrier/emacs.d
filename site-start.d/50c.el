@@ -51,12 +51,8 @@
     (c-echo-syntactic-information-p . t))
   "My C Programming Style")
 
-(defun load-my-c-style ()
+(defun my-c-mode-common-hook ()
 	;; Customizations for all modes in CC Mode.
-
-	;; set my personal style for the current buffer
-	(c-add-style "PERSONAL" my-c-style)
-	(c-set-style "PERSONAL")
 
 	;; we like auto-newline, but not hungry-delete
 	;; these are all the cc-mode minor modes
@@ -83,7 +79,23 @@
   :ensure nil ;; built-in
   ;; NOTE: apparently it's frowned upon to use lambdas in hooks
   ;; this seems to fix some hook ordering issues (specifically, with dtrt)
-  :hook (c-mode-common-hook . load-my-c-style)
+  :hook (c-mode-common . my-c-mode-common-hook)
+  )
+
+(use-package cc-vars
+  :ensure nil
+  :config
+  (c-add-style "PERSONAL" my-c-style)
+  :custom
+  (c-default-style
+   '(
+	 (c-mode . "PERSONAL")
+	 (c++-mode . "PERSONAL")
+	 (java-mode . "java")
+	 (awk-mode . "awk")
+	 (other . "gnu")
+     )
+   )
   )
 
 (use-package c++-mode
