@@ -70,6 +70,10 @@
 ;; What's the difference between message-mode and post-mode?
 ;; * message-mode correctly quotes long lines when doing 'fill-paragraph
 
+(defun my-ignore-trailing-whitespace ()
+  (setq show-trailing-whitespace nil)
+  )
+
 (use-package message-mode
   :ensure nil ;; built-in, don't download
 
@@ -90,7 +94,7 @@
   ;; don't show trailing whitespace in message mode
   ;; NOTE: honestly it's not clear why this has to be a mode hook
   ;; doesn't 'stick' otherwise
-  (add-hook 'message-mode-hook (lambda () (setq show-trailing-whitespace nil)))
+  (add-hook 'message-mode-hook #'my-ignore-trailing-whitespace)
 
   ;; refil when writing paragraphs, finally!
   (add-hook 'message-mode-hook 'refill-mode)

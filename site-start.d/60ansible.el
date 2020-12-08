@@ -1,7 +1,11 @@
 
+(defun my-enable-ansible ()
+  (ansible 1)
+  )
+
 (use-package ansible
   :init
-  (add-hook 'yaml-mode-hook '(lambda () (ansible 1)))
+  (add-hook 'yaml-mode-hook #'my-enable-ansible)
   (add-hook 'ansible-hook 'ansible-auto-decrypt-encrypt)
   (setq ansible-vault-password-file "~/.vault-pass")
   )

@@ -3,6 +3,13 @@
 ;; not the same as vim, which I think is preferrable.
 ;; vim probably has it wrong (ie: too simplistic), but that's what we're emulating
 
+(defun my-custom-syntax-entry ()
+  (if (equal major-mode 'message-mode)
+	  (modify-syntax-entry ?_ "_")
+	(modify-syntax-entry ?_ "w")
+	)
+  )
+
 (use-package evil
   :init
 
@@ -21,11 +28,7 @@
 
   ;; Can't enable this for message-mode, emacs hangs...
   ;; Do this to enable for all modes except message-mode
-  (add-hook 'change-major-mode-after-body-hook #'(lambda ()
-    (if (equal major-mode 'message-mode)
-        (modify-syntax-entry ?_ "_")
-        (modify-syntax-entry ?_ "w")
-        )))
+  (add-hook 'change-major-mode-after-body-hook #'my-custom-syntax-entry)
 
   :custom
   ;; Make CTRL - u scroll up like I'm used to in vi
