@@ -6,6 +6,10 @@ function is_redhat () {
     type yum
 }
 
+function is_debian () {
+    type apt-get
+}
+
 # Default to cmake3 since cquery depends on that
 function find_cmake3 () {
     if type cmake3 ; then
@@ -98,6 +102,8 @@ function lsp_rust () {
 function lsp_lua () {
     if is_redhat ; then
         sudo yum install -y luarocks lua-devel
+    elif is_debian ; then
+        sudo apt-get install -y luarocks
     fi
 
     # Install as user or root?
