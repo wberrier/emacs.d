@@ -43,14 +43,26 @@ TOOL_TABLE = {
 def get_tool_dir(target_file):
     """Get the directory that has the config file"""
 
+    # Get some options, and pick the top level dir
+
+    # This specifically facilitates cargo workspaces, where cargo will
+    # build the workspace, even if invoked from a subdirectory
+    # Hopefully this won't have adverse effects for other tools
+
+    candidates = []
+
     curdir = os.getcwd()
     while curdir != "/":
 
         test_file = curdir + "/" + target_file
         if os.path.exists(test_file):
-            return curdir
+            candidates.append(curdir)
 
         curdir = os.path.dirname(curdir)
+
+    if len(candidates) > 0:
+        candidates.reverse()
+        return candidates[0]
 
     # Didn't find the config dir...
     return ""
