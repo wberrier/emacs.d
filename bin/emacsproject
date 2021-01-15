@@ -144,7 +144,7 @@ def subcommand_test(subcommand_args):
 
 def usage():
     usage_text = """
-./clip <sub command> <sub command arguments>
+./emacsproject <sub command> <sub command arguments>
 
  Sub commands:
 
