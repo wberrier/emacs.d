@@ -48,6 +48,7 @@
   :mode ("\\.bb$" . bitbake-mode)
   :mode ("\\.bbclass$" . bitbake-mode)
   :mode ("\\.bbappend$" . bitbake-mode)
+  :hook (bitbake-mode . mmm-mode-on)
   )
 
 (use-package kconfig-mode
