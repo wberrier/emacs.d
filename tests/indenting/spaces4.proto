@@ -1,0 +1,15 @@
+
+
+
+message Testing
+{
+    message InnerTest
+    {
+    }
+
+    Innertest inner_test = 1;
+
+
+
+
+}

@@ -1,0 +1,18 @@
+
+
+message Testing
+{
+  uint32 num = 1;
+}
+
+
+message Request
+{
+  Testing test = 1;
+}
+
+message Response
+{
+
+}
+

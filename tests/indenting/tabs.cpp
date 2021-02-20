@@ -9,3 +9,7 @@ int main()
 
 
 }
+
+void func() {
+	// Testing
+}
