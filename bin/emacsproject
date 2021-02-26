@@ -69,11 +69,21 @@ def get_tool_dir(target_file):
 
 
 def get_tool_info():
+
+    candidates = []
+
     for k, v in TOOL_TABLE.items():
         project_dir = get_tool_dir(v['file'])
 
         if len(project_dir) > 0:
-            return (project_dir, k, v)
+            candidates.append((project_dir, k, v))
+
+    if len(candidates) > 0:
+        # Sort by project dir, and prefer the shortest path since that's the "top level" build tool
+        # NOTE: this may be too much of an assumption
+        candidates.sort(key=lambda value: value[0])
+        return candidates[0]
+
     return ('', '', '')
 
 
