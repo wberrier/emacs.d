@@ -127,4 +127,5 @@ lsp_java
 lsp_rust
 lsp_lua # broken on f32 in Oct 2020
 
-# NOTE: lsp-mode has internal/automatic support for npm based language servers
+# NOTE: lsp-mode has internal/automatic support for npm based language servers:
+# ie: m-x lsp-install-server <ret> bash <ret>
