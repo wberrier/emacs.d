@@ -227,5 +227,3 @@
   ;; disable youcompleteme TAB/S-TAB functionality
   (evil-collection-company-use-tng nil)
   )
-
-(use-package evil-magit)
