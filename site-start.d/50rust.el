@@ -14,4 +14,7 @@
 (use-package cargo
   :init
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  :custom
+  ;; This defaults to using nightly args to work around a bug, but was fixed in 1.52.0
+  (cargo-process--command-clippy "clippy")
   )
