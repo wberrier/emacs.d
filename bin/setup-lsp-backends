@@ -89,10 +89,12 @@ function lsp_rust () {
             # [x] 2020-08-10
             # [ ] 2020-08-17
             # [ ] 2020-08-24
-            # [-] 2020-08-31
+            # [-] 2020-08-a1
+            # analyzer_branch="2020-08-24"
+            analyzer_branch="release"
             git fetch -pa
-            #git checkout 2020-08-24
-            git checkout release
+            git checkout $analyzer_branch
+            git rebase origin/${analyzer_branch}
             cargo xtask install --server
         popd
 
