@@ -193,8 +193,8 @@
   ;; I was setting a lot of bindings for several of these
   (evil-collection-init '(
                           buff-menu
-                          comint
                           cmake-mode
+                          comint
                           company
                           compile
                           custom
@@ -203,14 +203,15 @@
                           ediff
                           elisp-mode
                           flymake
-                          grep
                           go-mode
+                          grep
+                          help
                           ibuffer
                           ivy
                           js2-mode
                           kotlin-mode
-                          lua-mode
                           log-view
+                          lua-mode
                           magit
                           neotree
                           package-menu
