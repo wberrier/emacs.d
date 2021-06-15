@@ -70,7 +70,7 @@ function lsp_java () {
 function lsp_rust () {
     source $HOME/.cargo/env
     if is_redhat ; then
-        sudo yum install -y rust-src cargo
+        sudo yum install -y rust-src cargo clippy rustfmt
     else
         curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
         rustup component add rls-preview rust-analysis rust-src
