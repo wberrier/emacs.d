@@ -60,6 +60,11 @@
  :name "hjson-mode"
  :git "https://github.com/xuchunyang/hjson-mode")
 
+;; lout-mode
+(manual-package
+ :name "lout-mode"
+ :git "https://github.com/emacsattic/lout-mode")
+
 ;; Not sure these are necessary (if not in melpa, maybe not useful?)
 ;;evil-rebellion ; obsoleted by spacemacs.  Not sure if I need this any longer?
 ;;git-modes ; not sure if this is necessary?
