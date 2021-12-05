@@ -31,6 +31,11 @@ function lsp_cpp () {
 
 # python
 function lsp_python () {
+    if is_redhat ; then
+        sudo yum install -y python3-pip
+    else
+        sudo apt-get install -y TODO
+    fi
 
     # TODO: certificates
 
@@ -121,6 +126,14 @@ function lsp_lua () {
     luarocks install --local lcf
 }
 
+function lsp_installer_helpers () {
+    if is_redhat ; then
+        sudo yum install -y npm
+    elif is_debian ; then
+        sudo apt-get install -y TODO
+    fi
+}
+
 # Run each section
 lsp_cpp
 lsp_python
@@ -128,6 +141,7 @@ lsp_go
 lsp_java
 lsp_rust
 lsp_lua # broken on f32 in Oct 2020
+lsp_installer_helpers
 
 # NOTE: lsp-mode has internal/automatic support for npm based language servers:
 # ie: m-x lsp-install-server <ret> bash <ret>
