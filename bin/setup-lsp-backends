@@ -40,7 +40,7 @@ function lsp_python () {
     # TODO: certificates
 
     # Language server
-    pip3 install --user 'python-language-server[all]'
+    pip3 install --user 'python-lsp-server'
     # also install debug server
     pip3 install --user 'ptvsd>=4.1.1a11'
 
