@@ -31,9 +31,8 @@
   ;; git-commit mode wants to go into emacs state.  Force evil state.
   (add-hook 'with-editor-mode-hook 'evil-normal-state)
   )
-(use-package gitconfig-mode)
-(use-package gitignore-mode)
-(use-package gitattributes-mode)
+
+(use-package git-modes)
 
 ;; Mercurial
 (use-package hgignore-mode)
