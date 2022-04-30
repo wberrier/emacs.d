@@ -40,12 +40,13 @@ function lsp_python () {
     # TODO: certificates
 
     # Language server
-    pip3 install --user 'python-lsp-server'
-    # also install debug server
-    pip3 install --user 'ptvsd>=4.1.1a11'
+    pip3 install --user python-lsp-server
+    # plugins
+    pip3 install --user mypy pyls-mypy # static type checking, python 3 only
 
-    # python 3 only
-    pip3 install --user mypy pyls-mypy
+    # also install debug server
+    pip3 install --user debugpy
+
 }
 
 # Go
