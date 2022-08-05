@@ -33,6 +33,10 @@
   )
 
 (use-package git-modes)
+(use-package gitconfig-mode
+  :ensure nil ;; built-in, don't download
+  :mode "/\\.gitconfig\\'"
+  )
 
 ;; Mercurial
 (use-package hgignore-mode)
