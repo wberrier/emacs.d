@@ -61,3 +61,5 @@
   :mode ("\\.repo\\'" . conf-mode)
   :ensure nil ;; built in
   )
+
+(use-package systemd)
