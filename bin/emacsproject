@@ -27,7 +27,7 @@ TOOL_TABLE = {
         'test': 'cargo test',
     },
     'clip': {
-        'file': '.clip.json',
+        'file': '.clip.yaml',
         'build': {
             'debug':   '~/wa/git/clip/bin/clip build debug',
             'release': '~/wa/git/clip/bin/clip build release',
