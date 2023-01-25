@@ -18,6 +18,7 @@
     use-package
     diminish
     bind-key
+    async ;; to run paradox in the background
 
     )
   "a list of packages to install (if not present) at launch.")
