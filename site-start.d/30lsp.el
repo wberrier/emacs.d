@@ -44,6 +44,9 @@
   (lsp-clients-clangd-executable (format "%s/wa/git/clip/bin/clip" (getenv "HOME")))
   (lsp-clients-clangd-args '("start-clangd"))
 
+  ;; disable split screen doc popup (really interrupts typing and thought flow)
+  (lsp-signature-render-documentation nil)
+
   )
 
 (use-package lsp-ivy
