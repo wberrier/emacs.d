@@ -6,7 +6,7 @@ fi
 
 # Use emacs when available
 if ~/.emacs.d/bin/min-emacs-version ; then
-	export EDITOR="EMACS_CLI=1 $HOME/.emacs.d/bin/editor"
+	export EDITOR="env EMACS_CLI=1 $HOME/.emacs.d/bin/editor"
 else
 	export EDITOR="vim"
 fi
