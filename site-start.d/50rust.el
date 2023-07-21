@@ -6,8 +6,8 @@
   ;; Rust recommends spaces
   (add-hook 'rust-mode-hook
             (lambda () (setq indent-tabs-mode nil)))
-  ;; go into rust mode with cargo-eval scripts
-  :mode "\\.crs$"
+  ;; go into rust mode with rust-script scripts
+  :mode "\\.ers$"
   :custom
   ;; Use rust-analyzer over rls
   (lsp-rust-server (quote rust-analyzer))
