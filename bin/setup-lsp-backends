@@ -42,7 +42,7 @@ function lsp_python () {
     # Language server
     pip3 install --user python-lsp-server
     # plugins
-    pip3 install --user mypy pyls-mypy # static type checking, python 3 only
+    pip3 install --user flake8 mypy pylsp-mypy # static type checking, python 3 only
 
     # also install debug server
     pip3 install --user debugpy
