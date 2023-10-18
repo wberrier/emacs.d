@@ -5,6 +5,9 @@
   :mode ("bash_profile" "bashrc")
   )
 
+; commands to run shfmt
+(use-package shfmt)
+
 (use-package flymake-shellcheck
   :commands flymake-shellcheck-load
   :init
