@@ -128,6 +128,7 @@ function rustc_from_package() {
     list_package_contents $RUSTC_PACKAGE | grep "bin/rustc"
 }
 
+# TODO: check package rust version without installing it?
 function minimum_rust_version() {
     rustc=$(rustc_from_package)
 
