@@ -2,59 +2,98 @@
 
 # TODO: bunch of commands in here that don't live in this repo...
 
+# Easy way to check distros...
+
 function is_redhat () {
-    type yum
+    type yum > /dev/null 2>&1
 }
 
 function is_debian () {
-    type apt-get
+    type apt-get > /dev/null 2>&1
 }
 
-# Default to cmake3 since cquery depends on that
-function find_cmake3 () {
-    if type cmake3 ; then
-        echo cmake3
+# Package list
+if is_redhat ; then
+    CPP_PACKAGES="clang-tools-extra"
+    PYTHON_PACKAGES="python3-pip"
+    GOLANG_PACKAGES="golang-bin"
+    RUSTC_PACKAGE="rust"
+    RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo clippy rustfmt"
+    LUA_PACKAGES="luarocks lua-devel"
+    LSP_PACKAGES="npm"
+    BASH_PACKAGES="shfmt"
+
+    PIP_ARGS=""
+elif is_debian ; then
+    CPP_PACKAGES="clangd"
+    PYTHON_PACKAGES="python3-pip"
+    GOLANG_PACKAGES="golang-go"
+    RUSTC_PACKAGE="rustc"
+    RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo rust-clippy rustfmt"
+    LUA_PACKAGES="luarocks"
+    LSP_PACKAGES="npm"
+    BASH_PACKAGES="shfmt"
+
+    PIP_ARGS="--break-system-packages"
+else
+    echo "Unsupported platform"
+fi
+
+function install_packages() {
+    if is_redhat ; then
+        sudo yum install -y "$@"
+    elif is_debian ; then
+        sudo apt-get install -y "$@"
     else
-        echo cmake
+        echo "unsupported platform"
+    fi
+}
+
+function remove_packages() {
+    if is_redhat ; then
+        sudo yum remove -y "$@"
+    elif is_debian ; then
+        sudo apt-get remove --purge -y "$@"
+    else
+        echo "unsupported platform"
+    fi
+}
+
+function list_package_contents() {
+    if is_redhat ; then
+        rpm -ql "$@"
+    elif is_debian ; then
+        dpkg -L "$@"
+    else
+        echo "unsupported platform"
     fi
 }
 
 # c++
 function lsp_cpp () {
-
-    if is_redhat ; then
-        sudo yum install -y clang-tools-extra
-    else
-        echo "TODO: install clangd"
-    fi
+    install_packages $CPP_PACKAGES
 }
 
 # python
 function lsp_python () {
-    if is_redhat ; then
-        sudo yum install -y python3-pip
-    else
-        sudo apt-get install -y TODO
-    fi
+    install_packages $PYTHON_PACKAGES
 
     # TODO: certificates
 
     # Language server
-    pip3 install --user python-lsp-server
+    pip3 install $PIP_ARGS --user python-lsp-server
     # plugins
-    pip3 install --user flake8 mypy pylsp-mypy # static type checking, python 3 only
+    pip3 install $PIP_ARGS --user flake8 mypy pylsp-mypy # static type checking, python 3 only
 
     # also install debug server
-    pip3 install --user debugpy
+    pip3 install $PIP_ARGS --user debugpy
 
 }
 
 # Go
 function lsp_go () {
-    if is_redhat ; then
-        sudo yum install -y golang-bin
-    # TODO: ubuntu
-    fi
+    install_packages $GOLANG_PACKAGES
+
     go install golang.org/x/tools/gopls@latest
 }
 
@@ -72,14 +111,46 @@ function lsp_java () {
     fi
 }
 
+function meets_minimum_version() {
+    minimum_version="$1"
+    current_version="$2"
+
+    older_version=$(echo -e "$minimum_version\n$current_version" | sort --version-sort | head -n1)
+
+    if [ "$minimum_version" = "$older_version" ] ; then
+        return 0
+    else
+        return 1
+    fi
+}
+
+function rustc_from_package() {
+    list_package_contents $RUSTC_PACKAGE | grep "bin/rustc"
+}
+
+function minimum_rust_version() {
+    rustc=$(rustc_from_package)
+
+    meets_minimum_version "1.65.0" "$($rustc --version | awk '{print $2}')"
+}
+
 # Rust
 function lsp_rust () {
     source $HOME/.cargo/env
-    if is_redhat ; then
-        sudo yum install -y rust-src cargo clippy rustfmt
+    install_packages $RUST_PACKAGES
+
+    # If rust from the package manager meets the minimum, remove rustup toolchains
+    if minimum_rust_version ; then
+        # remove rustup toolchains (if any)
+        rustup toolchain list | awk '{print $1}' | xargs rustup toolchain remove
     else
+        # Otherwise, remove the system rust...
+        remove_packages $RUST_PACKAGES
+
+        # and install with rustup
         curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-        rustup component add rls-preview rust-analysis rust-src
+        rustup toolchain install stable
+        rustup default stable
     fi
 
     pushd ~/wa/git
@@ -89,14 +160,6 @@ function lsp_rust () {
 
         pushd rust-analyzer
             # Grab the latest release
-            # NOTE: this is the latest release that works with 1.45.2 (f32)
-            # [x] 2020-05-18
-            # [x] 2020-08-03
-            # [x] 2020-08-10
-            # [ ] 2020-08-17
-            # [ ] 2020-08-24
-            # [-] 2020-08-a1
-            # analyzer_branch="2020-08-24"
             analyzer_branch="release"
             git fetch -pa
             git checkout $analyzer_branch
@@ -109,11 +172,7 @@ function lsp_rust () {
 
 # Lua
 function lsp_lua () {
-    if is_redhat ; then
-        sudo yum install -y luarocks lua-devel
-    elif is_debian ; then
-        sudo apt-get install -y luarocks
-    fi
+    install_packages $LUA_PACKAGES
 
     # Install as user or root?
 
@@ -128,11 +187,8 @@ function lsp_lua () {
 }
 
 function lsp_installer_helpers () {
-    if is_redhat ; then
-        sudo yum install -y npm
-    elif is_debian ; then
-        sudo apt-get install -y TODO
-    fi
+    install_packages $LSP_PACKAGES
+}
 }
 
 # Run each section
