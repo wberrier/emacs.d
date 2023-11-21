@@ -189,6 +189,10 @@ function lsp_lua () {
 function lsp_installer_helpers () {
     install_packages $LSP_PACKAGES
 }
+
+function lsp_bash() {
+    # shfmt not lsp related, but we do use shfmt-mode
+    install_packages $BASH_PACKAGES
 }
 
 # Run each section
@@ -199,6 +203,7 @@ lsp_java
 lsp_rust
 lsp_lua # broken on f32 in Oct 2020
 lsp_installer_helpers
+lsp_bash
 
 # NOTE: lsp-mode has internal/automatic support for npm based language servers:
 # ie: m-x lsp-install-server <ret> bash <ret>
