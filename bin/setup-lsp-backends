@@ -55,7 +55,7 @@ function lsp_go () {
         sudo yum install -y golang-bin
     # TODO: ubuntu
     fi
-    go get golang.org/x/tools/gopls
+    go install golang.org/x/tools/gopls@latest
 }
 
 # Java
