@@ -43,6 +43,7 @@ function install_packages() {
     if is_redhat ; then
         sudo yum install -y "$@"
     elif is_debian ; then
+        sudo apt-get update
         sudo apt-get install -y "$@"
     else
         echo "unsupported platform"
