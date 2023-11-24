@@ -1,7 +1,6 @@
 # shellcheck shell=bash
 
-repo_dir()
-{
+repo_dir() {
 	repo="$1"
 
 	repo_dir=$(basename "$repo")
@@ -11,13 +10,11 @@ repo_dir()
 	echo "$repo_dir"
 }
 
-latest_git_tag()
-{
+latest_git_tag() {
 	git tag -l | sort -V | tail -n1
 }
 
-clone_or_update_git_repo_latest_tag()
-{
+clone_or_update_git_repo_latest_tag() {
 	url="$1"
 
 	# Must clone first, to make sure it exists
@@ -42,17 +39,16 @@ is_git_tag() {
 }
 
 # This assums that the repo doesn't contain the .repo extension
-clone_or_update_git_repo()
-{
+clone_or_update_git_repo() {
 	repo=$1
 
-	if [ -n "$2" ] ; then
+	if [ -n "$2" ]; then
 		revision="$2"
 	else
 		revision="master"
 	fi
 
-	if [ -n "$3" ] ; then
+	if [ -n "$3" ]; then
 		repo_dir=$3
 	else
 		repo_dir=$(repo_dir "$repo")
@@ -60,7 +56,7 @@ clone_or_update_git_repo()
 
 	echo "Cloning or updating repo: $repo"
 
-	if [ ! -e "$repo_dir" ] ; then
+	if [ ! -e "$repo_dir" ]; then
 		git clone "$repo" "$repo_dir"
 		pushd "$repo_dir"
 		git config user.name "Wade Berrier"
@@ -77,7 +73,7 @@ clone_or_update_git_repo()
 	git checkout "$revision"
 
 	# Only pull on a branch
-	if ! is_git_tag "$revision" ; then
+	if ! is_git_tag "$revision"; then
 		git pull
 	fi
 
@@ -86,20 +82,19 @@ clone_or_update_git_repo()
 	popd
 }
 
-clone_or_update_mercurial_repo()
-{
+clone_or_update_mercurial_repo() {
 	repo=$1
 
 	repo_dir=$(basename "$repo")
 
 	echo "Cloning or updating repo: $repo"
 
-	if [ ! -e "$repo_dir" ] ; then
+	if [ ! -e "$repo_dir" ]; then
 		hg clone "$repo"
 
 		# Set username for these repos (usually public)
-		echo '[ui]' >> "$repo_dir/.hg/hgrc"
-		echo 'username = Wade Berrier <wberrier@gmail.com>' >> "$repo_dir/.hg/hgrc"
+		echo '[ui]' >>"$repo_dir/.hg/hgrc"
+		echo 'username = Wade Berrier <wberrier@gmail.com>' >>"$repo_dir/.hg/hgrc"
 
 	else
 		pushd "$repo_dir"

@@ -6,134 +6,134 @@ source "$(dirname "$(readlink -f "$0")")/lib/version-common.sh"
 
 # Package list
 case $(get_dist) in
-    fc*)
-        CPP_PACKAGES="clang-tools-extra"
-        PYTHON_PACKAGES="python3-pip"
-        GOLANG_PACKAGES="golang-bin"
-        RUSTC_PACKAGE="rust"
-        RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo clippy rustfmt"
-        LUA_PACKAGES="luarocks lua-devel"
-        LSP_PACKAGES="npm"
-        BASH_PACKAGES="shfmt"
-        ;;
-    Debian*|Ubuntu*)
-        CPP_PACKAGES="clangd"
-        PYTHON_PACKAGES="python3-pip"
-        GOLANG_PACKAGES="golang-go"
-        RUSTC_PACKAGE="rustc"
-        RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo rust-clippy rustfmt"
-        LUA_PACKAGES="luarocks"
-        LSP_PACKAGES="npm"
-        BASH_PACKAGES="shfmt"
-        ;;
+fc*)
+	CPP_PACKAGES="clang-tools-extra"
+	PYTHON_PACKAGES="python3-pip"
+	GOLANG_PACKAGES="golang-bin"
+	RUSTC_PACKAGE="rust"
+	RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo clippy rustfmt"
+	LUA_PACKAGES="luarocks lua-devel"
+	LSP_PACKAGES="npm"
+	BASH_PACKAGES="shfmt"
+	;;
+Debian* | Ubuntu*)
+	CPP_PACKAGES="clangd"
+	PYTHON_PACKAGES="python3-pip"
+	GOLANG_PACKAGES="golang-go"
+	RUSTC_PACKAGE="rustc"
+	RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo rust-clippy rustfmt"
+	LUA_PACKAGES="luarocks"
+	LSP_PACKAGES="npm"
+	BASH_PACKAGES="shfmt"
+	;;
 esac
 
 # c++
-lsp_cpp () {
-    install_packages $CPP_PACKAGES
+lsp_cpp() {
+	install_packages $CPP_PACKAGES
 }
 
 # python
-lsp_python () {
-    install_packages $PYTHON_PACKAGES
+lsp_python() {
+	install_packages $PYTHON_PACKAGES
 
-    # TODO: certificates
+	# TODO: certificates
 
-    # Language server
-    install_python_packages python-lsp-server
-    # plugins
-    install_python_packages flake8 mypy pylsp-mypy # static type checking, python 3 only
+	# Language server
+	install_python_packages python-lsp-server
+	# plugins
+	install_python_packages flake8 mypy pylsp-mypy # static type checking, python 3 only
 
-    # also install debug server
-    install_python_packages debugpy
+	# also install debug server
+	install_python_packages debugpy
 
 }
 
 # Go
-lsp_go () {
-    install_packages $GOLANG_PACKAGES
+lsp_go() {
+	install_packages $GOLANG_PACKAGES
 
-    go install golang.org/x/tools/gopls@latest
+	go install golang.org/x/tools/gopls@latest
 }
 
 # Java
-lsp_java () {
-    if [ ! -e ~/.emacs.d/eclipse.jdt.ls/server ] ; then
-        rm -f /tmp/jdt-latest.tar
-        # NOTE: can't use -c because this file changes
-        wget http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
-        mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
-        tar xf /tmp/jdt-latest.tar -C ~/.emacs.d/eclipse.jdt.ls/server/
-        rm -f /tmp/jdt-latest.tar
-    else
-        echo "Java LS already installed, update inside emacs with M-x lsp-java-update-server"
-    fi
+lsp_java() {
+	if [ ! -e ~/.emacs.d/eclipse.jdt.ls/server ]; then
+		rm -f /tmp/jdt-latest.tar
+		# NOTE: can't use -c because this file changes
+		wget http://download.eclipse.org/jdtls/snapshots/jdt-language-server-latest.tar.gz -O /tmp/jdt-latest.tar
+		mkdir -p ~/.emacs.d/eclipse.jdt.ls/server/
+		tar xf /tmp/jdt-latest.tar -C ~/.emacs.d/eclipse.jdt.ls/server/
+		rm -f /tmp/jdt-latest.tar
+	else
+		echo "Java LS already installed, update inside emacs with M-x lsp-java-update-server"
+	fi
 }
 
 rustc_from_package() {
-    list_package_contents $RUSTC_PACKAGE | grep "bin/rustc"
+	list_package_contents $RUSTC_PACKAGE | grep "bin/rustc"
 }
 
 # TODO: check package rust version without installing it?
 minimum_rust_version() {
-    rustc=$(rustc_from_package)
+	rustc=$(rustc_from_package)
 
-    version_less_than "1.65.0" "$($rustc --version | awk '{print $2}')"
+	version_less_than "1.65.0" "$($rustc --version | awk '{print $2}')"
 }
 
 # Rust
-lsp_rust () {
-    source $HOME/.cargo/env
-    install_packages $RUST_PACKAGES
+lsp_rust() {
+	source $HOME/.cargo/env
+	install_packages $RUST_PACKAGES
 
-    # If rust from the package manager meets the minimum, remove rustup toolchains
-    if minimum_rust_version ; then
-        # remove rustup toolchains (if any)
-        rustup toolchain list | awk '{print $1}' | xargs rustup toolchain remove
-    else
-        # Otherwise, remove the system rust...
-        remove_packages $RUST_PACKAGES
+	# If rust from the package manager meets the minimum, remove rustup toolchains
+	if minimum_rust_version; then
+		# remove rustup toolchains (if any)
+		rustup toolchain list | awk '{print $1}' | xargs rustup toolchain remove
+	else
+		# Otherwise, remove the system rust...
+		remove_packages $RUST_PACKAGES
 
-        # and install with rustup
-        curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
-        rustup toolchain install stable
-        rustup default stable
-    fi
+		# and install with rustup
+		curl https://sh.rustup.rs -sSf | sh -s -- -y --no-modify-path
+		rustup toolchain install stable
+		rustup default stable
+	fi
 
-    pushd ~/wa/git
-        analyzer_branch="release"
-        clone_or_update_git_repo https://github.com/rust-analyzer/rust-analyzer.git "$analyzer_branch"
+	pushd ~/wa/git
+	analyzer_branch="release"
+	clone_or_update_git_repo https://github.com/rust-analyzer/rust-analyzer.git "$analyzer_branch"
 
-        pushd rust-analyzer
-            cargo xtask install --server
-        popd
+	pushd rust-analyzer
+	cargo xtask install --server
+	popd
 
-    popd
+	popd
 }
 
 # Lua
-lsp_lua () {
-    install_packages $LUA_PACKAGES
+lsp_lua() {
+	install_packages $LUA_PACKAGES
 
-    # Install as user or root?
+	# Install as user or root?
 
-    luarocks install --local --server=http://luarocks.org/dev lua-lsp
+	luarocks install --local --server=http://luarocks.org/dev lua-lsp
 
-    # Install some other helpers
-    luarocks install --local luacheck
+	# Install some other helpers
+	luarocks install --local luacheck
 
-    # These depend on the version of lua, just install both
-    luarocks install --local Formatter # 5.1 and 5.4 only
-    luarocks install --local lcf
+	# These depend on the version of lua, just install both
+	luarocks install --local Formatter # 5.1 and 5.4 only
+	luarocks install --local lcf
 }
 
-lsp_installer_helpers () {
-    install_packages $LSP_PACKAGES
+lsp_installer_helpers() {
+	install_packages $LSP_PACKAGES
 }
 
 lsp_bash() {
-    # shfmt not lsp related, but we do use shfmt-mode
-    install_packages $BASH_PACKAGES
+	# shfmt not lsp related, but we do use shfmt-mode
+	install_packages $BASH_PACKAGES
 }
 
 # Run each section
