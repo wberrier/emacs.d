@@ -1,105 +1,63 @@
 #!/bin/bash -x
 
-# TODO: bunch of commands in here that don't live in this repo...
-
-# Easy way to check distros...
-
-function is_redhat () {
-    type yum > /dev/null 2>&1
-}
-
-function is_debian () {
-    type apt-get > /dev/null 2>&1
-}
+source "$(dirname "$(readlink -f "$0")")/lib/os-common.sh"
+source "$(dirname "$(readlink -f "$0")")/lib/vcs-common.sh"
+source "$(dirname "$(readlink -f "$0")")/lib/version-common.sh"
 
 # Package list
-if is_redhat ; then
-    CPP_PACKAGES="clang-tools-extra"
-    PYTHON_PACKAGES="python3-pip"
-    GOLANG_PACKAGES="golang-bin"
-    RUSTC_PACKAGE="rust"
-    RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo clippy rustfmt"
-    LUA_PACKAGES="luarocks lua-devel"
-    LSP_PACKAGES="npm"
-    BASH_PACKAGES="shfmt"
-
-    PIP_ARGS=""
-elif is_debian ; then
-    CPP_PACKAGES="clangd"
-    PYTHON_PACKAGES="python3-pip"
-    GOLANG_PACKAGES="golang-go"
-    RUSTC_PACKAGE="rustc"
-    RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo rust-clippy rustfmt"
-    LUA_PACKAGES="luarocks"
-    LSP_PACKAGES="npm"
-    BASH_PACKAGES="shfmt"
-
-    PIP_ARGS="--break-system-packages"
-else
-    echo "Unsupported platform"
-fi
-
-function install_packages() {
-    if is_redhat ; then
-        sudo yum install -y "$@"
-    elif is_debian ; then
-        sudo apt-get update
-        sudo apt-get install -y "$@"
-    else
-        echo "unsupported platform"
-    fi
-}
-
-function remove_packages() {
-    if is_redhat ; then
-        sudo yum remove -y "$@"
-    elif is_debian ; then
-        sudo apt-get remove --purge -y "$@"
-    else
-        echo "unsupported platform"
-    fi
-}
-
-function list_package_contents() {
-    if is_redhat ; then
-        rpm -ql "$@"
-    elif is_debian ; then
-        dpkg -L "$@"
-    else
-        echo "unsupported platform"
-    fi
-}
+case $(get_dist) in
+    fc*)
+        CPP_PACKAGES="clang-tools-extra"
+        PYTHON_PACKAGES="python3-pip"
+        GOLANG_PACKAGES="golang-bin"
+        RUSTC_PACKAGE="rust"
+        RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo clippy rustfmt"
+        LUA_PACKAGES="luarocks lua-devel"
+        LSP_PACKAGES="npm"
+        BASH_PACKAGES="shfmt"
+        ;;
+    Debian*|Ubuntu*)
+        CPP_PACKAGES="clangd"
+        PYTHON_PACKAGES="python3-pip"
+        GOLANG_PACKAGES="golang-go"
+        RUSTC_PACKAGE="rustc"
+        RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo rust-clippy rustfmt"
+        LUA_PACKAGES="luarocks"
+        LSP_PACKAGES="npm"
+        BASH_PACKAGES="shfmt"
+        ;;
+esac
 
 # c++
-function lsp_cpp () {
+lsp_cpp () {
     install_packages $CPP_PACKAGES
 }
 
 # python
-function lsp_python () {
+lsp_python () {
     install_packages $PYTHON_PACKAGES
 
     # TODO: certificates
 
     # Language server
-    pip3 install $PIP_ARGS --user python-lsp-server
+    install_python_packages python-lsp-server
     # plugins
-    pip3 install $PIP_ARGS --user flake8 mypy pylsp-mypy # static type checking, python 3 only
+    install_python_packages flake8 mypy pylsp-mypy # static type checking, python 3 only
 
     # also install debug server
-    pip3 install $PIP_ARGS --user debugpy
+    install_python_packages debugpy
 
 }
 
 # Go
-function lsp_go () {
+lsp_go () {
     install_packages $GOLANG_PACKAGES
 
     go install golang.org/x/tools/gopls@latest
 }
 
 # Java
-function lsp_java () {
+lsp_java () {
     if [ ! -e ~/.emacs.d/eclipse.jdt.ls/server ] ; then
         rm -f /tmp/jdt-latest.tar
         # NOTE: can't use -c because this file changes
@@ -112,32 +70,19 @@ function lsp_java () {
     fi
 }
 
-function meets_minimum_version() {
-    minimum_version="$1"
-    current_version="$2"
-
-    older_version=$(echo -e "$minimum_version\n$current_version" | sort --version-sort | head -n1)
-
-    if [ "$minimum_version" = "$older_version" ] ; then
-        return 0
-    else
-        return 1
-    fi
-}
-
-function rustc_from_package() {
+rustc_from_package() {
     list_package_contents $RUSTC_PACKAGE | grep "bin/rustc"
 }
 
 # TODO: check package rust version without installing it?
-function minimum_rust_version() {
+minimum_rust_version() {
     rustc=$(rustc_from_package)
 
-    meets_minimum_version "1.65.0" "$($rustc --version | awk '{print $2}')"
+    version_less_than "1.65.0" "$($rustc --version | awk '{print $2}')"
 }
 
 # Rust
-function lsp_rust () {
+lsp_rust () {
     source $HOME/.cargo/env
     install_packages $RUST_PACKAGES
 
@@ -156,16 +101,10 @@ function lsp_rust () {
     fi
 
     pushd ~/wa/git
-        if [ ! -e rust-analyzer ] ; then
-            git clone https://github.com/rust-analyzer/rust-analyzer.git
-        fi
+        analyzer_branch="release"
+        clone_or_update_git_repo https://github.com/rust-analyzer/rust-analyzer.git "$analyzer_branch"
 
         pushd rust-analyzer
-            # Grab the latest release
-            analyzer_branch="release"
-            git fetch -pa
-            git checkout $analyzer_branch
-            git rebase origin/${analyzer_branch}
             cargo xtask install --server
         popd
 
@@ -173,7 +112,7 @@ function lsp_rust () {
 }
 
 # Lua
-function lsp_lua () {
+lsp_lua () {
     install_packages $LUA_PACKAGES
 
     # Install as user or root?
@@ -188,11 +127,11 @@ function lsp_lua () {
     luarocks install --local lcf
 }
 
-function lsp_installer_helpers () {
+lsp_installer_helpers () {
     install_packages $LSP_PACKAGES
 }
 
-function lsp_bash() {
+lsp_bash() {
     # shfmt not lsp related, but we do use shfmt-mode
     install_packages $BASH_PACKAGES
 }
