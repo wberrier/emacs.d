@@ -1,22 +1,18 @@
-#!/bin/bash
+#!/bin/sh
 
 # Minimum version
 min_required_version="24.4"
 
+. "$(dirname "$(readlink -f "$0")")/lib/os-common.sh"
+. "$(dirname "$(readlink -f "$0")")/lib/version-common.sh"
+
+version_is_less_than "$min_required_version" "$(package_version emacs)" && exit 0
+
+# Check for this after since it's slower
+
 # Just assume that if we have the flatpak version installed, it's recent enough
 # Running the emacs query command below from bash_profile/rc hangs for a long time
 # on ubuntu... (Not sure what's up with that)
-if ~/.emacs.d/bin/flatpak-emacs-installed ; then
-	exit 0
-else
-
-	# Get the version from emacs
-	# This works also if emacs isn't installed
-	ret=$(emacs -nw -Q --batch --eval "(if (not (version< emacs-version \"$min_required_version\")) (message \"true\") (message \"false\") )" 2>&1)
-
-	if [ "$ret" = "true" ] ; then
-		exit 0
-	fi
-fi
+~/.emacs.d/bin/flatpak-emacs-installed && exit 0
 
 exit 1

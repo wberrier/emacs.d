@@ -101,6 +101,22 @@ package_installed()
 	esac
 }
 
+package_version()
+{
+	case $(package_system) in
+	rpm)
+		rpm -q "$1" --queryformat "%{VERSION}\n"
+		;;
+	dpkg)
+		dpkg-query --showformat='${source:Upstream-Version}\n' --show "$1"
+		;;
+	*)
+		echo "unsupported platform"
+		false
+		;;
+	esac
+}
+
 install_rpm_from_url_if_not_installed()
 {
 	url="$1"
