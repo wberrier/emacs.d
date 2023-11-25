@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # set EDITOR to this script
 
@@ -8,8 +8,7 @@
 # It's fast!
 
 # Be able to run the version from flatpak
-if [ -n "$EMACS_FLATPAK" ] ; then
-
+if [ -n "$EMACS_FLATPAK" ]; then
 	# TODO: emacsclient not working under flatpak in console mode (-nw)
 	#options="--alternate-editor= --create-frame -nw"
 	##options="$options -nw"
@@ -24,7 +23,7 @@ else
 
 fi
 
-if [ "$EMACS_CLI" = "1" ] ; then
+if [ "$EMACS_CLI" = "1" ]; then
 	options="$options -nw"
 fi
 

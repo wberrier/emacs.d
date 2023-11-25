@@ -105,10 +105,20 @@ package_version()
 {
 	case $(package_system) in
 	rpm)
-		rpm -q "$1" --queryformat "%{VERSION}\n"
+		if version=$(rpm -q "$1" --queryformat "%{VERSION}\n") ; then
+			echo "$version"
+		else
+			echo "0"
+			false
+		fi
 		;;
 	dpkg)
-		dpkg-query --showformat='${source:Upstream-Version}\n' --show "$1"
+		if version=$(dpkg-query --showformat='${source:Upstream-Version}\n' --show "$1" 2>/dev/null) ; then
+			echo "$version"
+		else
+			echo "0"
+			false
+		fi
 		;;
 	*)
 		echo "unsupported platform"
@@ -140,6 +150,11 @@ install_python_packages()
 	esac
 
 	pip3 install --user $pip_args "$@"
+}
+
+flatpak_package_installed()
+{
+	type flatpak > /dev/null 2>&1 && flatpak info "$1" > /dev/null 2>&1
 }
 
 install_flatpaks()

@@ -1,7 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-if type flatpak > /dev/null 2>&1 && flatpak list 2>/dev/null | grep -q org.gnu.emacs ; then
-	exit 0
-else
-	exit 1
-fi
+. "$(dirname "$(readlink -f "$0")")/lib/os-common.sh"
+
+flatpak_package_installed "org.gnu.emacs"

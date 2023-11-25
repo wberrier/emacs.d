@@ -1,12 +1,11 @@
 
-# Check if flatpak is installed
-if ~/.emacs.d/bin/flatpak-emacs-installed ; then
-	export EMACS_FLATPAK=1
-fi
-
-# Use emacs when available
+# priority: package emacs, flatpak emacs, vim
+emacs_editor="env EMACS_CLI=1 $HOME/.emacs.d/bin/editor"
 if ~/.emacs.d/bin/min-emacs-version ; then
-	export EDITOR="env EMACS_CLI=1 $HOME/.emacs.d/bin/editor"
+	export EDITOR="$emacs_editor"
+elif ~/.emacs.d/bin/flatpak-emacs-installed ; then
+	export EDITOR="$emacs_editor"
+	export EMACS_FLATPAK=1
 else
 	export EDITOR="vim"
 fi
