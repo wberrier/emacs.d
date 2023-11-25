@@ -102,7 +102,7 @@ package_installed() {
 package_version() {
 	case $(package_system) in
 	rpm)
-		if version=$(rpm -q "$1" --queryformat "%{VERSION}\n") ; then
+		if version=$(rpm -q "$1" --queryformat "%{VERSION}\n"); then
 			echo "$version"
 		else
 			echo "0"
@@ -110,7 +110,7 @@ package_version() {
 		fi
 		;;
 	dpkg)
-		if version=$(dpkg-query --showformat='${source:Upstream-Version}\n' --show "$1" 2>/dev/null) ; then
+		if version=$(dpkg-query --showformat='${source:Upstream-Version}\n' --show "$1" 2>/dev/null); then
 			echo "$version"
 		else
 			echo "0"
@@ -148,7 +148,7 @@ install_python_packages() {
 }
 
 flatpak_package_installed() {
-	type flatpak > /dev/null 2>&1 && flatpak info "$1" > /dev/null 2>&1
+	type flatpak >/dev/null 2>&1 && flatpak info "$1" >/dev/null 2>&1
 }
 
 install_flatpaks() {
