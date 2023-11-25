@@ -3,6 +3,10 @@
   :ensure nil
   :init (add-hook 'sh-mode-hook #'lsp)
   :mode ("bash_profile" "bashrc")
+  :custom
+  ;; match shfmt indentation (probably more to come...)
+  (sh-indent-for-case-alt '+)
+  (sh-indent-for-case-label 0)
   )
 
 ; commands to run shfmt
