@@ -70,26 +70,28 @@ lsp_java() {
 	fi
 }
 
-rustc_from_package() {
-	list_package_contents $RUSTC_PACKAGE | grep "bin/rustc"
+minimum_rust_version() {
+	remote_version=$(remote_package_version "$RUSTC_PACKAGE")
+
+	version_is_less_than "1.65.0" "$remote_version"
 }
 
-# TODO: check package rust version without installing it?
-minimum_rust_version() {
-	rustc=$(rustc_from_package)
-
-	version_less_than "1.65.0" "$($rustc --version | awk '{print $2}')"
+rustup_installed() {
+	type rustup >/dev/null 2>&1
 }
 
 # Rust
 lsp_rust() {
 	source $HOME/.cargo/env
-	install_packages $RUST_PACKAGES
 
-	# If rust from the package manager meets the minimum, remove rustup toolchains
+	# If rust from the package manager meets the minimum, install it
+	# and remove rustup toolchains
 	if minimum_rust_version; then
-		# remove rustup toolchains (if any)
-		rustup toolchain list | awk '{print $1}' | xargs rustup toolchain remove
+		install_packages $RUST_PACKAGES
+
+		# remove rustup and toolchains (if any)
+		rustup_installed && rustup self uninstall -y
+
 	else
 		# Otherwise, remove the system rust...
 		remove_packages $RUST_PACKAGES

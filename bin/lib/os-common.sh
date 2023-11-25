@@ -124,6 +124,22 @@ package_version() {
 	esac
 }
 
+remote_package_version() {
+	case $(package_system) in
+	rpm)
+		if output=$(sudo yum list "$1"); then
+			echo "$output" | tail -n1 | awk '{print $2}' | cut -d '-' -f 1
+		fi
+		;;
+	dpkg)
+		sudo apt-get update >/dev/null 2>&1
+		if output=$(apt-cache show "$1"); then
+			echo "$output" | grep Version: | awk '{print $2}'
+		fi
+		;;
+	esac
+}
+
 install_rpm_from_url_if_not_installed() {
 	url="$1"
 	rpm_name="$2"
