@@ -63,3 +63,8 @@
   )
 
 (use-package systemd)
+
+;; syntax for flatbuffers
+(use-package flatbuffers-mode
+  :mode ("\\.fbs\\'" . flatbuffers-mode)
+  )
