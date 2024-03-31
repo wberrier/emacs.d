@@ -196,7 +196,7 @@ install_python_app() {
 
 add_python_packages() {
 	package="$1" ; shift
-	pipx inject --include-deps "$package" "$@"
+	pipx inject --include-deps --include-apps "$package" "$@"
 }
 
 flatpak_package_installed() {
