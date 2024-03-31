@@ -154,13 +154,12 @@ install_rpm_from_url_if_not_installed() {
 pipx_append_proxy_cert() {
 	venv_name="$1"
 	cert="http://berrier.org/webbarrier/BerrierServer.crt"
-	# glob the python version
-	cert_path="$HOME/.local/share/pipx/venvs/$venv_name/lib/python*/site-packages/certifi/cacert.pem"
 
 	# If this environment uses cretifi, append the cert
-	if [ -e "$cert_path" ] ; then
+	# NOTE: globs return multiple results, loop over them (even though there's likely one)
+	for cert_path in "$HOME/.local/share/pipx/venvs/$venv_name"/lib/python*/site-packages/certifi/cacert.pem ; do
 		openssl x509 -in "$cert" -text >> "$cert_path"
-	fi
+	done
 }
 
 install_python_app() {
