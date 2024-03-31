@@ -151,16 +151,52 @@ install_rpm_from_url_if_not_installed() {
 	fi
 }
 
-install_python_packages() {
-	pip_args=""
-	case $(get_dist) in
-	# Looks like debian patches pip to required this option?
-	Debian* | Ubuntu*)
-		pip_args="--break-system-packages"
-		;;
-	esac
+pipx_append_proxy_cert() {
+	venv_name="$1"
+	cert="http://berrier.org/webbarrier/BerrierServer.crt"
+	# glob the python version
+	cert_path="$HOME/.local/share/pipx/venvs/$venv_name/lib/python*/site-packages/certifi/cacert.pem"
 
-	pip3 install --user $pip_args "$@"
+	# If this environment uses cretifi, append the cert
+	if [ -e "$cert_path" ] ; then
+		openssl x509 -in "$cert" -text >> "$cert_path"
+	fi
+}
+
+install_python_app() {
+	# Parse some arguments for passing to pipx
+	python_options=""
+	opts=$(getopt -a -o p: --longoptions python: -- "$@")
+	eval set -- "${opts}"
+	unset opts
+	while true ; do
+		case $1 in
+		-p | --python)
+			python_options="--python $2"
+			shift 2
+			continue
+			;;
+		--)
+			shift
+			break
+			;;
+		*)
+			echo "Unexpected arg: $1"
+			shift
+			break
+			;;
+		esac
+		shift
+	done
+
+	pipx install $python_options "$@"
+
+	pipx_append_proxy_cert "$@"
+}
+
+add_python_packages() {
+	package="$1" ; shift
+	pipx inject --include-deps "$package" "$@"
 }
 
 flatpak_package_installed() {

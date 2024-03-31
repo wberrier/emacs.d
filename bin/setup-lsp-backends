@@ -8,7 +8,7 @@ source "$(dirname "$(readlink -f "$0")")/lib/version-common.sh"
 case $(get_dist) in
 fc*)
 	CPP_PACKAGES="clang-tools-extra"
-	PYTHON_PACKAGES="python3-pip"
+	PYTHON_PACKAGES="pipx"
 	GOLANG_PACKAGES="golang-bin"
 	RUSTC_PACKAGE="rust"
 	RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo clippy rustfmt"
@@ -18,7 +18,7 @@ fc*)
 	;;
 Debian* | Ubuntu*)
 	CPP_PACKAGES="clangd"
-	PYTHON_PACKAGES="python3-pip"
+	PYTHON_PACKAGES="pipx"
 	GOLANG_PACKAGES="golang-go"
 	RUSTC_PACKAGE="rustc"
 	RUST_PACKAGES="$RUSTC_PACKAGE rust-src cargo rust-clippy rustfmt"
@@ -37,16 +37,14 @@ lsp_cpp() {
 lsp_python() {
 	install_packages $PYTHON_PACKAGES
 
-	# TODO: certificates
-
 	# Language server
-	install_python_packages python-lsp-server
+	install_python_app --include-deps python-lsp-server
 	# plugins
-	install_python_packages flake8 mypy pylsp-mypy # static type checking, python 3 only
+	add_python_packages python-lsp-server flake8 mypy pylsp-mypy # static type checking, python 3 only
+	add_python_packages python-lsp-server pycodestyle
 
 	# also install debug server
-	install_python_packages debugpy
-
+	add_python_packages python-lsp-server debugpy
 }
 
 # Go
