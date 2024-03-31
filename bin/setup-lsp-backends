@@ -38,7 +38,7 @@ lsp_python() {
 	install_packages $PYTHON_PACKAGES
 
 	# Language server
-	install_python_app --include-deps python-lsp-server
+	install_python_app python-lsp-server
 	# plugins
 	add_python_packages python-lsp-server flake8 mypy pylsp-mypy # static type checking, python 3 only
 	add_python_packages python-lsp-server pycodestyle

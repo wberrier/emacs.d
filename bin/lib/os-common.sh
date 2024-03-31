@@ -188,14 +188,14 @@ install_python_app() {
 		shift
 	done
 
-	pipx install $python_options "$@"
+	pipx install --force --include-deps $python_options "$@"
 
 	pipx_append_proxy_cert "$@"
 }
 
 add_python_packages() {
 	package="$1" ; shift
-	pipx inject --include-deps --include-apps "$package" "$@"
+	pipx inject --force --include-deps --include-apps "$package" "$@"
 }
 
 flatpak_package_installed() {
