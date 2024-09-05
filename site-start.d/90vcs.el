@@ -25,13 +25,6 @@
 ;; Basic syntax highlighting modes
 ;; (use backend agnostic vc for normal stuff)
 
-;; git
-(use-package git-commit
-  :init
-  ;; git-commit mode wants to go into emacs state.  Force evil state.
-  (add-hook 'with-editor-mode-hook 'evil-normal-state)
-  )
-
 (use-package git-modes)
 (use-package gitconfig-mode
   :ensure nil ;; built-in, don't download
