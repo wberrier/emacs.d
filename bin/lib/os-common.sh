@@ -7,9 +7,9 @@
 get_dist() {
 	dist="nodist"
 	if [ -e /etc/fedora-release ]; then
-		dist=$(cat /etc/fedora-release | sed -e "s/.*release\s\([0-9]\+\).*/fc\1/")
+		dist=$(cat /etc/fedora-release | sed -e "s/.*release\s\([0-9]\+\).*/Fedora-\1/")
 	elif [ -e /etc/redhat-release ]; then
-		dist=$(cat /etc/redhat-release | sed -e "s/.*release\s\([0-9]\+\).*/el\1/")
+		dist=$(cat /etc/redhat-release | sed -e "s/.*release\s\([0-9]\+\).*/RedHat-\1/")
 	elif [ -e /etc/debian_version ]; then
 		# TODO: does this work on olders versions than debian 10?
 		dist=$(cat /etc/debian_version | sed -e "s/\([0-9]\+\).*/Debian-\1/")
@@ -28,7 +28,7 @@ get_dist() {
 
 package_system() {
 	case $(get_dist) in
-	fc* | el*)
+	Fedora* | RedHat*)
 		echo "rpm"
 		;;
 	Debian* | Ubuntu*)
@@ -43,12 +43,11 @@ package_system() {
 install_packages() {
 	case $(package_system) in
 	rpm)
-		# el7 uses yum still... don't refer to dnf...
-		sudo yum install -y --best --allowerasing "$@"
+		sudo dnf install -y --skip-broken --best --allowerasing "$@"
 		;;
 	dpkg)
 		sudo apt-get update
-		sudo apt-get install -y "$@"
+		sudo DEBIAN_FRONTEND=noninteractive apt-get install -yq "$@"
 		;;
 	*)
 		echo "unsupported platform"
@@ -62,7 +61,7 @@ remove_packages() {
 		sudo yum remove -y "$@"
 		;;
 	dpkg)
-		sudo apt-get remove --purge -y "$@"
+		sudo DEBIAN_FRONTEND=noninteractive apt-get remove --purge -yq "$@"
 		;;
 	*)
 		echo "unsupported platform"
@@ -206,4 +205,17 @@ install_flatpaks() {
 	# NOTE: running on debian seemed to require sudo
 	# Not sure if there's an alternative?
 	sudo flatpak install -y --noninteractive --system "$@"
+}
+
+add_flatpak_remote() {
+    sudo flatpak remote-add --if-not-exists "$1" "$2"
+}
+
+set_apt_components() {
+    sources_list="$1"
+    shift
+    components="$@"
+
+    # TODO: this only supports the new deb822 style...
+    sudo sed -i "s/^Components:/Components: $components/g" "$sources_list"
 }
