@@ -43,7 +43,7 @@ package_system() {
 install_packages() {
 	case $(package_system) in
 	rpm)
-		sudo dnf install -y --skip-broken --best --allowerasing "$@"
+		sudo dnf install -y --skip-broken --allowerasing "$@"
 		;;
 	dpkg)
 		sudo apt-get update
