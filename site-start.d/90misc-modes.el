@@ -48,6 +48,8 @@
   :mode ("\\.bb$" . bitbake-mode)
   :mode ("\\.bbclass$" . bitbake-mode)
   :mode ("\\.bbappend$" . bitbake-mode)
+  ;; not sure this will always be accurate...
+  :mode ("\\.inc$" . bitbake-mode)
   :hook (bitbake-mode . mmm-mode-on)
   )
 
