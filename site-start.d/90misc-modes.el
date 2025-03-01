@@ -56,6 +56,7 @@
 (use-package kconfig-mode
   :mode ("Kconfig\\." . kconfig-mode)
   :mode ("AmbaConfig" . kconfig-mode)
+  :mode ("\\.kconf" . kconfig-mode)
   )
 
 ;; syntax highlighting for repo files
