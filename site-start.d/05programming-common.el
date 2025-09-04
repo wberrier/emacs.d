@@ -15,6 +15,7 @@
 (defun my-prog-mode-stuff ()
   ;; Enable showing what current function is
   (which-function-mode 1)
+  (hs-minor-mode 1)
   )
 
 (use-package prog-mode
