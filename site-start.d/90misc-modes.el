@@ -71,3 +71,8 @@
 (use-package flatbuffers-mode
   :mode ("\\.fbs\\'" . flatbuffers-mode)
   )
+
+;; syntax for cron
+(use-package crontab-mode
+  :mode ("crontab" . crontab-mode)
+  )
