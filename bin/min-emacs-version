@@ -3,7 +3,13 @@
 # Minimum version
 min_required_version="24.4"
 
+emacs_version() {
+    emacs --version | head -n1 | awk '{print $3}'
+}
+
+current_version="$(emacs_version)"
+
 . "$(dirname "$(readlink -f "$0")")/lib/os-common.sh"
 . "$(dirname "$(readlink -f "$0")")/lib/version-common.sh"
 
-version_is_less_than "$min_required_version" "$(package_version emacs)"
+version_is_less_than "$min_required_version" "$current_version"
