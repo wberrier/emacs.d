@@ -24,3 +24,22 @@ speed-type
 *.swp
 
 .mypy_cache
+
+# Cache directories
+.cache/
+eln-cache/
+
+# Personal configuration files
+custom.el
+projects
+tramp
+transient/
+
+# Debug and session files
+.dap-breakpoints
+.lsp-session-v1
+
+.opencode
+
+url
+eshell
