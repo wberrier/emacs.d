@@ -7,6 +7,7 @@
   ;;(compilation-read-command nil) ;; don't prompt for command
   (compilation-scroll-output 'first-error) ;; scroll until the first error
   ;;(compilation-scroll-output t) ;; scroll to the end
+  (compilation-skip-threshold 0)
 )
 
 ; disable makefile warnings
