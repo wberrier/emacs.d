@@ -16,7 +16,9 @@
 (use-package cargo
   :init
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
-  :custom
-  ;; This defaults to using nightly args to work around a bug, but was fixed in 1.52.0
-  (cargo-process--command-clippy "clippy")
   )
+
+;; Load rust-mode's compilation regexps for compilation-mode
+;; (rust-mode adds rustc/cargo/clippy patterns to compilation-error-regexp-alist)
+(with-eval-after-load 'compile
+  (require 'rust-mode))
